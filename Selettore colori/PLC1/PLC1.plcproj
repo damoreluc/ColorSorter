@@ -32,6 +32,9 @@
     <Compile Include="CSL\FB\FB_MSF_Sensor.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CSL\FB\FB_Oscillator.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="CSL\FB\FB_Processing.TcPOU">
       <SubType>Code</SubType>
     </Compile>

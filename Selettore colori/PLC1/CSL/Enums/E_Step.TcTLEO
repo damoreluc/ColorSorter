@@ -19,6 +19,7 @@ TYPE E_Step :
 	MainPiston		:=	20,		// piston area
 	MainPause		:=	30,		// pause
 	MainEmergency	:=	40,		// emergency
+	MainAcknowledge	:=	50,		// acknowledge
 	//sub-steps
 	Start			:= 	100,
 	Measuring		:= 	110,
@@ -72,6 +73,11 @@ END_TYPE
             <o>
               <v n="TextID">"MainEmergency"</v>
               <v n="TextDefault">"40"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"MainAcknowledge"</v>
+              <v n="TextDefault">"50"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>

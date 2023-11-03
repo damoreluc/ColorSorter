@@ -12,7 +12,6 @@ VAR_OUTPUT
 	eStep				:	E_Step;
 	eErrStep			:	E_Step;
 	nErrId				:	DINT;
-	tStepTime			:	TIME;
 	
 	bFbEnd				:	BOOL;
 	
