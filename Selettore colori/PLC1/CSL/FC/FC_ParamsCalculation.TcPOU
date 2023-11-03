@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FC_ParamsCalculation" Id="{442698b9-30f7-4cf2-948f-13b4f51315ff}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION FC_ParamsCalculation : ST_CSL_Params
+VAR_INPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[FC_ParamsCalculation.WhiteVoltageMax	:=	FC_ParamsCalculation.WhiteVoltage + FC_ParamsCalculation.Threshold;
+FC_ParamsCalculation.WhiteVoltageMin	:=	FC_ParamsCalculation.WhiteVoltage - FC_ParamsCalculation.Threshold;
+
+FC_ParamsCalculation.RedVoltageMax		:=	FC_ParamsCalculation.RedVoltage + FC_ParamsCalculation.Threshold;
+FC_ParamsCalculation.RedVoltageMin		:=	FC_ParamsCalculation.RedVoltage - FC_ParamsCalculation.Threshold;
+
+FC_ParamsCalculation.BlueVoltageMax		:=	FC_ParamsCalculation.BlueVoltage + FC_ParamsCalculation.Threshold;
+FC_ParamsCalculation.BlueVoltageMin		:=	FC_ParamsCalculation.BlueVoltage - FC_ParamsCalculation.Threshold;]]></ST>
+    </Implementation>
+    <LineIds Name="FC_ParamsCalculation">
+      <LineId Id="8" Count="6" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

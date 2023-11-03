@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_Measuring" Id="{034a35b7-d330-49e5-930f-261d0624b988}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Measuring
+VAR_INPUT
+	VIn		:	REAL;
+END_VAR
+VAR_OUTPUT
+	EndMeasure	:	BOOL;
+	
+END_VAR
+VAR_IN_OUT
+	VOut		:	REAL;
+END_VAR
+VAR
+	VPrev	:	REAL	:=	10.0;
+	fbTonEndMeasure	:	TON;
+	En : BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF VIn < VPrev THEN
+	VPrev := VIn;
+	En := TRUE;
+END_IF
+IF VIn > 7.3 THEN
+	Vprev := VIn;
+	En := FALSE;
+END_IF
+IF En = TRUE THEN
+	Vout:=VPrev;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="FB_Measuring">
+      <LineId Id="24" Count="9" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

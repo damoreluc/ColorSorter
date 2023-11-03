@@ -15,10 +15,12 @@ TYPE E_Step :
 	(* Stop *)   
 	Stop := 0, // stop
 	
-	
+	Start		:= 	100,
+	Measuring	:= 	110,
+	Processing	:= 	120,
 	conveyor	:=  130,	// a new piece was placed on the conveyor belt
-	waiting		:= 140,		//attesa
-	piston		:= 150		//pistone
+	waiting		:= 	140,	//attesa
+	piston		:=	150		//pistone
 
 );
 END_TYPE
@@ -45,6 +47,21 @@ END_TYPE
             <o>
               <v n="TextID">"Stop"</v>
               <v n="TextDefault">"0"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Start"</v>
+              <v n="TextDefault">"100"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Measuring"</v>
+              <v n="TextDefault">"110"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Processing"</v>
+              <v n="TextDefault">"120"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>

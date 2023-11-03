@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_Processing" Id="{b2220ab2-e5f3-43a7-8f27-717702a100d1}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Processing
+VAR_INPUT
+	SensorInput	:	REAL;
+END_VAR
+VAR_OUTPUT
+	slot		:	INT;
+	
+END_VAR
+VAR_IN_OUT
+	stParams	:	ST_CSL_Params;	
+END_VAR
+VAR
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF SensorInput < stParams.BlueVoltageMax AND SensorInput > stParams.BlueVoltageMin THEN
+	slot	:=	stParams.BlueSlot;
+ELSIF SensorInput < stParams.RedVoltageMax AND SensorInput > stParams.RedVoltageMin THEN
+	slot	:=	stParams.RedSlot;
+ELSIF SensorInput < stParams.WhiteVoltageMax AND SensorInput > stParams.WhiteVoltageMin THEN
+	slot	:=	stParams.WhiteSlot;
+ELSE
+	slot	:=	0;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="FB_Processing">
+      <LineId Id="21" Count="7" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

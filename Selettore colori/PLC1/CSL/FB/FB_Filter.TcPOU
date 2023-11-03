@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_Filter" Id="{bf7ae56e-02d2-445b-a718-de95f7d21e2f}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Filter
+VAR_INPUT
+	VIn		:	REAL;
+END_VAR
+VAR_IN_OUT
+	VOut	:	REAL;
+END_VAR
+VAR
+	VPrev	:	REAL	:= 0;
+	tau		:	REAL	:= 50E-3;
+	Tc		:	REAL	:= 10E-3;
+	A		:	REAL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[A := tau/(tau + Tc);
+VOut  := A*VPrev+(1-A)*VIn;
+VPrev := Vout;]]></ST>
+    </Implementation>
+    <LineIds Name="FB_Filter">
+      <LineId Id="28" Count="1" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

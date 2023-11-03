@@ -20,13 +20,31 @@
     <Compile Include="CSL\Enums\E_Step.TcTLEO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CSL\FB\FB_Measuring.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="CSL\FB\FB_MSF_Pistons.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CSL\FB\FB_MSF_Sensor.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CSL\FB\FB_Processing.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CSL\FB\FB_UpdateInputs.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CSL\FB\FB_UpdateOutputs.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CSL\FB\FB_Filter.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CSL\FC\FC_Conversion.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CSL\FC\FC_ParamsCalculation.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CSL\Structs\ST_CSL_RawOut.TcDUT">
@@ -54,6 +72,7 @@
   <ItemGroup>
     <Folder Include="CSL\Enums" />
     <Folder Include="CSL\FB" />
+    <Folder Include="CSL\FC" />
     <Folder Include="CSL\Structs" />
     <Folder Include="DUTs" />
     <Folder Include="GVLs" />
