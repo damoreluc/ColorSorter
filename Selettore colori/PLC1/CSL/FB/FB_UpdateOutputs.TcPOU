@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_UpdateOutputs" Id="{ee420f92-c343-478f-93f4-67e127694175}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_UpdateOutputs
+VAR_INPUT
+	stOut		: 	ST_CSL_Out;
+END_VAR
+VAR_IN_OUT
+	stRawOut	:	ST_CSL_RawOut;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[stRawOut.bCompressor := stOut.bCompressor;
+stRawOut.bLAck := stOut.bLAck;
+stRawOut.bLStart := stOut.bLStart;
+stRawOut.bLStop := stOut.bLStop;
+stRawOut.bMotor := stOut.bMotor;
+stRawOut.bValveSlot1 := stOut.bValveSlot1;
+stRawOut.bValveSlot2 := stOut.bValveSlot2;
+stRawOut.bValveSlot3 := stOut.bValveSlot3;
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

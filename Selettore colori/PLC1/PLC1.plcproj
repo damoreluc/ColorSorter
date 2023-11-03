@@ -23,6 +23,12 @@
     <Compile Include="CSL\FB\FB_MSF_Pistons.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CSL\FB\FB_UpdateInputs.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CSL\FB\FB_UpdateOutputs.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="CSL\Structs\ST_CSL_RawOut.TcDUT">
       <SubType>Code</SubType>
     </Compile>

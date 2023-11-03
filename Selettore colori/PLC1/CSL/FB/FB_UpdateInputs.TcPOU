@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_UpdateInputs" Id="{e6a6514a-bf4f-4904-86b8-c0a057e2f602}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_UpdateInputs
+VAR_INPUT
+	stRawIn		:	ST_CSL_RawIn;	
+
+END_VAR
+VAR_IN_OUT
+	stIn		:	ST_CSL_In;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[stIn.bMotorImpulse 			:= stRawIn.bMotorImpulse 		;
+stIn.bPieceSensorInput 		:= stRawIn.bPieceSensorInput 	;
+stIn.bPieceSensorOutput 	:= stRawIn.bPieceSensorOutput 	;	
+stIn.bSlot1 				:= stRawIn.bSlot1 				;	
+stIn.bSlot2 				:= stRawIn.bSlot2 				;	
+stIn.bSlot3	            	:= stRawIn.bSlot3				; 
+stIn.bStart 				:= stRawIn.bStart               ;    	
+stIn.bStop					:= stRawIn.bStop	 			;	
+stIn.bAck 					:= stRawIn.bAck 				;
+stIn.bEmerg 				:= stRawIn.bEmerg				;]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

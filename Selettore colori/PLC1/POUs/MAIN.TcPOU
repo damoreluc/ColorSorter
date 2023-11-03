@@ -10,10 +10,13 @@ VAR
 	stIn		:	ST_CSL_In;
 	stOut		: 	ST_CSL_Out;
 	stParams	:	ST_CSL_Params; 
+	
+	fbUpdateInputs : FB_UpdateInputs;
+	fbUpdateOutputs : FB_UpdateOutputs;
 	fbPistons	: FB_MSF_Pistons;
 	
 	estep 	: E_Step;
-	
+	eErrstep : E_Step;
 	
 	slot	: INT;
 	nerrid	: DINT; 
@@ -25,47 +28,26 @@ END_VAR
       <ST><![CDATA[
 
 
-(*
-stIn.bMotorImpulse 			:= stRawIn.bMotorImpulse 		;
-stIn.bPieceSensorInput 		:= stRawIn.bPieceSensorInput 	;
-stIn.bPieceSensorOutput 	:= stRawIn.bPieceSensorOutput 	;	
-stIn.bSlot1 				:= stRawIn.bSlot1 				;	
-stIn.bSlot2 				:= stRawIn.bSlot2 				;	
-stIn.bSlot3	            	:= stRawIn.bSlot3				; 
-stIn.bStart 				:= stRawIn.bStart               ;    	
-stIn.bStop					:= stRawIn.bStop	 			;	
-stIn.bAck 					:= stRawIn.bAck 				;
-stIn.bEmerg 				:= stRawIn.bEmerg				;
+
                                         				
+fbUpdateInputs(stRawIn:= stRawIn, stIn:= stIn);
 
 fbPistons(
-	bEnable		:=  TRUE, 
-	slot 		:= 2, 
-	st_In 		:= stIn, 
-	st_Params 	:= stParams, 
-	eStep		=> estep, 
-	eErrStep	=> estep, 
-	nErrid		=> nerrid, 
-	bFbEnd		=> bfbend);
-	
+	bEnable:= TRUE, 
+	slot:= 2, 
+	st_In:= stIn, 
+	st_Params:= stParams, 
+	st_Out:= stOut, 
+	eStep=> estep, 
+	eErrStep=> eErrstep, 
+	nErrid=> nerrid, 
+	bFbEnd=> bfbend);
 
-stRawOut :=  fbPistons.st_Out;
 
-*)
+fbUpdateOutputs(stOut:= stOut, stRawOut:= stRawOut);
+
+
 	]]></ST>
     </Implementation>
-    <LineIds Name="MAIN">
-      <LineId Id="208" Count="3" />
-      <LineId Id="159" Count="10" />
-      <LineId Id="176" Count="0" />
-      <LineId Id="180" Count="4" />
-      <LineId Id="186" Count="2" />
-      <LineId Id="175" Count="0" />
-      <LineId Id="179" Count="0" />
-      <LineId Id="171" Count="1" />
-      <LineId Id="61" Count="0" />
-      <LineId Id="49" Count="0" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

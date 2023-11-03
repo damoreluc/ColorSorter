@@ -10,7 +10,7 @@ END_VAR
 VAR_IN_OUT
 	st_In		:	ST_CSL_In;
 	st_Params	: 	ST_CSL_Params;
-	st_Out		: 	ST_CSL_RawOut;	
+	st_Out		: 	ST_CSL_Out;	
 END_VAR
 
 VAR_OUTPUT

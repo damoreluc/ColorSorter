@@ -2023,7 +2023,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{3EDF9352-52F3-4952-9761-FBBC22E56AED}" Name="PLC1" PrjFilePath="PLC1\PLC1.plcproj" TmcFilePath="PLC1\PLC1.tmc" ReloadTmc="true" AmsPort="852" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC1\PLC1.tmc" TmcHash="{D543D04C-BB3B-75AD-0DC7-E1874A47A172}">
+				<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC1\PLC1.tmc" TmcHash="{9B6557FF-D7EF-D084-A576-5484334A906A}">
 					<Name>PLC1 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
@@ -2080,6 +2080,61 @@ External Setpoint Generation:
 						</Var>
 						<Var>
 							<Name>MAIN.stRawIn.nColorSensor</Name>
+							<Comment><![CDATA[I4]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbUpdateInputs.stRawIn.bMotorImpulse</Name>
+							<Comment><![CDATA[I1  (NC)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbUpdateInputs.stRawIn.bPieceSensorInput</Name>
+							<Comment><![CDATA[I2  (NC)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbUpdateInputs.stRawIn.bPieceSensorOutput</Name>
+							<Comment><![CDATA[I3  (NO)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbUpdateInputs.stRawIn.bSlot1</Name>
+							<Comment><![CDATA[I5  (NC)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbUpdateInputs.stRawIn.bSlot2</Name>
+							<Comment><![CDATA[I6  (NC)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbUpdateInputs.stRawIn.bSlot3</Name>
+							<Comment><![CDATA[I7  (NC)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbUpdateInputs.stRawIn.bStart</Name>
+							<Comment><![CDATA[I9  (NO)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbUpdateInputs.stRawIn.bStop</Name>
+							<Comment><![CDATA[I10 (NC)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbUpdateInputs.stRawIn.bAck</Name>
+							<Comment><![CDATA[I11 (NO)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbUpdateInputs.stRawIn.bEmerg</Name>
+							<Comment><![CDATA[12  (NC)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbUpdateInputs.stRawIn.nColorSensor</Name>
 							<Comment><![CDATA[I4]]></Comment>
 							<Type>INT</Type>
 						</Var>
@@ -2145,7 +2200,7 @@ External Setpoint Generation:
 			</Project>
 		</Plc>
 		<Io>
-			<Device Id="1" DevType="111" DevFlags="#x0003" AmsPort="28673" AmsNetId="192.168.56.1.2.1" RemoteName="Dispositivo 1 (EtherCAT)" InfoImageId="2">
+			<Device Id="1" Disabled="true" DevType="111" DevFlags="#x0003" AmsPort="28673" AmsNetId="192.168.56.1.2.1" RemoteName="Dispositivo 1 (EtherCAT)" InfoImageId="2">
 				<Name>Dispositivo 1 (EtherCAT)</Name>
 				<AddressInfo>
 					<Ccat>
@@ -2932,7 +2987,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 				</Box>
 				<EtherCAT/>
 			</Device>
-			<Device Id="4" DevType="111" DevFlags="#x0003" AmsPort="28676" AmsNetId="192.168.56.1.5.1" RemoteName="Dispositivo 4 (EtherCAT)" InfoImageId="6">
+			<Device Id="4" Disabled="true" DevType="111" DevFlags="#x0003" AmsPort="28676" AmsNetId="192.168.56.1.5.1" RemoteName="Dispositivo 4 (EtherCAT)" InfoImageId="6">
 				<Name>Dispositivo 4 (EtherCAT)</Name>
 				<AddressInfo>
 					<Pnp>
