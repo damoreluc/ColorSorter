@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="ST_CSL_RawOut" Id="{50792565-1d59-4304-bf0b-1fbf5e99d5ae}">
+    <Declaration><![CDATA[TYPE ST_CSL_RawOut :
+STRUCT
+	(*Digital Outputs*)
+	bMotor 			AT %Q*	:	BOOL;	//Q1
+	bCompressor 	AT %Q*	:	BOOL;	//Q2
+	bValveSlot1 	AT %Q*	:	BOOL;	//Q3
+	bValveSlot2 	AT %Q*	:	BOOL;	//Q4
+	bValveSlot3		AT %Q*	:	BOOL;	//Q5
+	                                         
+	bLStart 		AT %Q*	:	BOOL;	//Q9 
+	bLStop			AT %Q*	:	BOOL;	//Q10
+	bLAck 			AT %Q*	:	BOOL;	//Q11
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

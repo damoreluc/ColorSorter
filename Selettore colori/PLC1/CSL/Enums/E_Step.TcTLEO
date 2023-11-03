@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <EnumerationTextList Name="E_Step" Id="{fe3a30d3-1d96-4fc1-b1aa-f734a954498a}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE E_Step :
+(
+	(* special steps *)
+	NoStep := -32767,  // No step   
+	Unknown := -32000, // unknown step
+	
+	(* Not Enabled or Errors*)    
+	NeOrError := -990, // Not Enabled or Errors
+	
+	(* Stop *)   
+	Stop := 0, // stop
+	
+	
+	conveyor	:=  130,	// a new piece was placed on the conveyor belt
+	waiting		:= 140,		//attesa
+	piston		:= 150		//pistone
+
+);
+END_TYPE
+]]></Declaration>
+    <XmlArchive>
+      <Data>
+        <o xml:space="preserve" t="TextListEnumerationTextListObject">
+          <l n="TextList" t="ArrayList" cet="TextListRow">
+            <o>
+              <v n="TextID">"NoStep"</v>
+              <v n="TextDefault">"-32767"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Unknown"</v>
+              <v n="TextDefault">"-32000"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"NeOrError"</v>
+              <v n="TextDefault">"-990"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Stop"</v>
+              <v n="TextDefault">"0"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"conveyor"</v>
+              <v n="TextDefault">"130"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"waiting"</v>
+              <v n="TextDefault">"140"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"piston"</v>
+              <v n="TextDefault">"150"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">""</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+          </l>
+          <l n="Languages" t="ArrayList" />
+          <v n="GuidInit">{90098c71-3b16-4c6f-a834-571a2d91a204}</v>
+          <v n="GuidReInit">{2a97232f-6e76-4ba8-9517-f791bfe7c744}</v>
+          <v n="GuidExitX">{7bfeb9cf-9d30-466d-a7bd-18a74afae222}</v>
+        </o>
+      </Data>
+      <TypeList>
+        <Type n="ArrayList">System.Collections.ArrayList</Type>
+        <Type n="Guid">System.Guid</Type>
+        <Type n="String">System.String</Type>
+        <Type n="TextListEnumerationTextListObject">{4b60233c-f940-4beb-b331-82133b520151}</Type>
+        <Type n="TextListRow">{53da1be7-ad25-47c3-b0e8-e26286dad2e0}</Type>
+      </TypeList>
+    </XmlArchive>
+  </EnumerationTextList>
+</TcPlcObject>

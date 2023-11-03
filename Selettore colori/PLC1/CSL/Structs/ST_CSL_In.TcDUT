@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="ST_CSL_In" Id="{704fab2a-d719-4171-9510-cf73670c412f}">
+    <Declaration><![CDATA[TYPE ST_CSL_In :
+STRUCT
+	(*Digital Inputs*)
+	bMotorImpulse 		:	BOOL;	//I1  (NC)
+	bPieceSensorInput 	:	BOOL;	//I2  (NC)
+	bPieceSensorOutput 	:	BOOL;	//I3  (NO)
+	bSlot1 				:	BOOL;	//I5  (NC)
+	bSlot2 				:	BOOL;	//I6  (NC)
+	bSlot3				:	BOOL;	//I7  (NC)
+	                    
+	bStart 				:	BOOL;	//I9  (NO)
+	bStop				:	BOOL;	//I10 (NC)
+	bAck 				:	BOOL;	//I11 (NO)
+	bEmerg 				:	BOOL;	//12  (NC)
+	                    
+	(*Analog Input*)    
+	nColorSensor		:	REAL;	//I4
+	
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

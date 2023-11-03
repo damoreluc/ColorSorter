@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="ST_CSL_Params" Id="{a68baf98-494b-42fa-ab52-3ff8b223671a}">
+    <Declaration><![CDATA[TYPE ST_CSL_Params :
+STRUCT
+	StepSlot1			:	INT		:= 	4;  // conveyor steps to reach Slot 1
+	StepSlot2			:	INT		:= 	10; // conveyor steps to reach Slot 2
+	StepSlot3			:	INT		:= 	16; // conveyor steps to reach Slot 3
+	StepNoSlot			:	INT		:=	0;  // unknown colour -> discard piece
+	
+	// piston re-entry time
+	pistonReentryDelay	:	TIME	:= T#500MS;
+	
+	(*Colors Voltage*)
+	RedVoltage			:	REAL	:=	5.5;
+	BlueVoltage			:	REAL	:=	7.1;
+	WhiteVoltage		:	REAL	:=	2.9;
+	
+	//threshold
+	Threshold			:	REAL	:=	0.5;
+	
+	//min values
+	RedVoltageMin		:	REAL;
+	BlueVoltageMin		:	REAL;
+	WhiteVoltageMin		:	REAL;
+	
+	//max values
+	RedVoltageMax		:	REAL;
+	BlueVoltageMax		:	REAL;
+	WhiteVoltageMax		:	REAL;
+	
+	(*Colors Slot*)
+	RedSlot				:	INT		:=	3;
+	BlueSlot			:	INT		:=	2;
+	WhiteSlot			:	INT		:=	1;
+
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

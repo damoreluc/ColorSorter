@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="ST_CSL_Out" Id="{ef0ac316-f3fe-49ee-b995-36864e6d5f0b}">
+    <Declaration><![CDATA[TYPE ST_CSL_Out :
+STRUCT
+	(*Digital Outputs*)
+	bMotor 			:	BOOL;	//Q1
+	bCompressor 	:	BOOL;	//Q2
+	bValveSlot1 	:	BOOL;	//Q3
+	bValveSlot2 	:	BOOL;	//Q4
+	bValveSlot3		:	BOOL;	//Q5
+	                                 
+	bLStart 		:	BOOL;	//Q9 
+	bLStop			:	BOOL;	//Q10
+	bLAck 			:	BOOL;	//Q11
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

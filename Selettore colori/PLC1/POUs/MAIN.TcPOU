@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{63e7df63-7f3f-44d1-9324-af642dc6ce72}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+
+
+VAR
+	stRawIn		:	ST_CSL_RawIn;
+	stRawOut	:	ST_CSL_RawOut;
+	stIn		:	ST_CSL_In;
+	stOut		: 	ST_CSL_Out;
+	stParams	:	ST_CSL_Params; 
+	fbPistons	: FB_MSF_Pistons;
+	
+	estep 	: E_Step;
+	
+	
+	slot	: INT;
+	nerrid	: DINT; 
+	bfbend : BOOL;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+
+
+(*
+stIn.bMotorImpulse 			:= stRawIn.bMotorImpulse 		;
+stIn.bPieceSensorInput 		:= stRawIn.bPieceSensorInput 	;
+stIn.bPieceSensorOutput 	:= stRawIn.bPieceSensorOutput 	;	
+stIn.bSlot1 				:= stRawIn.bSlot1 				;	
+stIn.bSlot2 				:= stRawIn.bSlot2 				;	
+stIn.bSlot3	            	:= stRawIn.bSlot3				; 
+stIn.bStart 				:= stRawIn.bStart               ;    	
+stIn.bStop					:= stRawIn.bStop	 			;	
+stIn.bAck 					:= stRawIn.bAck 				;
+stIn.bEmerg 				:= stRawIn.bEmerg				;
+                                        				
+
+fbPistons(
+	bEnable		:=  TRUE, 
+	slot 		:= 2, 
+	st_In 		:= stIn, 
+	st_Params 	:= stParams, 
+	eStep		=> estep, 
+	eErrStep	=> estep, 
+	nErrid		=> nerrid, 
+	bFbEnd		=> bfbend);
+	
+
+stRawOut :=  fbPistons.st_Out;
+
+*)
+	]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="208" Count="3" />
+      <LineId Id="159" Count="10" />
+      <LineId Id="176" Count="0" />
+      <LineId Id="180" Count="4" />
+      <LineId Id="186" Count="2" />
+      <LineId Id="175" Count="0" />
+      <LineId Id="179" Count="0" />
+      <LineId Id="171" Count="1" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="49" Count="0" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
