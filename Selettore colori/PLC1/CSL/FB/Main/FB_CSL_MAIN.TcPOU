@@ -241,11 +241,13 @@ ELSE
 					//nErrId	:= 16#9999_9999;
 				END_IF
 			END_IF
-		(*E_Step.NeOrError :
+		
+		(*NeOrError step*)	
+		E_Step.NeOrError :
 			(*Body*)
-			stOut.bLStart	:= TRUE;
-			stOut.bLStop := FALSE;
-			stOut.bLAck := FALSE;
+			stOut.bLStart	:= fbOscillator.q;
+			stOut.bLStop := fbOscillator.q;
+			stOut.bLAck := fbOscillator.q;
 			
 			stOut.bMotor := FALSE;
 		
@@ -322,6 +324,8 @@ END_IF]]></ST>
       <LineId Id="280" Count="11" />
       <LineId Id="248" Count="0" />
       <LineId Id="343" Count="0" />
+      <LineId Id="403" Count="0" />
+      <LineId Id="402" Count="0" />
       <LineId Id="345" Count="16" />
       <LineId Id="342" Count="0" />
       <LineId Id="120" Count="0" />
