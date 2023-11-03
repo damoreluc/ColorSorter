@@ -73,10 +73,6 @@ ELSE
 		(*Start Step*)
 		E_Step.Start :
 			(*Body*)
-			stOut.bLStart	:= TRUE;
-			stOut.bLStop := FALSE;
-			stOut.bLAck := FALSE;
-			
 			stOut.bMotor := FALSE;
 		
 			(*Transition - to Measuring*)
@@ -95,10 +91,6 @@ ELSE
 		(*Measuring Step*)
 		E_Step.Measuring :
 			(*Body*)
-			stOut.bLStart	:= TRUE;
-			stOut.bLStop := FALSE;
-			stOut.bLAck := FALSE;
-			
 			stOut.bMotor := TRUE;
 		
 			fbMeasure(Vin := stIn.nColorSensor, Vout := rPieceValue);
@@ -121,10 +113,6 @@ ELSE
 		
 		E_Step.NeOrError :
 			(*Body*)
-			stOut.bLStart	:= TRUE;
-			stOut.bLStop := FALSE;
-			stOut.bLAck := FALSE;
-			
 			stOut.bMotor := FALSE;
 		
 			(*Transition - to Measuring*)
@@ -142,7 +130,12 @@ ELSE
 END_IF]]></ST>
     </Implementation>
     <LineIds Name="FB_MSF_Sensor">
-      <LineId Id="48" Count="96" />
+      <LineId Id="48" Count="29" />
+      <LineId Id="83" Count="0" />
+      <LineId Id="184" Count="0" />
+      <LineId Id="84" Count="16" />
+      <LineId Id="105" Count="21" />
+      <LineId Id="131" Count="13" />
       <LineId Id="9" Count="0" />
     </LineIds>
   </POU>

@@ -26,5 +26,9 @@ stIn.bStop					:= stRawIn.bStop	 			;
 stIn.bAck 					:= stRawIn.bAck 				;
 stIn.bEmerg 				:= stRawIn.bEmerg				;]]></ST>
     </Implementation>
+    <LineIds Name="FB_UpdateInputs">
+      <LineId Id="3" Count="8" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>

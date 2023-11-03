@@ -35,9 +35,9 @@ fbUpdateInputs(stRawIn:= stRawIn, stIn:= stIn);
 fbPistons(
 	bEnable:= TRUE, 
 	slot:= 2, 
-	st_In:= stIn, 
-	st_Params:= stParams, 
-	st_Out:= stOut, 
+	stIn:= stIn, 
+	stParams:= stParams, 
+	stOut:= stOut, 
 	eStep=> estep, 
 	eErrStep=> eErrstep, 
 	nErrid=> nerrid, 
@@ -49,5 +49,9 @@ fbUpdateOutputs(stOut:= stOut, stRawOut:= stRawOut);
 
 	]]></ST>
     </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="3" Count="21" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>

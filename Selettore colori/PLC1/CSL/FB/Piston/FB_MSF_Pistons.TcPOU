@@ -8,9 +8,9 @@ VAR_INPUT
 END_VAR
 
 VAR_IN_OUT
-	st_In		:	ST_CSL_In;
-	st_Params	: 	ST_CSL_Params;
-	st_Out		: 	ST_CSL_Out;	
+	stIn		:	ST_CSL_In;
+	stParams	: 	ST_CSL_Params;
+	stOut		: 	ST_CSL_Out;	
 END_VAR
 
 VAR_OUTPUT
@@ -49,19 +49,19 @@ IF NOT bInitialized THEN
 	// association of the motors and the sensors to the steps
 	CASE slot OF
 		0:
-			nStepSlot	:=	st_Params.StepNoSlot;	
+			nStepSlot	:=	stParams.StepNoSlot;	
 		1:
-			pbValve		:= 	ADR(st_Out.bValveSlot1);
-			bSensor 	:= 	st_In.bSlot1;
-			nStepSlot 	:= 	st_Params.StepSlot1;
+			pbValve		:= 	ADR(stOut.bValveSlot1);
+			bSensor 	:= 	stIn.bSlot1;
+			nStepSlot 	:= 	stParams.StepSlot1;
 		2:
-			pbValve		:= 	ADR(st_Out.bValveSlot2);
-			bSensor 	:= 	st_In.bSlot2;
-			nStepSlot 	:= 	st_Params.StepSlot2;
+			pbValve		:= 	ADR(stOut.bValveSlot2);
+			bSensor 	:= 	stIn.bSlot2;
+			nStepSlot 	:= 	stParams.StepSlot2;
 		3:
-			pbValve		:= 	ADR(st_Out.bValveSlot3);
-			bSensor 	:= 	st_In.bSlot3;
-			nStepSlot 	:= 	st_Params.StepSlot3;
+			pbValve		:= 	ADR(stOut.bValveSlot3);
+			bSensor 	:= 	stIn.bSlot3;
+			nStepSlot 	:= 	stParams.StepSlot3;
 			
 	END_CASE
 
@@ -85,10 +85,10 @@ ELSE
 	(* input signal conditioning *)
 	(*filters*)
 	//Timer_Pistons (IN:= (iMotor = nStepSlot), PT := T#500MS);
-	Timer_Pistons (IN:= (iMotor = nStepSlot), PT := st_Params.pistonReentryDelay);
+	Timer_Pistons (IN:= (iMotor = nStepSlot), PT := stParams.pistonReentryDelay);
 	
 	(*edges*)
-	fbRtMotorImpulse(CLK:=	st_In.bMotorImpulse );
+	fbRtMotorImpulse(CLK:=	stIn.bMotorImpulse );
 
 	// storing of the pieces
 	CASE eStep OF
@@ -97,8 +97,8 @@ ELSE
 		E_Step.conveyor :
 	
 			(* body *)	
-			st_Out.bMotor		:=	 TRUE;
-			st_Out.bCompressor 	:=	 TRUE;
+			stOut.bMotor		:=	 TRUE;
+			stOut.bCompressor 	:=	 TRUE;
 			pbValve^ 			:=	 FALSE;	
 			
 			(* Update steps Counter *)
@@ -110,9 +110,9 @@ ELSE
 			IF NOT bEnable THEN          
 		 		eNewstep := E_Step.NeOrError;        
 			ELSE 
-				IF  iMotor = nStepSlot AND nStepSlot <> st_Params.StepNoSlot THEN 
+				IF  iMotor = nStepSlot AND nStepSlot <> stParams.StepNoSlot THEN 
 					eNewstep := E_Step.piston;
-				ELSIF iMotor = nStepSlot AND nStepSlot = st_Params.StepNoSlot THEN
+				ELSIF iMotor = nStepSlot AND nStepSlot = stParams.StepNoSlot THEN
 					bFbEnd	:= TRUE;
 					bInitialized := FALSE;
         		END_IF;
@@ -122,8 +122,8 @@ ELSE
 		E_Step.piston :
 
 			(* body *)
-			st_Out.bMotor		:= 	FALSE;
-			st_Out.bCompressor 	:= 	TRUE;
+			stOut.bMotor		:= 	FALSE;
+			stOut.bCompressor 	:= 	TRUE;
 			pbValve^			:=	TRUE;
 	
 			(* transition *)
@@ -139,8 +139,8 @@ ELSE
 		E_Step.waiting :
 	
 			(* body *)
-			st_Out.bMotor		:=	FALSE;
-			st_Out.bCompressor 	:= 	TRUE;
+			stOut.bMotor		:=	FALSE;
+			stOut.bCompressor 	:= 	TRUE;
 			pbValve^			:=	FALSE;	
 			iMotor := 0;
 		
@@ -152,7 +152,21 @@ ELSE
 					bFbEnd	:= TRUE;
 					bInitialized := FALSE; 					           
        	 		END_IF;
-			END_IF			
+			END_IF	
+		E_Step.NeOrError :
+			(*Body*)
+			stOut.bMotor := FALSE;
+		
+			(*Transition - to Measuring*)
+			
+			
+			(*Exit Act*)
+			IF eNewStep <> E_Step.NoStep THEN
+				IF eNewStep = E_Step.NeOrError THEN
+					eErrStep := eStep;
+					//nErrId	:= 16#9999_9999;
+				END_IF
+			END_IF		
 			
 		ELSE
 	
@@ -167,5 +181,12 @@ ELSE
 
 END_IF]]></ST>
     </Implementation>
+    <LineIds Name="FB_MSF_Pistons">
+      <LineId Id="3" Count="114" />
+      <LineId Id="166" Count="12" />
+      <LineId Id="165" Count="0" />
+      <LineId Id="118" Count="11" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>
