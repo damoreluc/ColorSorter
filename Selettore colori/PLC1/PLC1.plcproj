@@ -20,6 +20,9 @@
     <Compile Include="CSL\Enums\E_Step.TcTLEO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CSL\FB\FB_CSL_MAIN.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="CSL\FB\FB_Measuring.TcPOU">
       <SubType>Code</SubType>
     </Compile>

@@ -12,15 +12,20 @@ TYPE E_Step :
 	(* Not Enabled or Errors*)    
 	NeOrError := -990, // Not Enabled or Errors
 	
-	(* Stop *)   
-	Stop := 0, // stop
-	
-	Start		:= 	100,
-	Measuring	:= 	110,
-	Processing	:= 	120,
-	conveyor	:=  130,	// a new piece was placed on the conveyor belt
-	waiting		:= 	140,	//attesa
-	piston		:=	150		//pistone
+	(*MSF Steps*)
+	//main steps
+	MainStop 		:= 	0, 		// stop
+	MainSensor		:=	10,		// sensor area
+	MainPiston		:=	20,		// piston area
+	MainPause		:=	30,		// pause
+	MainEmergency	:=	40,		// emergency
+	//sub-steps
+	Start			:= 	100,
+	Measuring		:= 	110,
+	Processing		:= 	120,
+	conveyor		:=  130,	// a new piece was placed on the conveyor belt
+	waiting			:= 	140,	// attesa
+	piston			:=	150		// pistone
 
 );
 END_TYPE
@@ -45,8 +50,28 @@ END_TYPE
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"Stop"</v>
+              <v n="TextID">"MainStop"</v>
               <v n="TextDefault">"0"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"MainSensor"</v>
+              <v n="TextDefault">"10"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"MainPiston"</v>
+              <v n="TextDefault">"20"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"MainPause"</v>
+              <v n="TextDefault">"30"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"MainEmergency"</v>
+              <v n="TextDefault">"40"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
