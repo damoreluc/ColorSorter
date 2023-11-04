@@ -25,10 +25,10 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[IF eStep = E_Step.MainSensor THEN
-	IF NOT stIn.bPieceSensorOutput AND NOT bPieceOut THEN
+	WHILE NOT stIn.bPieceSensorOutput AND NOT bPieceOut DO
 		stOut.bMotor := TRUE;
 		bPieceOut := TRUE;
-	END_IF
+	END_WHILE
 	IF bPieceOut THEN
 		fbRtMotorImpulse(CLK:=	stIn.bMotorImpulse );
 		

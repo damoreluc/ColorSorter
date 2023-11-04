@@ -46,24 +46,7 @@ IF NOT bInitialized THEN
 	bInitialized 	:= 	TRUE; 
 	bFbEnd			:=	FALSE;
 
-	// association of the motors and the sensors to the steps
-	CASE slot OF
-		0:
-			nStepSlot	:=	stParams.StepNoSlot;	
-		1:
-			pbValve		:= 	ADR(stOut.bValveSlot1);
-			bSensor 	:= 	stIn.bSlot1;
-			nStepSlot 	:= 	stParams.StepSlot1;
-		2:
-			pbValve		:= 	ADR(stOut.bValveSlot2);
-			bSensor 	:= 	stIn.bSlot2;
-			nStepSlot 	:= 	stParams.StepSlot2;
-		3:
-			pbValve		:= 	ADR(stOut.bValveSlot3);
-			bSensor 	:= 	stIn.bSlot3;
-			nStepSlot 	:= 	stParams.StepSlot3;
-			
-	END_CASE
+	
 
 
 ELSE   
@@ -89,6 +72,25 @@ ELSE
 	
 	(*edges*)
 	fbRtMotorImpulse(CLK:=	stIn.bMotorImpulse );
+	
+	// association of the motors and the sensors to the steps
+	CASE slot OF
+		0:
+			nStepSlot	:=	stParams.StepNoSlot;	
+		1:
+			pbValve		:= 	ADR(stOut.bValveSlot1);
+			bSensor 	:= 	stIn.bSlot1;
+			nStepSlot 	:= 	stParams.StepSlot1;
+		2:
+			pbValve		:= 	ADR(stOut.bValveSlot2);
+			bSensor 	:= 	stIn.bSlot2;
+			nStepSlot 	:= 	stParams.StepSlot2;
+		3:
+			pbValve		:= 	ADR(stOut.bValveSlot3);
+			bSensor 	:= 	stIn.bSlot3;
+			nStepSlot 	:= 	stParams.StepSlot3;
+			
+	END_CASE
 
 	// storing of the pieces
 	CASE eStep OF
@@ -182,7 +184,12 @@ ELSE
 END_IF]]></ST>
     </Implementation>
     <LineIds Name="FB_MSF_Pistons">
-      <LineId Id="3" Count="114" />
+      <LineId Id="3" Count="7" />
+      <LineId Id="28" Count="25" />
+      <LineId Id="214" Count="0" />
+      <LineId Id="216" Count="16" />
+      <LineId Id="215" Count="0" />
+      <LineId Id="54" Count="63" />
       <LineId Id="166" Count="12" />
       <LineId Id="165" Count="0" />
       <LineId Id="118" Count="11" />
