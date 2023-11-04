@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_Restore" Id="{fd15dcd7-03bd-4602-ba28-f37f0729ceb4}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Restore
+VAR_INPUT
+	iMotorPrev 		: 	INT;
+	eStep		:	E_Step;
+	eSubStep	:	E_Step;
+END_VAR
+VAR_IN_OUT
+	stIn		:	ST_CSL_In;
+	stParams	: 	ST_CSL_Params;
+	stOut		:	ST_CSL_Out;
+END_VAR
+VAR_OUTPUT
+	bFbEnd		:	BOOL;
+END_VAR
+VAR
+	iMotor		:	INT;
+
+	bPieceOut 	:	BOOL;	
+
+	fbRtMotorImpulse : R_TRIG;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF eStep = E_Step.MainSensor THEN
+	IF NOT stIn.bPieceSensorOutput AND NOT bPieceOut THEN
+		stOut.bMotor := TRUE;
+		bPieceOut := TRUE;
+	END_IF
+	IF bPieceOut THEN
+		fbRtMotorImpulse(CLK:=	stIn.bMotorImpulse );
+		
+		IF fbRtMotorImpulse.Q	THEN
+			iMotor := iMotor + 1;
+		END_IF
+			
+		IF iMotor = stParams.StepNoSlot THEN
+			stOut.bMotor := FALSE;
+			bPieceOut	:=	FALSE;
+			bFbEnd := TRUE;
+		END_IF
+		
+	END_IF
+	
+ELSIF eStep = E_Step.MainPiston THEN
+	stOut.bMotor := TRUE;
+	
+	fbRtMotorImpulse(CLK:=	stIn.bMotorImpulse );
+		
+	IF fbRtMotorImpulse.Q	THEN
+		iMotor := iMotor + 1;
+	END_IF
+			
+	IF iMotor = (stParams.StepNoSlot - iMotorPrev + 1) THEN
+		stOut.bMotor := FALSE;
+		bFbEnd := TRUE;
+	END_IF
+
+ELSE
+	IF stIn.bPieceSensorInput AND stIn.bPieceSensorOutput AND stIn.bSlot1 AND stIn.bSlot2 AND stIn.bSlot3 THEN 
+		bFbEnd := TRUE;
+	END_IF
+END_IF
+]]></ST>
+    </Implementation>
+    <LineIds Name="FB_Restore">
+      <LineId Id="9" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="21" Count="1" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="39" Count="0" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="23" Count="1" />
+      <LineId Id="31" Count="1" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="44" Count="1" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="50" Count="7" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="49" Count="0" />
+      <LineId Id="61" Count="2" />
+      <LineId Id="65" Count="1" />
+      <LineId Id="64" Count="0" />
+      <LineId Id="19" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -13,7 +13,9 @@ VAR
 	
 	fbUpdateInputs : FB_UpdateInputs;
 	fbUpdateOutputs : FB_UpdateOutputs;
-	fbPistons	: FB_MSF_Pistons;
+	//fbPistons	: FB_MSF_Pistons;
+	
+	fbCSL		:	FB_CSL_MAIN;
 	
 	estep 	: E_Step;
 	eErrstep : E_Step;
@@ -32,7 +34,7 @@ END_VAR
                                         				
 fbUpdateInputs(stRawIn:= stRawIn, stIn:= stIn);
 
-fbPistons(
+(*fbPistons(
 	bEnable:= TRUE, 
 	slot:= 2, 
 	stIn:= stIn, 
@@ -42,15 +44,26 @@ fbPistons(
 	eErrStep=> eErrstep, 
 	nErrid=> nerrid, 
 	bFbEnd=> bfbend);
+*)
+(*
+fbCSL(
 
 
+
+)
+*)
 fbUpdateOutputs(stOut:= stOut, stRawOut:= stRawOut);
 
 
 	]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
-      <LineId Id="3" Count="21" />
+      <LineId Id="3" Count="17" />
+      <LineId Id="48" Count="0" />
+      <LineId Id="58" Count="0" />
+      <LineId Id="60" Count="2" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="21" Count="3" />
       <LineId Id="2" Count="0" />
     </LineIds>
   </POU>

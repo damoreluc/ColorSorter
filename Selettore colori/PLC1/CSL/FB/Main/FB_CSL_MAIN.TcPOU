@@ -115,7 +115,7 @@ ELSE
 				eErrStep=> eErrSubStep, 
 				nErrId=> nErrSubId,
 				bFbEnd=> bFbSensorEnd, 
-				stOut=> stOut, 
+				stOut:= stOut, 
 				nSlot=> nSlot, 
 				stParams:= stParams
 			);
@@ -147,9 +147,9 @@ ELSE
 			fbPiston(
 				bEnable:= bEnable, 
 				slot:= nSlot, 
-				st_In:= stIn, 
-				st_Params:= stParams, 
-				st_Out:= stOut, 
+				stIn:= stIn, 
+				stParams:= stParams, 
+				stOut:= stOut, 
 				eStep=> eSubStep, 
 				eErrStep=> eErrSubStep, 
 				nErrid=> nErrSubId, 
@@ -261,7 +261,7 @@ ELSE
 					//nErrId	:= 16#9999_9999;
 				END_IF
 			END_IF
-			*)
+			
 	END_CASE
 END_IF]]></ST>
     </Implementation>

@@ -19,7 +19,7 @@ END_VAR
       <ST><![CDATA[t1(in := enable AND NOT t2.Q, pt := t_low);
 t2(in := t1.Q, pt := t_high);
 // comando dell'uscita dell'oscillatore
-q := t1.Q]]></ST>
+q := t1.Q;]]></ST>
     </Implementation>
     <LineIds Name="FB_Oscillator">
       <LineId Id="21" Count="2" />

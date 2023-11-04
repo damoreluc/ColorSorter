@@ -3,7 +3,7 @@
   <POU Name="FB_MSF_Sensor" Id="{36b94ebf-d3be-44ba-ae1f-96261f197527}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_MSF_Sensor
 VAR_INPUT
-	stIn				:	ST_CSL_In;
+
 	bEnable				:	BOOL;
 	
 END_VAR
@@ -15,14 +15,16 @@ VAR_OUTPUT
 	
 	bFbEnd				:	BOOL;
 	
-	stOut				:	ST_CSL_RawOut;
+	
 	
 	nSlot				:	INT;
 	
 END_VAR
 
 VAR_IN_OUT
-	stParams			:	ST_CSL_Params;
+	stIn		:	ST_CSL_In;
+	stParams	: 	ST_CSL_Params;
+	stOut		: 	ST_CSL_Out;	
 	
 END_VAR
 

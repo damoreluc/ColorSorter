@@ -12,6 +12,7 @@ END_VAR
 VAR_OUTPUT
 END_VAR
 VAR
+	Filter	:	FB_Filter;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -24,11 +25,16 @@ stIn.bSlot3	            	:= stRawIn.bSlot3				;
 stIn.bStart 				:= stRawIn.bStart               ;    	
 stIn.bStop					:= stRawIn.bStop	 			;	
 stIn.bAck 					:= stRawIn.bAck 				;
-stIn.bEmerg 				:= stRawIn.bEmerg				;]]></ST>
+stIn.bEmerg 				:= stRawIn.bEmerg				;
+
+Filter(VIn := stRawIn.nColorSensor, VOut := stIn.nColorSensor);
+]]></ST>
     </Implementation>
     <LineIds Name="FB_UpdateInputs">
       <LineId Id="3" Count="8" />
       <LineId Id="2" Count="0" />
+      <LineId Id="26" Count="1" />
+      <LineId Id="24" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>
