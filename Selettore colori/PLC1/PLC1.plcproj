@@ -29,6 +29,12 @@
     <Compile Include="CSL\FB\FB_UpdateOutputs.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CSL\HMI\FB_HMI.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CSL\Structs\ST_CSL_Hmi.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="CSL\Structs\ST_CSL_RawOut.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -54,6 +60,7 @@
   <ItemGroup>
     <Folder Include="CSL\Enums" />
     <Folder Include="CSL\FB" />
+    <Folder Include="CSL\HMI" />
     <Folder Include="CSL\Structs" />
     <Folder Include="DUTs" />
     <Folder Include="GVLs" />
