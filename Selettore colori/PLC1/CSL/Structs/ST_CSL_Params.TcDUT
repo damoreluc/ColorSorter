@@ -6,7 +6,7 @@ STRUCT
 	StepSlot1			:	INT		:= 	4;  // conveyor steps to reach Slot 1
 	StepSlot2			:	INT		:= 	10; // conveyor steps to reach Slot 2
 	StepSlot3			:	INT		:= 	16; // conveyor steps to reach Slot 3
-	StepNoSlot			:	INT		:=	0;  // unknown colour -> discard piece
+	StepNoSlot			:	INT		:=	20;  // unknown colour -> discard piece
 	
 	// piston re-entry time
 	pistonReentryDelay	:	TIME	:= T#500MS;

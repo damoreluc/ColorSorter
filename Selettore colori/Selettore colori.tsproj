@@ -2023,7 +2023,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{3EDF9352-52F3-4952-9761-FBBC22E56AED}" Name="PLC1" PrjFilePath="PLC1\PLC1.plcproj" TmcFilePath="PLC1\PLC1.tmc" ReloadTmc="true" AmsPort="852" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC1\PLC1.tmc" TmcHash="{DEC5A75D-0311-26BB-65F5-2D418D1B92B2}">
+				<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC1\PLC1.tmc" TmcHash="{721087A4-7577-14C5-6175-8942DDCD880B}">
 					<Name>PLC1 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
@@ -4602,6 +4602,9 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 				<Link VarA="PlcTask Outputs^MAIN.stRawOut.bValveSlot1" VarB="Channel 3^Output"/>
 				<Link VarA="PlcTask Outputs^MAIN.stRawOut.bValveSlot2" VarB="Channel 4^Output"/>
 				<Link VarA="PlcTask Outputs^MAIN.stRawOut.bValveSlot3" VarB="Channel 5^Output"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 6 (EL3004)">
+				<Link VarA="PlcTask Inputs^MAIN.stRawIn.nColorSensor" VarB="AI Standard Channel 1^Value"/>
 			</OwnerB>
 		</OwnerA>
 	</Mappings>
