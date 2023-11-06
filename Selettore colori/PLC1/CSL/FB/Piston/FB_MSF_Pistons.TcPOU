@@ -33,6 +33,8 @@ VAR
 	bEntryact	: 	BOOL;		//step entry action performed
 	
 	Timer_Pistons : TON();	
+	Timer_Remove : TON();
+	
 	fbRtMotorImpulse : R_TRIG;  // edge detection on conveyor encoder
 	
 END_VAR
@@ -67,8 +69,9 @@ ELSE
 	
 	(* input signal conditioning *)
 	(*filters*)
-	//Timer_Pistons (IN:= (iMotor = nStepSlot), PT := T#500MS);
 	Timer_Pistons (IN:= (iMotor = nStepSlot), PT := stParams.pistonReentryDelay);
+	
+	Timer_Remove (IN := (eStep = E_Step.waiting AND NOT bSensor), PT := T#500MS);
 	
 	(*edges*)
 	fbRtMotorImpulse(CLK:=	stIn.bMotorImpulse );
@@ -101,7 +104,9 @@ ELSE
 			(* body *)	
 			stOut.bMotor		:=	 TRUE;
 			stOut.bCompressor 	:=	 TRUE;
-			pbValve^ 			:=	 FALSE;	
+			IF slot <> 0 THEN
+				pbValve^ 			:=	 FALSE;	
+			END_IF
 			
 			(* Update steps Counter *)
 			IF fbRtMotorImpulse.Q	THEN
@@ -126,7 +131,9 @@ ELSE
 			(* body *)
 			stOut.bMotor		:= 	FALSE;
 			stOut.bCompressor 	:= 	TRUE;
-			pbValve^			:=	TRUE;
+			IF slot <> 0 THEN
+				pbValve^			:=	TRUE;
+			END_IF
 	
 			(* transition *)
 			IF NOT bEnable THEN          
@@ -143,18 +150,21 @@ ELSE
 			(* body *)
 			stOut.bMotor		:=	FALSE;
 			stOut.bCompressor 	:= 	TRUE;
-			pbValve^			:=	FALSE;	
+			IF slot <> 0 THEN
+				pbValve^			:=	FALSE;	
+			END_IF
 			iMotor := 0;
 		
 			(* transition *)
 			IF NOT bEnable THEN          
 		 		eNewstep := E_Step.NeOrError;        
 			ELSE 
-				IF  Timer_Pistons.Q THEN 
+				IF  Timer_Pistons.Q AND Timer_Remove.Q THEN 
 					bFbEnd	:= TRUE;
 					bInitialized := FALSE; 					           
        	 		END_IF;
 			END_IF	
+			
 		E_Step.NeOrError :
 			(*Body*)
 			stOut.bMotor := FALSE;
@@ -185,11 +195,27 @@ END_IF]]></ST>
     </Implementation>
     <LineIds Name="FB_MSF_Pistons">
       <LineId Id="3" Count="7" />
-      <LineId Id="28" Count="25" />
+      <LineId Id="28" Count="20" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="268" Count="1" />
+      <LineId Id="51" Count="2" />
       <LineId Id="214" Count="0" />
       <LineId Id="216" Count="16" />
       <LineId Id="215" Count="0" />
-      <LineId Id="54" Count="63" />
+      <LineId Id="54" Count="9" />
+      <LineId Id="272" Count="0" />
+      <LineId Id="64" Count="0" />
+      <LineId Id="273" Count="0" />
+      <LineId Id="65" Count="23" />
+      <LineId Id="274" Count="0" />
+      <LineId Id="89" Count="0" />
+      <LineId Id="275" Count="0" />
+      <LineId Id="90" Count="15" />
+      <LineId Id="276" Count="0" />
+      <LineId Id="106" Count="0" />
+      <LineId Id="278" Count="0" />
+      <LineId Id="107" Count="10" />
+      <LineId Id="279" Count="0" />
       <LineId Id="166" Count="12" />
       <LineId Id="165" Count="0" />
       <LineId Id="118" Count="11" />

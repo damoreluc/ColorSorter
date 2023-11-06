@@ -24,6 +24,9 @@ VAR
 	nerrid	: DINT; 
 	bfbend : BOOL;
 	
+	eSubStep: E_Step;
+	eErrSubStep: E_Step;
+	nErrSubId: DINT;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -34,35 +37,30 @@ END_VAR
                                         				
 fbUpdateInputs(stRawIn:= stRawIn, stIn:= stIn);
 
-(*fbPistons(
+fbCSL(
 	bEnable:= TRUE, 
-	slot:= 2, 
 	stIn:= stIn, 
 	stParams:= stParams, 
 	stOut:= stOut, 
-	eStep=> estep, 
-	eErrStep=> eErrstep, 
-	nErrid=> nerrid, 
-	bFbEnd=> bfbend);
-*)
-(*
-fbCSL(
+	eStep=> eStep, 
+	eSubStep=> eSubStep, 
+	eErrStep=> eErrStep, 
+	eErrSubStep=> eErrSubStep, 
+	nErrid=> nErrId, 
+	nErrSubid=> nErrSubId, 
+	bFbEnd=> bFbEnd 
+);
 
-
-
-)
-*)
 fbUpdateOutputs(stOut:= stOut, stRawOut:= stRawOut);
 
 
 	]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
-      <LineId Id="3" Count="17" />
-      <LineId Id="48" Count="0" />
-      <LineId Id="58" Count="0" />
-      <LineId Id="60" Count="2" />
-      <LineId Id="51" Count="0" />
+      <LineId Id="3" Count="6" />
+      <LineId Id="88" Count="10" />
+      <LineId Id="87" Count="0" />
+      <LineId Id="99" Count="0" />
       <LineId Id="21" Count="3" />
       <LineId Id="2" Count="0" />
     </LineIds>

@@ -37,6 +37,7 @@ VAR
 	
 	nSlot : INT;
 	
+	Timer_bPause : TON();
 	bPause: BOOL	:= FALSE;
 	
 	bConveyorFree : BOOL;
@@ -66,7 +67,10 @@ ELSE
 		bEntryact := FALSE;
 	END_IF
 	
-	IF stIn.bStop THEN
+	//bPause management
+	Timer_bPause(IN := NOT stIn.bStop, PT := T#1S);
+	
+	IF Timer_bPause.Q AND (eStep = E_Step.MainPiston OR eStep = E_Step.MainSensor) THEN
 		bPause := TRUE;
 	END_IF
 	
@@ -267,6 +271,8 @@ END_IF]]></ST>
     </Implementation>
     <LineIds Name="FB_CSL_MAIN">
       <LineId Id="24" Count="22" />
+      <LineId Id="447" Count="0" />
+      <LineId Id="445" Count="1" />
       <LineId Id="298" Count="0" />
       <LineId Id="300" Count="1" />
       <LineId Id="299" Count="0" />
