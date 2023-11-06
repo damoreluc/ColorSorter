@@ -68,7 +68,7 @@ ELSE
 	END_IF
 	
 	//bPause management
-	Timer_bPause(IN := NOT stIn.bStop, PT := T#1S);
+	Timer_bPause(IN := NOT stIn.bStop, PT := stParams.stopLongPressTime);
 	
 	IF Timer_bPause.Q AND (eStep = E_Step.MainPiston OR eStep = E_Step.MainSensor) THEN
 		bPause := TRUE;
@@ -161,14 +161,15 @@ ELSE
 			);
 			
 			(*Transition - to MainSensor*)
+			(*Transition - to MainPause*)
 			IF bFbPistonEnd AND bEnable THEN
-				eNewStep := E_Step.MainSensor;
+				IF bPause THEN
+					eNewStep := E_Step.MainPause; //to MainPause
+				ELSE
+					eNewStep := E_Step.MainSensor; //to MainSensor
+				END_IF	
 			END_IF
 			
-			(*Transition - to MainPause*)
-			IF bPause AND bEnable THEN
-				eNewStep := E_Step.MainPause;
-			END_IF
 			
 			(*Exit Act*)
 			IF eNewStep <> E_Step.NoStep THEN
@@ -209,6 +210,7 @@ ELSE
 			
 			//da vedere il pilotaggio delle uscite: motore, compressore e valvole
 			stOut.bMotor := FALSE;
+			stOut.bCompressor := FALSE;
 		
 			(*Transition - to Measuring*)
 			IF stIn.bAck AND bEnable THEN
@@ -301,10 +303,16 @@ END_IF]]></ST>
       <LineId Id="160" Count="2" />
       <LineId Id="188" Count="8" />
       <LineId Id="186" Count="0" />
-      <LineId Id="173" Count="5" />
-      <LineId Id="200" Count="0" />
-      <LineId Id="205" Count="0" />
-      <LineId Id="201" Count="2" />
+      <LineId Id="173" Count="0" />
+      <LineId Id="493" Count="0" />
+      <LineId Id="491" Count="0" />
+      <LineId Id="501" Count="0" />
+      <LineId Id="176" Count="0" />
+      <LineId Id="495" Count="0" />
+      <LineId Id="498" Count="2" />
+      <LineId Id="497" Count="0" />
+      <LineId Id="178" Count="0" />
+      <LineId Id="203" Count="0" />
       <LineId Id="179" Count="6" />
       <LineId Id="154" Count="1" />
       <LineId Id="206" Count="0" />
@@ -319,7 +327,9 @@ END_IF]]></ST>
       <LineId Id="295" Count="0" />
       <LineId Id="250" Count="4" />
       <LineId Id="267" Count="1" />
-      <LineId Id="255" Count="3" />
+      <LineId Id="255" Count="0" />
+      <LineId Id="502" Count="0" />
+      <LineId Id="256" Count="2" />
       <LineId Id="269" Count="1" />
       <LineId Id="259" Count="6" />
       <LineId Id="247" Count="0" />

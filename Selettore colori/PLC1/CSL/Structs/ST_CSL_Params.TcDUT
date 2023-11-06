@@ -6,10 +6,11 @@ STRUCT
 	StepSlot1			:	INT		:= 	4;  // conveyor steps to reach Slot 1
 	StepSlot2			:	INT		:= 	10; // conveyor steps to reach Slot 2
 	StepSlot3			:	INT		:= 	16; // conveyor steps to reach Slot 3
-	StepNoSlot			:	INT		:=	20;  // unknown colour -> discard piece
-	
-	// piston re-entry time
-	pistonReentryDelay	:	TIME	:= T#500MS;
+	StepNoSlot			:	INT		:=	20; // unknown colour -> discard piece
+		
+	pistonReentryDelay	:	TIME	:= T#500MS; // piston re-entry time
+	stopLongPressTime	:	TIME	:= T#1S;	// time required for the pause transition to be activated
+	slotRemoveTime		:	TIME	:= T#500MS; // time required after piece removal from its slot
 	
 	(*Colors Voltage*)
 	RedVoltage			:	REAL	:=	5.5;
@@ -30,9 +31,9 @@ STRUCT
 	WhiteVoltageMax		:	REAL;
 	
 	(*Colors Slot*)
-	RedSlot				:	INT		:=	3;
-	BlueSlot			:	INT		:=	2;
 	WhiteSlot			:	INT		:=	1;
+	BlueSlot			:	INT		:=	2;
+	RedSlot				:	INT		:=	3;
 
 END_STRUCT
 END_TYPE

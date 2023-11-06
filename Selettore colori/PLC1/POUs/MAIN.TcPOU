@@ -13,7 +13,6 @@ VAR
 	
 	fbUpdateInputs : FB_UpdateInputs;
 	fbUpdateOutputs : FB_UpdateOutputs;
-	//fbPistons	: FB_MSF_Pistons;
 	
 	fbCSL		:	FB_CSL_MAIN;
 	
@@ -30,11 +29,8 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[
+      <ST><![CDATA[stParams := FC_thresholdsCalculation();
 
-
-
-                                        				
 fbUpdateInputs(stRawIn:= stRawIn, stIn:= stIn);
 
 fbCSL(
@@ -57,11 +53,7 @@ fbUpdateOutputs(stOut:= stOut, stRawOut:= stRawOut);
 	]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
-      <LineId Id="3" Count="6" />
-      <LineId Id="88" Count="10" />
-      <LineId Id="87" Count="0" />
-      <LineId Id="99" Count="0" />
-      <LineId Id="21" Count="3" />
+      <LineId Id="128" Count="20" />
       <LineId Id="2" Count="0" />
     </LineIds>
   </POU>

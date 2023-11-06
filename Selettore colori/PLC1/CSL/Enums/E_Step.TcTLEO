@@ -14,12 +14,12 @@ TYPE E_Step :
 	
 	(*MSF Steps*)
 	//main steps
-	MainStop 		:= 	0, 		// stop
-	MainSensor		:=	10,		// sensor area
-	MainPiston		:=	20,		// piston area
-	MainPause		:=	30,		// pause
-	MainEmergency	:=	40,		// emergency
-	MainAcknowledge	:=	50,		// acknowledge
+	MainStop 		:= 	10, 		// stop
+	MainSensor		:=	20,		// sensor area
+	MainPiston		:=	30,		// piston area
+	MainPause		:=	40,		// pause
+	MainEmergency	:=	50,		// emergency
+	MainAcknowledge	:=	60,		// acknowledge
 	//sub-steps
 	Start			:= 	100,
 	Measuring		:= 	110,
@@ -52,32 +52,32 @@ END_TYPE
             </o>
             <o>
               <v n="TextID">"MainStop"</v>
-              <v n="TextDefault">"0"</v>
-              <l n="LanguageTexts" t="ArrayList" />
-            </o>
-            <o>
-              <v n="TextID">"MainSensor"</v>
               <v n="TextDefault">"10"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"MainPiston"</v>
+              <v n="TextID">"MainSensor"</v>
               <v n="TextDefault">"20"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"MainPause"</v>
+              <v n="TextID">"MainPiston"</v>
               <v n="TextDefault">"30"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"MainEmergency"</v>
+              <v n="TextID">"MainPause"</v>
               <v n="TextDefault">"40"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"MainAcknowledge"</v>
+              <v n="TextID">"MainEmergency"</v>
               <v n="TextDefault">"50"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"MainAcknowledge"</v>
+              <v n="TextDefault">"60"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>

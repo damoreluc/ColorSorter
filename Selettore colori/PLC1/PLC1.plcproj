@@ -53,7 +53,7 @@
     <Compile Include="CSL\FC\FC_Conversion.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CSL\FC\FC_ParamsCalculation.TcPOU">
+    <Compile Include="CSL\FC\FC_thresholdsCalculation.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CSL\Structs\ST_CSL_RawOut.TcDUT">

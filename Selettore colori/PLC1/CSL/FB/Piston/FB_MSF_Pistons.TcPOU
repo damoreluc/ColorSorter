@@ -47,10 +47,6 @@ IF NOT bInitialized THEN
 	bEntryact 		:= 	FALSE;    
 	bInitialized 	:= 	TRUE; 
 	bFbEnd			:=	FALSE;
-
-	
-
-
 ELSE   
 
 	(* forcing the error state *)	
@@ -71,7 +67,7 @@ ELSE
 	(*filters*)
 	Timer_Pistons (IN:= (iMotor = nStepSlot), PT := stParams.pistonReentryDelay);
 	
-	Timer_Remove (IN := (eStep = E_Step.waiting AND NOT bSensor), PT := T#500MS);
+	Timer_Remove (IN := (eStep = E_Step.waiting AND NOT bSensor), PT := stParams.slotRemoveTime);
 	
 	(*edges*)
 	fbRtMotorImpulse(CLK:=	stIn.bMotorImpulse );
@@ -194,8 +190,9 @@ ELSE
 END_IF]]></ST>
     </Implementation>
     <LineIds Name="FB_MSF_Pistons">
-      <LineId Id="3" Count="7" />
-      <LineId Id="28" Count="20" />
+      <LineId Id="3" Count="6" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="32" Count="16" />
       <LineId Id="50" Count="0" />
       <LineId Id="268" Count="1" />
       <LineId Id="51" Count="2" />
