@@ -1,4 +1,4 @@
-﻿<div id="Content1" data-tchmi-type="TcHmi.Controls.System.TcHmiContent" data-tchmi-top="60" data-tchmi-left="0" data-tchmi-width="100" data-tchmi-height="80" data-tchmi-width-unit="%" data-tchmi-height-unit="%">
+﻿<div id="Content1" data-tchmi-type="TcHmi.Controls.System.TcHmiContent" data-tchmi-top="60" data-tchmi-left="0" data-tchmi-width="100" data-tchmi-height="80" data-tchmi-width-unit="%" data-tchmi-height-unit="%" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center">
 
 
 <script data-tchmi-target-attribute="data-tchmi-background-color" type="application/json">
@@ -25,4 +25,8 @@
   "color": "rgba(255, 255, 255, 1)"
 }
 </script>
+<div id="TcHmiImage" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiImage" data-tchmi-height="150" data-tchmi-height-unit="px" data-tchmi-left="156" data-tchmi-left-unit="px" data-tchmi-top="133" data-tchmi-top-unit="px" data-tchmi-width="300" data-tchmi-width-unit="px" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center">
+</div>
+<div id="TcHmi_Controls_Beckhoff_TcHmiImage" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiImage" data-tchmi-height="253" data-tchmi-height-unit="px" data-tchmi-left="-8" data-tchmi-left-unit="px" data-tchmi-src="Imports/Images/homepage.png" data-tchmi-top="84" data-tchmi-top-unit="px" data-tchmi-width="548" data-tchmi-width-unit="px" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center">
+</div>
 </div>
