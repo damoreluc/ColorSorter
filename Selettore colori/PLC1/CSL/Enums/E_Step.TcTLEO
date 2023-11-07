@@ -3,6 +3,7 @@
   <EnumerationTextList Name="E_Step" Id="{fe3a30d3-1d96-4fc1-b1aa-f734a954498a}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 {attribute 'strict'}
+{attribute 'to_string'}
 TYPE E_Step :
 (
 	(* special steps *)

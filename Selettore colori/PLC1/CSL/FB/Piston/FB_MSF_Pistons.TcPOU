@@ -23,7 +23,7 @@ END_VAR
 
 VAR
 	bSensor: BOOL;
-	pbValve : POINTER TO BOOL;
+	bValve : BOOL;
 	nStepSlot : INT;
 	Error: DINT;
 	iMotor	: INT := 0;         // steps done while travelling on conveyor
@@ -47,6 +47,7 @@ IF NOT bInitialized THEN
 	bEntryact 		:= 	FALSE;    
 	bInitialized 	:= 	TRUE; 
 	bFbEnd			:=	FALSE;
+	iMotor := 0;
 ELSE   
 
 	(* forcing the error state *)	
@@ -65,9 +66,9 @@ ELSE
 	
 	(* input signal conditioning *)
 	(*filters*)
-	Timer_Pistons (IN:= (iMotor = nStepSlot), PT := stParams.pistonReentryDelay);
+	Timer_Pistons (IN:= (iMotor = nStepSlot AND eStep = E_Step.waiting), PT := stParams.pistonReentryDelay);
 	
-	Timer_Remove (IN := (eStep = E_Step.waiting AND NOT bSensor), PT := stParams.slotRemoveTime);
+	Timer_Remove (IN := (Timer_Pistons.Q AND eStep = E_Step.waiting AND bSensor), PT := stParams.slotRemoveTime);
 	
 	(*edges*)
 	fbRtMotorImpulse(CLK:=	stIn.bMotorImpulse );
@@ -77,15 +78,15 @@ ELSE
 		0:
 			nStepSlot	:=	stParams.StepNoSlot;	
 		1:
-			pbValve		:= 	ADR(stOut.bValveSlot1);
+			stOut.bValveSlot1 := bValve;
 			bSensor 	:= 	stIn.bSlot1;
 			nStepSlot 	:= 	stParams.StepSlot1;
 		2:
-			pbValve		:= 	ADR(stOut.bValveSlot2);
+			stOut.bValveSlot2 := bValve;
 			bSensor 	:= 	stIn.bSlot2;
 			nStepSlot 	:= 	stParams.StepSlot2;
 		3:
-			pbValve		:= 	ADR(stOut.bValveSlot3);
+			stOut.bValveSlot3 := bValve;
 			bSensor 	:= 	stIn.bSlot3;
 			nStepSlot 	:= 	stParams.StepSlot3;
 			
@@ -101,7 +102,7 @@ ELSE
 			stOut.bMotor		:=	 TRUE;
 			stOut.bCompressor 	:=	 TRUE;
 			IF slot <> 0 THEN
-				pbValve^ 			:=	 FALSE;	
+				bValve :=	 FALSE;	
 			END_IF
 			
 			(* Update steps Counter *)
@@ -128,7 +129,7 @@ ELSE
 			stOut.bMotor		:= 	FALSE;
 			stOut.bCompressor 	:= 	TRUE;
 			IF slot <> 0 THEN
-				pbValve^			:=	TRUE;
+				bValve :=	TRUE;
 			END_IF
 	
 			(* transition *)
@@ -147,15 +148,14 @@ ELSE
 			stOut.bMotor		:=	FALSE;
 			stOut.bCompressor 	:= 	TRUE;
 			IF slot <> 0 THEN
-				pbValve^			:=	FALSE;	
+				bValve :=	FALSE;	
 			END_IF
-			iMotor := 0;
 		
 			(* transition *)
 			IF NOT bEnable THEN          
 		 		eNewstep := E_Step.NeOrError;        
 			ELSE 
-				IF  Timer_Pistons.Q AND Timer_Remove.Q THEN 
+				IF Timer_Remove.Q THEN 
 					bFbEnd	:= TRUE;
 					bInitialized := FALSE; 					           
        	 		END_IF;
@@ -191,13 +191,16 @@ END_IF]]></ST>
     </Implementation>
     <LineIds Name="FB_MSF_Pistons">
       <LineId Id="3" Count="6" />
+      <LineId Id="319" Count="0" />
       <LineId Id="28" Count="0" />
       <LineId Id="32" Count="16" />
       <LineId Id="50" Count="0" />
       <LineId Id="268" Count="1" />
       <LineId Id="51" Count="2" />
       <LineId Id="214" Count="0" />
-      <LineId Id="216" Count="16" />
+      <LineId Id="216" Count="4" />
+      <LineId Id="317" Count="0" />
+      <LineId Id="222" Count="10" />
       <LineId Id="215" Count="0" />
       <LineId Id="54" Count="9" />
       <LineId Id="272" Count="0" />
@@ -211,7 +214,7 @@ END_IF]]></ST>
       <LineId Id="276" Count="0" />
       <LineId Id="106" Count="0" />
       <LineId Id="278" Count="0" />
-      <LineId Id="107" Count="10" />
+      <LineId Id="108" Count="9" />
       <LineId Id="279" Count="0" />
       <LineId Id="166" Count="12" />
       <LineId Id="165" Count="0" />
