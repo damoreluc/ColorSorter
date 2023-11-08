@@ -29,12 +29,6 @@
     <Compile Include="CSL\FB\FB_UpdateOutputs.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CSL\HMI\FB_HMI.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="CSL\Structs\ST_CSL_Hmi.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="CSL\Structs\ST_CSL_RawOut.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -50,6 +44,18 @@
     <Compile Include="CSL\Structs\ST_CSL_RawIn.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="HMI\FB\FB_HMI.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HMI\Struct\ST_HMI_Page.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HMI\Struct\ST_HMI_DisplayName.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HMI\Struct\ST_HMI_Enable.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
@@ -60,11 +66,13 @@
   <ItemGroup>
     <Folder Include="CSL\Enums" />
     <Folder Include="CSL\FB" />
-    <Folder Include="CSL\HMI" />
     <Folder Include="CSL\Structs" />
     <Folder Include="DUTs" />
     <Folder Include="GVLs" />
     <Folder Include="CSL" />
+    <Folder Include="HMI" />
+    <Folder Include="HMI\FB" />
+    <Folder Include="HMI\Struct" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />
   </ItemGroup>

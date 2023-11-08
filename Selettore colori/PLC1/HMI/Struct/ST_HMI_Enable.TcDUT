@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="ST_HMI_Enable" Id="{b162249e-88cc-40e2-a5f8-77399723438d}">
+    <Declaration><![CDATA[TYPE ST_HMI_Enable :
+STRUCT
+	
+	GeneralState		:	BOOL;
+	
+	GeneralEnable		:	BOOL;
+
+	Valve1				:	BOOL;
+	Valve2				:	BOOL;
+	Valve3				:	BOOL;
+	
+	Slot1				:	BOOL;
+	Slot2				:	BOOL;
+	Slot3				:	BOOL;	
+	
+	PieceSensorInput	:	BOOL;
+	PieceSensorOutput	:	BOOL;
+	
+	Motor				:	BOOL;
+	Compressor			:	BOOL;
+	
+	ClosePopUP			:	BOOL;
+	
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

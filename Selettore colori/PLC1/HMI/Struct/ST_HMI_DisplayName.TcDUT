@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="ST_HMI_DisplayName" Id="{49b8e4ce-bf03-487b-817d-36b11c2fb87a}">
+    <Declaration><![CDATA[TYPE ST_HMI_DisplayName :
+STRUCT
+	
+	DisplayName			:	STRING;
+
+	Valve1				:	STRING	:=	"Valve_1";
+	Valve2				:	STRING	:=	"Valve_2";
+	Valve3				:	STRING	:=	"Valve_3";
+	
+	Slot1				:	STRING	:=	"Storage_1";
+	Slot2				:	STRING	:=	"Storage_2";
+	Slot3				:	STRING	:=	"Storage_3";	
+	
+	PieceSensorInput	:	STRING	:=	"Sensor Input";
+	PieceSensorOutput	:	STRING	:=	"Sensor Output";
+	
+	Motor				:	STRING	:=	"Motor";
+	Compressor			:	STRING	:=	"Compressor";
+	
+	ColorSensor			:	STRING	:=	"Color Sensor";
+	
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

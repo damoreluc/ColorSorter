@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_HMI" Id="{2a92276f-68aa-42a1-8ada-c02f33716a1b}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_HMI
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+
+VAR_IN_OUT
+	ST_In			: 	ST_CSL_In;
+	ST_Out			:	ST_CSL_Out;
+	ST_Page			:	ST_HMI_Page;
+	ST_DisplayName	:	ST_HMI_DisplayName;
+	ST_Enable		:	ST_HMI_Enable;
+	ST_Params		:	ST_CSL_Params;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+IF ST_Page.Numbers_page = 0  THEN
+	
+	ST_Page.Home_page := TRUE;
+	ST_Page.Allarms_page := FALSE;
+	ST_Page.Params_page := FALSE;
+	
+END_IF
+
+IF ST_Page.Numbers_page = 1  THEN
+	
+	ST_Page.Home_page := FALSE;
+	ST_Page.Allarms_page := TRUE;
+	ST_Page.Params_page := FALSE;
+	
+END_IF
+
+IF ST_Page.Numbers_page = 2  THEN
+	
+	ST_Page.Home_page := FALSE;
+	ST_Page.Allarms_page := FALSE;
+	ST_Page.Params_page := TRUE;
+	
+END_IF
+
+IF ST_Enable.ClosePopUp = TRUE	THEN
+	
+	ST_Enable.GeneralEnable	:= FALSE;
+	
+END_IF
+
+IF ST_Enable.Valve1 = TRUE	THEN
+	
+	ST_Enable.GeneralEnable	:= TRUE;
+	ST_DisplayName.DisplayName	:=	ST_DisplayName.Valve1;
+	ST_Enable.GeneralState	:= ST_Out.bValveSlot1;
+	
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="FB_HMI">
+      <LineId Id="57" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="94" Count="0" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="63" Count="1" />
+      <LineId Id="95" Count="0" />
+      <LineId Id="62" Count="0" />
+      <LineId Id="66" Count="1" />
+      <LineId Id="96" Count="0" />
+      <LineId Id="68" Count="2" />
+      <LineId Id="97" Count="0" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="72" Count="1" />
+      <LineId Id="93" Count="0" />
+      <LineId Id="74" Count="2" />
+      <LineId Id="98" Count="0" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="78" Count="0" />
+      <LineId Id="119" Count="0" />
+      <LineId Id="153" Count="0" />
+      <LineId Id="134" Count="0" />
+      <LineId Id="154" Count="0" />
+      <LineId Id="108" Count="0" />
+      <LineId Id="80" Count="0" />
+      <LineId Id="109" Count="0" />
+      <LineId Id="151" Count="0" />
+      <LineId Id="110" Count="0" />
+      <LineId Id="100" Count="1" />
+      <LineId Id="84" Count="0" />
+      <LineId Id="82" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
