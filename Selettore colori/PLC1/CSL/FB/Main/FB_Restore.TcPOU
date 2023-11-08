@@ -30,32 +30,34 @@ END_VAR
       <ST><![CDATA[IF NOT bInitialized THEN
 	bFbEnd := FALSE;
 	bInitialized := TRUE;
+	bPieceOut := FALSE;
+	iMotor := 0;
 ELSE
 	IF eStep = E_Step.MainSensor THEN
-		WHILE (NOT stIn.bPieceSensorOutput AND NOT bPieceOut) OR bEnable DO
+		IF (stIn.bPieceSensorOutput AND NOT bPieceOut) OR NOT bEnable THEN
 			stOut.bMotor := TRUE;
 			bPieceOut := TRUE;
-		END_WHILE
-		IF NOT bEnable THEN
-			bInitialized := FALSE;
-			bFbEnd := TRUE;
-		END_IF
- 		IF bPieceOut THEN
-			fbRtMotorImpulse(CLK:=	stIn.bMotorImpulse );
-		
-			IF fbRtMotorImpulse.Q	THEN
-				iMotor := iMotor + 1;
-			END_IF
-			
-			IF iMotor = stParams.StepNoSlot THEN
-				stOut.bMotor := FALSE;
-				bPieceOut	:=	FALSE;
+		ELSE
+			IF NOT bEnable THEN
 				bInitialized := FALSE;
 				bFbEnd := TRUE;
 			END_IF
-		
+			IF bPieceOut THEN
+				fbRtMotorImpulse(CLK:=	stIn.bMotorImpulse );
+			
+				IF fbRtMotorImpulse.Q	THEN
+					iMotor := iMotor + 1;
+				END_IF
+				
+				IF iMotor = stParams.StepNoSlot THEN
+					stOut.bMotor := FALSE;
+					bPieceOut	:=	FALSE;
+					bInitialized := FALSE;
+					bFbEnd := TRUE;
+				END_IF
+			
+			END_IF
 		END_IF
-	
 	ELSIF eStep = E_Step.MainPiston THEN
 		stOut.bMotor := TRUE;
 	
@@ -72,10 +74,10 @@ ELSE
 		END_IF
 
 	ELSE
-		IF stIn.bPieceSensorInput AND stIn.bPieceSensorOutput AND stIn.bSlot1 AND stIn.bSlot2 AND stIn.bSlot3 THEN 
+		//IF stIn.bPieceSensorInput AND stIn.bPieceSensorOutput AND stIn.bSlot1 AND stIn.bSlot2 AND stIn.bSlot3 THEN 
 			bInitialized := FALSE;
 			bFbEnd := TRUE;
-		END_IF
+		//END_IF
 	END_IF
 END_IF
 
@@ -90,6 +92,8 @@ END_IF
       <LineId Id="92" Count="0" />
       <LineId Id="102" Count="0" />
       <LineId Id="98" Count="0" />
+      <LineId Id="179" Count="0" />
+      <LineId Id="178" Count="0" />
       <LineId Id="107" Count="0" />
       <LineId Id="109" Count="44" />
       <LineId Id="108" Count="0" />

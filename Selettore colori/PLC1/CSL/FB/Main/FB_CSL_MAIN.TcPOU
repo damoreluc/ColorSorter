@@ -30,6 +30,8 @@ VAR
 	
 	fbOscillator:	FB_Oscillator;
 	
+	fbRestore	:	FB_Restore;
+	
 	bFbSensorEnd: BOOL;
 	bFbPistonEnd: BOOL;
 	
@@ -41,6 +43,8 @@ VAR
 	bPause: BOOL	:= FALSE;
 	
 	bConveyorFree : BOOL;
+	iMotorPrev: INT;
+	eEmergStep: E_Step;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -55,10 +59,19 @@ ELSE
 	
 	(*Preamble*)
 	
-	(*Forcing the Error State*)
+	(*Forcing the Not Enabled State*)
 	IF NOT bEnable THEN
 		eNewStep := E_Step.NeOrError;
 	END_IF	
+	
+	(*Forcing ther emergency state*)
+	IF NOT stIn.bEmerg THEN
+		IF eStep <> E_Step.MainEmergency THEN
+			eEmergStep := eStep;
+		END_IF
+		eNewStep := E_Step.MainEmergency;
+	END_IF
+	
 	
 	(*State change management*)
 	IF eNewStep <> E_Step.NoStep THEN
@@ -157,6 +170,7 @@ ELSE
 				eStep=> eSubStep, 
 				eErrStep=> eErrSubStep, 
 				nErrid=> nErrSubId, 
+				iMotorPrev => iMotorPrev,
 				bFbEnd=> bFbPistonEnd
 			);
 			
@@ -233,11 +247,20 @@ ELSE
 			stOut.bLAck := TRUE;
 			
 			//fb per liberare il nastro
-				
+			fbRestore(
+				bEnable:= TRUE, 
+				iMotorPrev:= iMotorPrev, 
+				eStep:= eEmergStep, 
+				eSubStep:= eSubStep, 
+				stIn:= stIn, 
+				stParams:= stParams, 
+				stOut:= stOut, 
+				bFbEnd=> bConveyorFree
+			);
 		
 			(*Transition - to Measuring*)
 			IF bConveyorFree AND bEnable THEN
-				eNewStep := E_Step.MainStop;
+				bInitialized := FALSE;
 			END_IF
 			
 			(*Exit Act*)
@@ -272,7 +295,16 @@ ELSE
 END_IF]]></ST>
     </Implementation>
     <LineIds Name="FB_CSL_MAIN">
-      <LineId Id="24" Count="22" />
+      <LineId Id="24" Count="15" />
+      <LineId Id="544" Count="0" />
+      <LineId Id="546" Count="0" />
+      <LineId Id="565" Count="0" />
+      <LineId Id="568" Count="0" />
+      <LineId Id="567" Count="0" />
+      <LineId Id="548" Count="1" />
+      <LineId Id="547" Count="0" />
+      <LineId Id="545" Count="0" />
+      <LineId Id="40" Count="6" />
       <LineId Id="447" Count="0" />
       <LineId Id="445" Count="1" />
       <LineId Id="298" Count="0" />
@@ -302,6 +334,7 @@ END_IF]]></ST>
       <LineId Id="318" Count="3" />
       <LineId Id="160" Count="2" />
       <LineId Id="188" Count="8" />
+      <LineId Id="560" Count="0" />
       <LineId Id="186" Count="0" />
       <LineId Id="173" Count="0" />
       <LineId Id="493" Count="0" />
@@ -336,7 +369,9 @@ END_IF]]></ST>
       <LineId Id="292" Count="1" />
       <LineId Id="271" Count="5" />
       <LineId Id="279" Count="0" />
+      <LineId Id="552" Count="7" />
       <LineId Id="294" Count="0" />
+      <LineId Id="562" Count="0" />
       <LineId Id="280" Count="11" />
       <LineId Id="248" Count="0" />
       <LineId Id="343" Count="0" />

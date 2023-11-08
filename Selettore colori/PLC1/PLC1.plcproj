@@ -20,9 +20,6 @@
     <Compile Include="CSL\Enums\E_Step.TcTLEO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CSL\FB\FB_Restore.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="CSL\FB\IO\FB_UpdateInputs.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -33,6 +30,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CSL\FB\Main\FB_Oscillator.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CSL\FB\Main\FB_Restore.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CSL\FB\Piston\FB_MSF_Pistons.TcPOU">

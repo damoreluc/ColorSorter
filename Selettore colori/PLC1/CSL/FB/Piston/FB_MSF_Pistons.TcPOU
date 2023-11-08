@@ -18,6 +18,8 @@ VAR_OUTPUT
 	eErrStep : E_Step;  //step where an error was raised
 	nErrid	: DINT;		//error identification code
 	
+	iMotorPrev	: INT;         // steps done while travelling on conveyor
+	
 	bFbEnd	: BOOL;
 END_VAR
 
@@ -108,6 +110,7 @@ ELSE
 			(* Update steps Counter *)
 			IF fbRtMotorImpulse.Q	THEN
 				iMotor := iMotor + 1;
+				iMotorPrev := iMotor;
 			END_IF
 		
 			(* transition *)	
@@ -146,7 +149,7 @@ ELSE
 	
 			(* body *)
 			stOut.bMotor		:=	FALSE;
-			stOut.bCompressor 	:= 	TRUE;
+			stOut.bCompressor 	:= 	FALSE;
 			IF slot <> 0 THEN
 				bValve :=	FALSE;	
 			END_IF
@@ -165,7 +168,7 @@ ELSE
 			(*Body*)
 			stOut.bMotor := FALSE;
 		
-			(*Transition - to Measuring*)
+			bInitialized := FALSE;
 			
 			
 			(*Exit Act*)
@@ -206,7 +209,9 @@ END_IF]]></ST>
       <LineId Id="272" Count="0" />
       <LineId Id="64" Count="0" />
       <LineId Id="273" Count="0" />
-      <LineId Id="65" Count="23" />
+      <LineId Id="65" Count="3" />
+      <LineId Id="359" Count="0" />
+      <LineId Id="69" Count="19" />
       <LineId Id="274" Count="0" />
       <LineId Id="89" Count="0" />
       <LineId Id="275" Count="0" />
