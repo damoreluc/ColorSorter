@@ -81,11 +81,6 @@ ELSE
 	END_IF
 END_IF
 
-
-
-
-
-
 ]]></ST>
     </Implementation>
     <LineIds Name="FB_Restore">
@@ -98,8 +93,7 @@ END_IF
       <LineId Id="109" Count="44" />
       <LineId Id="108" Count="0" />
       <LineId Id="99" Count="0" />
-      <LineId Id="93" Count="4" />
-      <LineId Id="64" Count="0" />
+      <LineId Id="93" Count="0" />
       <LineId Id="19" Count="0" />
     </LineIds>
   </POU>

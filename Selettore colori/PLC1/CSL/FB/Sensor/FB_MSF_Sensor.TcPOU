@@ -6,6 +6,8 @@ VAR_INPUT
 
 	bEnable				:	BOOL;
 	
+	bInitializedExt	:	BOOL;
+	
 END_VAR
 
 VAR_OUTPUT
@@ -45,7 +47,7 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[(*Initialization of the FB_Sensor*)
-IF NOT bInitialized THEN
+IF NOT bInitialized OR NOT bInitializedExt THEN
 	eNewStep := E_Step.NoStep;
 	eStep := E_Step.Start;
 	bEntryAct := FALSE;

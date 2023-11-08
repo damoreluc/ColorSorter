@@ -4,6 +4,7 @@
     <Declaration><![CDATA[FUNCTION_BLOCK FB_MSF_Pistons
 VAR_INPUT
 	bEnable	: BOOL;  // machine enable
+	bInitializedExt	:	BOOL;
 	slot	: INT;   // destination slot
 END_VAR
 
@@ -30,24 +31,29 @@ VAR
 	Error: DINT;
 	iMotor	: INT := 0;         // steps done while travelling on conveyor
     
-	bInitialized	: BOOL;		//FB initialization
+	bInitialized	: 	BOOL;		//FB initialization
+	
 	eNewStep : E_Step;			//request for a new step
 	bEntryact	: 	BOOL;		//step entry action performed
 	
 	Timer_Pistons : TON();	
-	Timer_Remove : TON();
+	Timer_WaitingTransition : TON();
+	
+	Timer_Positioned : TON();
 	
 	fbRtMotorImpulse : R_TRIG;  // edge detection on conveyor encoder
 	
+	bSlotFree: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[(* initialization *)
-IF NOT bInitialized THEN    
+IF NOT bInitialized OR NOT bInitializedExt THEN    
 	eNewstep 		:= 	E_Step.NoStep;    
 	eStep 			:= 	E_Step.Conveyor;    
 	bEntryact 		:= 	FALSE;    
 	bInitialized 	:= 	TRUE; 
+	bSlotFree		:=	FALSE;
 	bFbEnd			:=	FALSE;
 	iMotor := 0;
 ELSE   
@@ -70,7 +76,9 @@ ELSE
 	(*filters*)
 	Timer_Pistons (IN:= (iMotor = nStepSlot AND eStep = E_Step.waiting), PT := stParams.pistonReentryDelay);
 	
-	Timer_Remove (IN := (Timer_Pistons.Q AND eStep = E_Step.waiting AND bSensor), PT := stParams.slotRemoveTime);
+	Timer_WaitingTransition (IN := (Timer_Pistons.Q AND eStep = E_Step.waiting), PT := stParams.slotRemoveTime);
+	
+	Timer_Positioned(IN := (eStep = E_Step.waiting), PT := T#100MS);
 	
 	(*edges*)
 	fbRtMotorImpulse(CLK:=	stIn.bMotorImpulse );
@@ -101,8 +109,12 @@ ELSE
 		E_Step.conveyor :
 	
 			(* body *)	
-			stOut.bMotor		:=	 TRUE;
-			stOut.bCompressor 	:=	 TRUE;
+			IF bSensor AND NOT bSlotFree THEN
+				stOut.bMotor		:=	 TRUE;
+				stOut.bCompressor 	:=	 TRUE;
+				
+				bSlotFree 			:= TRUE;
+			END_IF
 			IF slot <> 0 THEN
 				bValve :=	 FALSE;	
 			END_IF
@@ -131,7 +143,7 @@ ELSE
 			(* body *)
 			stOut.bMotor		:= 	FALSE;
 			stOut.bCompressor 	:= 	TRUE;
-			IF slot <> 0 THEN
+			IF slot <> 0 AND Timer_Positioned.Q THEN
 				bValve :=	TRUE;
 			END_IF
 	
@@ -154,11 +166,11 @@ ELSE
 				bValve :=	FALSE;	
 			END_IF
 		
-			(* transition *)
+			(* transition - to exit *)
 			IF NOT bEnable THEN          
 		 		eNewstep := E_Step.NeOrError;        
 			ELSE 
-				IF Timer_Remove.Q THEN 
+				IF Timer_WaitingTransition.Q THEN 
 					bFbEnd	:= TRUE;
 					bInitialized := FALSE; 					           
        	 		END_IF;
@@ -193,20 +205,29 @@ ELSE
 END_IF]]></ST>
     </Implementation>
     <LineIds Name="FB_MSF_Pistons">
-      <LineId Id="3" Count="6" />
+      <LineId Id="3" Count="5" />
+      <LineId Id="399" Count="0" />
+      <LineId Id="9" Count="0" />
       <LineId Id="319" Count="0" />
       <LineId Id="28" Count="0" />
       <LineId Id="32" Count="16" />
       <LineId Id="50" Count="0" />
       <LineId Id="268" Count="1" />
-      <LineId Id="51" Count="2" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="409" Count="1" />
+      <LineId Id="52" Count="1" />
       <LineId Id="214" Count="0" />
       <LineId Id="216" Count="4" />
       <LineId Id="317" Count="0" />
       <LineId Id="222" Count="10" />
       <LineId Id="215" Count="0" />
-      <LineId Id="54" Count="9" />
+      <LineId Id="54" Count="7" />
+      <LineId Id="401" Count="0" />
+      <LineId Id="62" Count="1" />
       <LineId Id="272" Count="0" />
+      <LineId Id="404" Count="0" />
+      <LineId Id="403" Count="0" />
+      <LineId Id="402" Count="0" />
       <LineId Id="64" Count="0" />
       <LineId Id="273" Count="0" />
       <LineId Id="65" Count="3" />
