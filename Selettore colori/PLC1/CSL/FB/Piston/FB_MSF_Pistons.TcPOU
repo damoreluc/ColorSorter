@@ -78,7 +78,7 @@ ELSE
 	
 	Timer_WaitingTransition (IN := (Timer_Pistons.Q AND eStep = E_Step.waiting), PT := stParams.slotRemoveTime);
 	
-	Timer_Positioned(IN := (eStep = E_Step.waiting), PT := T#100MS);
+	Timer_Positioned(IN := (eStep = E_Step.piston), PT := T#100MS);
 	
 	(*edges*)
 	fbRtMotorImpulse(CLK:=	stIn.bMotorImpulse );
