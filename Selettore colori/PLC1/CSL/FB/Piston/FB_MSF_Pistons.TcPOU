@@ -148,7 +148,7 @@ ELSE
 			END_IF
 	
 			(* transition *)
-			IF NOT bEnable THEN          
+			IF slot <> 0 AND Timer_Positioned.Q AND NOT bEnable THEN          
 		 		eNewstep := E_Step.NeOrError;        
 			ELSE 
 				IF  NOT bsensor THEN 
