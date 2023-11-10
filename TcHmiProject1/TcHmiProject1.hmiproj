@@ -112,6 +112,9 @@
   <Target Name="Clean" DependsOnTargets="$(CleanDependsOn)" />
   <Target Name="ReBuild" DependsOnTargets="Clean; Build" />
   <ItemGroup>
+    <Content Include="Contents\Parameters.content">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Contents\PopUp.content">
       <SubType>Content</SubType>
     </Content>
@@ -144,7 +147,13 @@
     <Content Include=".eslintrc.json">
       <Visible>false</Visible>
     </Content>
+    <Content Include="Imports\Images\1200px-Control_valve.svg.png">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Imports\Images\14.jpg">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Imports\Images\download %284%29.jpg">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Imports\Images\homepage.png">
@@ -160,6 +169,12 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="Imports\Images\userlmn_127a7a3aefa0e7b3238e8296708c2969.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Imports\Images\userlmn_a123da8c3c3e042d79a49d11c1bf34ae %281%29.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Imports\Images\userlmn_a123da8c3c3e042d79a49d11c1bf34ae.png">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Imports\Images\userlmn_e1e2f361423c83a582c20ec0b1c0ab16.png">
