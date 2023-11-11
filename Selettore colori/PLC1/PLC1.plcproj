@@ -47,9 +47,6 @@
     <Compile Include="HMI\FB\FB_HMI.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="HMI\FB\FB_ControlInputHmi.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="HMI\Struct\ST_HMI_Page.TcDUT">
       <SubType>Code</SubType>
     </Compile>

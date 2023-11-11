@@ -9,6 +9,8 @@ Project("{FD9F1D59-E000-42F3-8744-88DE1BE93C06}") = "Scope", "Scope\Scope.tcmpro
 EndProject
 Project("{FE7A1B72-C5B7-4D7C-BB7D-76384D4DE8E1}") = "TcHmiProject1", "TcHmiProject1\TcHmiProject1.hmiproj", "{91E1BB7B-EB1C-46F6-AEBA-CF1065C23603}"
 EndProject
+Project("{FE7A1B72-C5B7-4D7C-BB7D-76384D4DE8E1}") = "TcHmiProject2", "TcHmiProject2\TcHmiProject2.hmiproj", "{34197D7D-B463-42D5-B7AA-6DD527C19BA4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|TwinCAT CE7 (ARMV7) = Debug|TwinCAT CE7 (ARMV7)
@@ -81,6 +83,18 @@ Global
 		{3EDF9352-52F3-4952-9761-FBBC22E56AED}.Release|TwinCAT RT (x64).Build.0 = Release|TwinCAT RT (x64)
 		{3EDF9352-52F3-4952-9761-FBBC22E56AED}.Release|TwinCAT RT (x86).ActiveCfg = Release|TwinCAT RT (x86)
 		{3EDF9352-52F3-4952-9761-FBBC22E56AED}.Release|TwinCAT RT (x86).Build.0 = Release|TwinCAT RT (x86)
+		{34197D7D-B463-42D5-B7AA-6DD527C19BA4}.Debug|TwinCAT CE7 (ARMV7).ActiveCfg = Debug|TwinCAT HMI
+		{34197D7D-B463-42D5-B7AA-6DD527C19BA4}.Debug|TwinCAT HMI.ActiveCfg = Debug|TwinCAT HMI
+		{34197D7D-B463-42D5-B7AA-6DD527C19BA4}.Debug|TwinCAT HMI.Build.0 = Debug|TwinCAT HMI
+		{34197D7D-B463-42D5-B7AA-6DD527C19BA4}.Debug|TwinCAT OS (ARMT2).ActiveCfg = Debug|TwinCAT HMI
+		{34197D7D-B463-42D5-B7AA-6DD527C19BA4}.Debug|TwinCAT RT (x64).ActiveCfg = Debug|TwinCAT HMI
+		{34197D7D-B463-42D5-B7AA-6DD527C19BA4}.Debug|TwinCAT RT (x86).ActiveCfg = Debug|TwinCAT HMI
+		{34197D7D-B463-42D5-B7AA-6DD527C19BA4}.Release|TwinCAT CE7 (ARMV7).ActiveCfg = Release|TwinCAT HMI
+		{34197D7D-B463-42D5-B7AA-6DD527C19BA4}.Release|TwinCAT HMI.ActiveCfg = Release|TwinCAT HMI
+		{34197D7D-B463-42D5-B7AA-6DD527C19BA4}.Release|TwinCAT HMI.Build.0 = Release|TwinCAT HMI
+		{34197D7D-B463-42D5-B7AA-6DD527C19BA4}.Release|TwinCAT OS (ARMT2).ActiveCfg = Release|TwinCAT HMI
+		{34197D7D-B463-42D5-B7AA-6DD527C19BA4}.Release|TwinCAT RT (x64).ActiveCfg = Release|TwinCAT HMI
+		{34197D7D-B463-42D5-B7AA-6DD527C19BA4}.Release|TwinCAT RT (x86).ActiveCfg = Release|TwinCAT HMI
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
