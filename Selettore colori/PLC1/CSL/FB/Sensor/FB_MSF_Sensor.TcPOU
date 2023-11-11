@@ -70,7 +70,7 @@ ELSE
 	END_IF
 	
 	(*Filters*)
-	fbTonStart(IN := NOT stIn.bPieceSensorInput, PT := T#2S);
+	fbTonStart(IN := NOT stIn.bPieceSensorInput, PT := T#500MS);
 		
 	(*Case*)
 	CASE eStep OF

@@ -12,7 +12,7 @@ END_VAR
 VAR_OUTPUT
 END_VAR
 VAR
-	
+	nColorSensor : REAL;
 	Filter	:	FB_Filter;
 END_VAR
 ]]></Declaration>
@@ -27,8 +27,8 @@ stIn.bStart 				:= stRawIn.bStart               ;
 stIn.bStop					:= stRawIn.bStop	 			;	
 stIn.bAck 					:= stRawIn.bAck 				;
 stIn.bEmerg 				:= stRawIn.bEmerg				;
-
-Filter(VIn := FC_Conversion(stRawIn.nColorSensor, -10.0, 10.0), VOut := stIn.nColorSensor);
+nColorSensor := FC_Conversion(stRawIn.nColorSensor, -10.0, 10.0);
+Filter(VIn := nColorSensor, VOut := stIn.nColorSensor);
 ]]></ST>
     </Implementation>
     <LineIds Name="FB_UpdateInputs">

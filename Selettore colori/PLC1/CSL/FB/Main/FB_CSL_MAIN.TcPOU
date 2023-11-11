@@ -217,6 +217,10 @@ ELSE
 				eNewStep := E_Step.MainSensor;
 				bPause := FALSE;
 			END_IF
+			IF NOT stIn.bStop AND bEnable THEN
+				eNewStep := E_Step.MainStop;
+				bPause := FALSE;
+			END_IF
 			
 			(*Exit Act*)
 			IF eNewStep <> E_Step.NoStep THEN
@@ -379,6 +383,8 @@ END_IF]]></ST>
       <LineId Id="225" Count="3" />
       <LineId Id="304" Count="0" />
       <LineId Id="229" Count="0" />
+      <LineId Id="723" Count="2" />
+      <LineId Id="722" Count="0" />
       <LineId Id="235" Count="6" />
       <LineId Id="322" Count="0" />
       <LineId Id="242" Count="0" />
