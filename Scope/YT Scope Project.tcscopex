@@ -83,7 +83,7 @@
           <ForceOversampling>false</ForceOversampling>
           <Guid>09cb2c1d-11f1-47d0-ab51-9c8cdf9a6d36</Guid>
           <IndexGroup>16448</IndexGroup>
-          <IndexOffset>385552</IndexOffset>
+          <IndexOffset>385600</IndexOffset>
           <IsHistorical>false</IsHistorical>
           <Name>nColorSensor</Name>
           <Oversample>0</Oversample>
@@ -165,7 +165,7 @@
           <ForceOversampling>false</ForceOversampling>
           <Guid>642cbed6-7243-4933-90ca-611fb042b36d</Guid>
           <IndexGroup>61472</IndexGroup>
-          <IndexOffset>385520</IndexOffset>
+          <IndexOffset>385568</IndexOffset>
           <IsHistorical>false</IsHistorical>
           <Name>bMotorImpulse</Name>
           <Oversample>0</Oversample>
@@ -684,15 +684,15 @@
                       <Name>None</Name>
                       <ScaleFactor>1</ScaleFactor>
                       <SourceUnitPrefix>none</SourceUnitPrefix>
-                      <SourceUnitString />
+                      <SourceUnitString></SourceUnitString>
                       <Symbol>1</Symbol>
-                      <TargetUnitString />
+                      <TargetUnitString></TargetUnitString>
                       <TargetUnitValue>0</TargetUnitValue>
                     </Transformation>
                     <Unit>
-                      <BaseUnitString />
+                      <BaseUnitString></BaseUnitString>
                       <BaseUnitValue>0</BaseUnitValue>
-                      <NameExtension />
+                      <NameExtension></NameExtension>
                       <Offset>0</Offset>
                       <Prefix>none</Prefix>
                       <ReturnText> (None) </ReturnText>
@@ -703,10 +703,10 @@
                     <UnitScaleResult>1</UnitScaleResult>
                     <UserUnit>
                       <BaseName>UnitOfOne</BaseName>
-                      <BaseUnitString />
+                      <BaseUnitString></BaseUnitString>
                       <BaseUnitValue>0</BaseUnitValue>
                       <Name>None</Name>
-                      <NameExtension />
+                      <NameExtension></NameExtension>
                       <Offset>0</Offset>
                       <Prefix>none</Prefix>
                       <ScaleFactor>1</ScaleFactor>

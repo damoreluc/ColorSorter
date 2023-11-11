@@ -273,6 +273,7 @@ ELSE
 			(*Transition - to Measuring*)
 			IF bConveyorFree AND bEnable THEN
 				bInitialized := FALSE;
+				iMotorPrev := 0;
 			END_IF
 			
 			(*Exit Act*)
@@ -397,7 +398,9 @@ END_IF]]></ST>
       <LineId Id="552" Count="7" />
       <LineId Id="294" Count="0" />
       <LineId Id="562" Count="0" />
-      <LineId Id="280" Count="11" />
+      <LineId Id="280" Count="3" />
+      <LineId Id="674" Count="0" />
+      <LineId Id="284" Count="7" />
       <LineId Id="248" Count="0" />
       <LineId Id="343" Count="0" />
       <LineId Id="403" Count="0" />
