@@ -20,13 +20,40 @@
     <Compile Include="CSL\Enums\E_Step.TcTLEO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CSL\FB\FB_MSF_Pistons.TcPOU">
+    <Compile Include="CSL\FB\IO\FB_UpdateInputs.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CSL\FB\FB_UpdateInputs.TcPOU">
+    <Compile Include="CSL\FB\IO\FB_UpdateOutputs.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CSL\FB\FB_UpdateOutputs.TcPOU">
+    <Compile Include="CSL\FB\Main\FB_CSL_MAIN.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CSL\FB\Main\FB_Oscillator.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CSL\FB\Main\FB_Restore.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CSL\FB\Piston\FB_MSF_Pistons.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CSL\FB\Sensor\FB_Filter.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CSL\FB\Sensor\FB_Measuring.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CSL\FB\Sensor\FB_MSF_Sensor.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CSL\FB\Sensor\FB_Processing.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CSL\FC\FC_Conversion.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CSL\FC\FC_thresholdsCalculation.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CSL\Structs\ST_CSL_RawOut.TcDUT">
@@ -54,6 +81,11 @@
   <ItemGroup>
     <Folder Include="CSL\Enums" />
     <Folder Include="CSL\FB" />
+    <Folder Include="CSL\FB\IO" />
+    <Folder Include="CSL\FB\Main" />
+    <Folder Include="CSL\FB\Piston" />
+    <Folder Include="CSL\FB\Sensor" />
+    <Folder Include="CSL\FC" />
     <Folder Include="CSL\Structs" />
     <Folder Include="DUTs" />
     <Folder Include="GVLs" />

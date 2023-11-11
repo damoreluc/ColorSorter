@@ -3,6 +3,7 @@
   <EnumerationTextList Name="E_Step" Id="{fe3a30d3-1d96-4fc1-b1aa-f734a954498a}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 {attribute 'strict'}
+{attribute 'to_string'}
 TYPE E_Step :
 (
 	(* special steps *)
@@ -12,13 +13,21 @@ TYPE E_Step :
 	(* Not Enabled or Errors*)    
 	NeOrError := -990, // Not Enabled or Errors
 	
-	(* Stop *)   
-	Stop := 0, // stop
-	
-	
-	conveyor	:=  130,	// a new piece was placed on the conveyor belt
-	waiting		:= 140,		//attesa
-	piston		:= 150		//pistone
+	(*MSF Steps*)
+	//main steps
+	MainStop 		:= 	10, 		// stop
+	MainSensor		:=	20,		// sensor area
+	MainPiston		:=	30,		// piston area
+	MainPause		:=	40,		// pause
+	MainEmergency	:=	50,		// emergency
+	MainAcknowledge	:=	60,		// acknowledge
+	//sub-steps
+	Start			:= 	100,
+	Measuring		:= 	110,
+	Processing		:= 	120,
+	conveyor		:=  130,	// a new piece was placed on the conveyor belt
+	waiting			:= 	140,	// attesa
+	piston			:=	150		// pistone
 
 );
 END_TYPE
@@ -43,8 +52,48 @@ END_TYPE
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"Stop"</v>
-              <v n="TextDefault">"0"</v>
+              <v n="TextID">"MainStop"</v>
+              <v n="TextDefault">"10"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"MainSensor"</v>
+              <v n="TextDefault">"20"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"MainPiston"</v>
+              <v n="TextDefault">"30"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"MainPause"</v>
+              <v n="TextDefault">"40"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"MainEmergency"</v>
+              <v n="TextDefault">"50"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"MainAcknowledge"</v>
+              <v n="TextDefault">"60"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Start"</v>
+              <v n="TextDefault">"100"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Measuring"</v>
+              <v n="TextDefault">"110"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Processing"</v>
+              <v n="TextDefault">"120"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>

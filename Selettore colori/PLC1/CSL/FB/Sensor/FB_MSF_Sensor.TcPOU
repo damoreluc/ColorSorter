@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_MSF_Sensor" Id="{36b94ebf-d3be-44ba-ae1f-96261f197527}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_MSF_Sensor
+VAR_INPUT
+
+	bEnable				:	BOOL;
+	
+	bInitializedExt	:	BOOL;
+	
+END_VAR
+
+VAR_OUTPUT
+	eStep				:	E_Step;
+	eErrStep			:	E_Step;
+	nErrId				:	DINT;
+	
+	bFbEnd				:	BOOL;
+	
+	
+	
+	nSlot				:	INT;
+	
+END_VAR
+
+VAR_IN_OUT
+	stIn		:	ST_CSL_In;
+	stParams	: 	ST_CSL_Params;
+	stOut		: 	ST_CSL_Out;	
+	
+END_VAR
+
+VAR
+	bInitialized		:	BOOL;
+	eNewStep			:	E_Step;
+	bEntryAct			:	BOOL;
+	fbTonStart			:	TON;
+	
+	fbMeasure			:	FB_Measuring;
+	fbSlot				:	FB_Processing;
+	
+	
+	rPieceValue			:	REAL;
+	bEndMeasure			:	BOOL;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*Initialization of the FB_Sensor*)
+IF NOT bInitialized OR NOT bInitializedExt THEN
+	eNewStep := E_Step.NoStep;
+	eStep := E_Step.Start;
+	bEntryAct := FALSE;
+	bFbEnd := FALSE;
+	bInitialized := TRUE;
+ELSE
+	
+	(*Preamble*)
+	
+	(*Forcing the Error State*)
+	IF NOT bEnable THEN
+		eNewStep := E_Step.NeOrError;
+	END_IF	
+	
+	(*State change management*)
+	IF eNewStep <> E_Step.NoStep THEN
+		eStep := eNewStep;
+		eNewStep := E_Step.NoStep;
+		bEntryact := FALSE;
+	END_IF
+	
+	(*Filters*)
+	fbTonStart(IN := NOT stIn.bPieceSensorInput, PT := T#2S);
+		
+	(*Case*)
+	CASE eStep OF
+		(*Start Step*)
+		E_Step.Start :
+			(*Body*)
+			stOut.bMotor := FALSE;
+		
+			(*Transition - to Measuring*)
+			IF fbTonStart.Q AND bEnable THEN
+				eNewStep := E_Step.Measuring;
+			END_IF
+			
+			(*Exit Act*)
+			IF eNewStep <> E_Step.NoStep THEN
+				IF eNewStep = E_Step.NeOrError THEN
+					eErrStep := eStep;
+					//nErrId	:= 16#9999_9999;
+				END_IF
+			END_IF
+			
+		(*Measuring Step*)
+		E_Step.Measuring :
+			(*Body*)
+			stOut.bMotor := TRUE;
+		
+			fbMeasure(Vin := stIn.nColorSensor, Vout := rPieceValue);
+			
+			(*Transition - to Processing*)
+			IF NOT stIn.bPieceSensorOutput AND bEnable THEN
+				fbSlot(SensorInput := rPieceValue, stParams := stParams);
+				nSlot := fbSlot.slot;
+				bInitialized := FALSE;
+				bFbEnd := TRUE;
+			END_IF
+			
+			(*Exit Act*)
+			IF eNewStep <> E_Step.NoStep THEN
+				IF eNewStep = E_Step.NeOrError THEN
+					eErrStep := eStep;
+					//nErrId	:= 16#9999_9999;
+				END_IF
+			END_IF
+		
+		E_Step.NeOrError :
+			(*Body*)
+			stOut.bMotor := FALSE;
+		
+			bInitialized := FALSE;
+			
+			(*Exit Act*)
+			IF eNewStep <> E_Step.NoStep THEN
+				IF eNewStep = E_Step.NeOrError THEN
+					eErrStep := eStep;
+					//nErrId	:= 16#9999_9999;
+				END_IF
+			END_IF
+			
+	END_CASE
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="FB_MSF_Sensor">
+      <LineId Id="48" Count="29" />
+      <LineId Id="83" Count="0" />
+      <LineId Id="184" Count="0" />
+      <LineId Id="84" Count="16" />
+      <LineId Id="105" Count="21" />
+      <LineId Id="131" Count="2" />
+      <LineId Id="135" Count="9" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

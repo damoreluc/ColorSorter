@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_MSF_Pistons" Id="{78e36ba8-cb60-4537-88b2-3ff9943f6860}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_MSF_Pistons
+VAR_INPUT
+	bEnable	: BOOL;  // machine enable
+	bInitializedExt	:	BOOL;
+	slot	: INT;   // destination slot
+END_VAR
+
+VAR_IN_OUT
+	stIn		:	ST_CSL_In;
+	stParams	: 	ST_CSL_Params;
+	stOut		: 	ST_CSL_Out;	
+END_VAR
+
+VAR_OUTPUT
+	eStep	: E_Step;	//current step of the state machine
+	eErrStep : E_Step;  //step where an error was raised
+	nErrid	: DINT;		//error identification code
+	
+	iMotorPrev	: INT;         // steps done while travelling on conveyor
+	
+	bFbEnd	: BOOL;
+END_VAR
+
+VAR
+	bSensor: BOOL;
+	bValve : BOOL;
+	nStepSlot : INT;
+	Error: DINT;
+	iMotor	: INT := 0;         // steps done while travelling on conveyor
+    
+	bInitialized	: 	BOOL;		//FB initialization
+	
+	eNewStep : E_Step;			//request for a new step
+	bEntryact	: 	BOOL;		//step entry action performed
+	
+	Timer_Pistons : TON();	
+	Timer_WaitingTransition : TON();
+	
+	Timer_Positioned : TON();
+	
+	fbRtMotorImpulse : R_TRIG;  // edge detection on conveyor encoder
+	
+	bSlotFree: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* initialization *)
+IF NOT bInitialized OR NOT bInitializedExt THEN    
+	eNewstep 		:= 	E_Step.NoStep;    
+	eStep 			:= 	E_Step.Conveyor;    
+	bEntryact 		:= 	FALSE;    
+	bInitialized 	:= 	TRUE; 
+	bSlotFree		:=	FALSE;
+	bFbEnd			:=	FALSE;
+	iMotor := 0;
+ELSE   
+
+	(* forcing the error state *)	
+	(* disabled or faulty *)
+	IF  NOT bEnable THEN
+		eNewstep 	:=	E_Step.NeOrError;
+	END_IF;
+
+	(* state change management *)
+	IF eNewstep <> E_Step.NoStep THEN    
+		eStep 		:= 	eNewstep;    
+		eNewstep 	:= 	E_Step.NoStep;   
+ 		bEntryact 	:= 	FALSE;
+	END_IF;
+
+	
+	(* input signal conditioning *)
+	(*filters*)
+	Timer_Pistons (IN:= (iMotor = nStepSlot AND eStep = E_Step.waiting), PT := stParams.pistonReentryDelay);
+	
+	Timer_WaitingTransition (IN := (Timer_Pistons.Q AND eStep = E_Step.waiting), PT := stParams.slotRemoveTime);
+	
+	Timer_Positioned(IN := (eStep = E_Step.piston), PT := T#100MS);
+	
+	(*edges*)
+	fbRtMotorImpulse(CLK:=	stIn.bMotorImpulse );
+	
+	// association of the motors and the sensors to the steps
+	CASE slot OF
+		0:
+			nStepSlot	:=	stParams.StepNoSlot;	
+		1:
+			stOut.bValveSlot1 := bValve;
+			bSensor 	:= 	stIn.bSlot1;
+			nStepSlot 	:= 	stParams.StepSlot1;
+		2:
+			stOut.bValveSlot2 := bValve;
+			bSensor 	:= 	stIn.bSlot2;
+			nStepSlot 	:= 	stParams.StepSlot2;
+		3:
+			stOut.bValveSlot3 := bValve;
+			bSensor 	:= 	stIn.bSlot3;
+			nStepSlot 	:= 	stParams.StepSlot3;
+			
+	END_CASE
+
+	// storing of the pieces
+	CASE eStep OF
+
+		// a new piece was placed on the conveyor belt
+		E_Step.conveyor :
+	
+			(* body *)	
+			
+				stOut.bMotor		:=	 bSensor;
+				stOut.bCompressor 	:=	 bSensor;
+			
+			IF slot <> 0 THEN
+				bValve :=	 FALSE;	
+			END_IF
+			
+			(* Update steps Counter *)
+			IF fbRtMotorImpulse.Q	THEN
+				iMotor := iMotor + 1;
+				iMotorPrev := iMotor;
+			END_IF
+		
+			(* transition *)	
+			IF NOT bEnable THEN          
+		 		eNewstep := E_Step.NeOrError;        
+			ELSE 
+				IF  iMotor = nStepSlot AND nStepSlot <> stParams.StepNoSlot THEN 
+					eNewstep := E_Step.piston;
+				ELSIF iMotor = nStepSlot AND nStepSlot = stParams.StepNoSlot THEN
+					bFbEnd	:= TRUE;
+					bInitialized := FALSE;
+        		END_IF;
+			END_IF
+	
+		// activation of the selected piston until the piece falls in its slot
+		E_Step.piston :
+
+			(* body *)
+			stOut.bMotor		:= 	FALSE;
+			stOut.bCompressor 	:= 	TRUE;
+			IF slot <> 0 AND Timer_Positioned.Q THEN
+				bValve :=	TRUE;
+			END_IF
+	
+			(* transition *)
+			IF NOT bEnable THEN          
+		 		eNewstep := E_Step.NeOrError;        
+			ELSE 
+				IF NOT bsensor THEN 
+					eNewstep := E_Step.waiting;
+       	 		END_IF;
+			END_IF
+
+		// wait the piston re-entry
+		E_Step.waiting :
+	
+			(* body *)
+			stOut.bMotor		:=	FALSE;
+			stOut.bCompressor 	:= 	FALSE;
+			IF slot <> 0 THEN
+				bValve :=	FALSE;	
+			END_IF
+		
+			(* transition - to exit *)
+			IF NOT bEnable THEN          
+		 		eNewstep := E_Step.NeOrError;        
+			ELSE 
+				IF Timer_WaitingTransition.Q THEN 
+					bFbEnd	:= TRUE;
+					bInitialized := FALSE; 					           
+       	 		END_IF;
+			END_IF	
+			
+		E_Step.NeOrError :
+			(*Body*)
+			stOut.bMotor := FALSE;
+		
+			bInitialized := FALSE;
+			
+			
+			(*Exit Act*)
+			IF eNewStep <> E_Step.NoStep THEN
+				IF eNewStep = E_Step.NeOrError THEN
+					eErrStep := eStep;
+					//nErrId	:= 16#9999_9999;
+				END_IF
+			END_IF		
+			
+		ELSE
+	
+		// Error case
+		eNewstep 	:= 	E_Step.NeOrError;
+		eErrStep 	:=	E_Step.Unknown;
+		nErrId 		:= 	-9; 	
+		
+		
+	END_CASE
+
+
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="FB_MSF_Pistons">
+      <LineId Id="3" Count="5" />
+      <LineId Id="399" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="319" Count="0" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="32" Count="16" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="268" Count="1" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="409" Count="1" />
+      <LineId Id="52" Count="1" />
+      <LineId Id="214" Count="0" />
+      <LineId Id="216" Count="4" />
+      <LineId Id="317" Count="0" />
+      <LineId Id="222" Count="10" />
+      <LineId Id="215" Count="0" />
+      <LineId Id="54" Count="7" />
+      <LineId Id="401" Count="0" />
+      <LineId Id="62" Count="0" />
+      <LineId Id="404" Count="0" />
+      <LineId Id="403" Count="0" />
+      <LineId Id="402" Count="0" />
+      <LineId Id="64" Count="0" />
+      <LineId Id="273" Count="0" />
+      <LineId Id="65" Count="3" />
+      <LineId Id="359" Count="0" />
+      <LineId Id="69" Count="19" />
+      <LineId Id="274" Count="0" />
+      <LineId Id="89" Count="0" />
+      <LineId Id="275" Count="0" />
+      <LineId Id="90" Count="15" />
+      <LineId Id="276" Count="0" />
+      <LineId Id="106" Count="0" />
+      <LineId Id="278" Count="0" />
+      <LineId Id="108" Count="9" />
+      <LineId Id="279" Count="0" />
+      <LineId Id="166" Count="12" />
+      <LineId Id="165" Count="0" />
+      <LineId Id="118" Count="11" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

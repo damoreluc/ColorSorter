@@ -6,7 +6,7 @@
     <Node>
       <Title>YT Scope Project</Title>
       <Expanded>True</Expanded>
-      <FileName>C:\Users\luca\Documents\TcXaeShell\FischerTechnik\Selettore colori\Scope\YT Scope Project.tcscopex</FileName>
+      <FileName>C:\Users\34346\Source\Repos\ColorSorter\Scope\YT Scope Project.tcscopex</FileName>
       <Children>
         <Node>
           <Title>DataPool</Title>
@@ -52,6 +52,12 @@
               <Children>
                 <Node>
                   <Title>nColorSensor</Title>
+                  <Expanded>False</Expanded>
+                  <FileName></FileName>
+                  <Children />
+                </Node>
+                <Node>
+                  <Title>nColorSensor (1)</Title>
                   <Expanded>False</Expanded>
                   <FileName></FileName>
                   <Children />

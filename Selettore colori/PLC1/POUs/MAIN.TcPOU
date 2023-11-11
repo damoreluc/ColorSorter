@@ -13,7 +13,8 @@ VAR
 	
 	fbUpdateInputs : FB_UpdateInputs;
 	fbUpdateOutputs : FB_UpdateOutputs;
-	fbPistons	: FB_MSF_Pistons;
+	
+	fbCSL		:	FB_CSL_MAIN;
 	
 	estep 	: E_Step;
 	eErrstep : E_Step;
@@ -22,32 +23,38 @@ VAR
 	nerrid	: DINT; 
 	bfbend : BOOL;
 	
+	eSubStep: E_Step;
+	eErrSubStep: E_Step;
+	nErrSubId: DINT;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[
+      <ST><![CDATA[stParams := FC_thresholdsCalculation();
 
-
-
-                                        				
 fbUpdateInputs(stRawIn:= stRawIn, stIn:= stIn);
 
-fbPistons(
+fbCSL(
 	bEnable:= TRUE, 
-	slot:= 2, 
-	st_In:= stIn, 
-	st_Params:= stParams, 
-	st_Out:= stOut, 
-	eStep=> estep, 
-	eErrStep=> eErrstep, 
-	nErrid=> nerrid, 
-	bFbEnd=> bfbend);
-
+	stIn:= stIn, 
+	stParams:= stParams, 
+	stOut:= stOut, 
+	eStep=> eStep, 
+	eSubStep=> eSubStep, 
+	eErrStep=> eErrStep, 
+	eErrSubStep=> eErrSubStep, 
+	nErrid=> nErrId, 
+	nErrSubid=> nErrSubId, 
+	bFbEnd=> bFbEnd 
+);
 
 fbUpdateOutputs(stOut:= stOut, stRawOut:= stRawOut);
 
 
 	]]></ST>
     </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="128" Count="20" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>
