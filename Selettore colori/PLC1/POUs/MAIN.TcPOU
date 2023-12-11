@@ -8,6 +8,7 @@ VAR
 	stRawIn		:	ST_CSL_RawIn;
 	stRawOut	:	ST_CSL_RawOut;
 	stIn		:	ST_CSL_In;
+	stHmiIn		:	ST_CSL_In;
 	stOut		: 	ST_CSL_Out;
 	stParams	:	ST_CSL_Params; 
 	
@@ -31,7 +32,7 @@ END_VAR
     <Implementation>
       <ST><![CDATA[stParams := FC_thresholdsCalculation();
 
-fbUpdateInputs(stRawIn:= stRawIn, stIn:= stIn);
+fbUpdateInputs(stRawIn:= stRawIn, stHmiIn := stHmiIn, stIn:= stIn);
 
 fbCSL(
 	bEnable:= TRUE, 

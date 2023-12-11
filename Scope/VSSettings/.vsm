@@ -25,6 +25,12 @@
               <FileName></FileName>
               <Children />
             </Node>
+            <Node>
+              <Title>nColorSensor (1)</Title>
+              <Expanded>False</Expanded>
+              <FileName></FileName>
+              <Children />
+            </Node>
           </Children>
         </Node>
         <Node>
@@ -51,13 +57,13 @@
               <FileName></FileName>
               <Children>
                 <Node>
-                  <Title>nColorSensor</Title>
+                  <Title>nColorSensor (1)</Title>
                   <Expanded>False</Expanded>
                   <FileName></FileName>
                   <Children />
                 </Node>
                 <Node>
-                  <Title>nColorSensor (1)</Title>
+                  <Title>nColorSensor (2)</Title>
                   <Expanded>False</Expanded>
                   <FileName></FileName>
                   <Children />
