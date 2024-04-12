@@ -194,12 +194,8 @@ ELSE
 		// Error case
 		eNewstep 	:= 	E_Step.NeOrError;
 		eErrStep 	:=	E_Step.Unknown;
-		nErrId 		:= 	-9; 	
-		
-		
+		nErrId 		:= 	-9; 		
 	END_CASE
-
-
 END_IF]]></ST>
     </Implementation>
     <LineIds Name="FB_MSF_Pistons">
@@ -241,7 +237,8 @@ END_IF]]></ST>
       <LineId Id="279" Count="0" />
       <LineId Id="166" Count="12" />
       <LineId Id="165" Count="0" />
-      <LineId Id="118" Count="11" />
+      <LineId Id="118" Count="6" />
+      <LineId Id="127" Count="0" />
       <LineId Id="2" Count="0" />
     </LineIds>
   </POU>

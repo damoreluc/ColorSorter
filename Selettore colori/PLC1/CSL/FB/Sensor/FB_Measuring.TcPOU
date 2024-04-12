@@ -19,20 +19,18 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[IF VIn < VPrev THEN
-	VPrev := VIn;
-	En := TRUE;
+      <ST><![CDATA[IF VIn < VPrev OR VIn > 7.3 THEN
+    VPrev := VIn;
+    En := VIn < VPrev; (* En sarà TRUE solo se VIn < VPrev *)
 END_IF
-IF VIn > 7.3 THEN
-	Vprev := VIn;
-	En := FALSE;
+
+IF En THEN
+    Vout := VPrev;
 END_IF
-IF En = TRUE THEN
-	Vout:=VPrev;
-END_IF]]></ST>
+]]></ST>
     </Implementation>
     <LineIds Name="FB_Measuring">
-      <LineId Id="24" Count="9" />
+      <LineId Id="50" Count="7" />
       <LineId Id="9" Count="0" />
     </LineIds>
   </POU>
