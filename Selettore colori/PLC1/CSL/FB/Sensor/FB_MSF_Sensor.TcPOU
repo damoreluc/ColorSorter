@@ -5,7 +5,7 @@
 VAR_INPUT
 
 	bEnable				:	BOOL;
-	
+	bRun				: BOOL;
 	bInitializedExt	:	BOOL;
 	
 END_VAR
@@ -16,11 +16,10 @@ VAR_OUTPUT
 	nErrId				:	DINT;
 	
 	bFbEnd				:	BOOL;
-	
-	
-	
+
 	nSlot				:	INT;
-	
+
+	bMotor				:	BOOL;	
 END_VAR
 
 VAR_IN_OUT
@@ -49,7 +48,7 @@ END_VAR
       <ST><![CDATA[(*Initialization of the FB_Sensor*)
 IF NOT bInitialized OR NOT bInitializedExt THEN
 	eNewStep := E_Step.NoStep;
-	eStep := E_Step.Start;
+	eStep := E_Step.Stop;
 	bEntryAct := FALSE;
 	bFbEnd := FALSE;
 	bInitialized := TRUE;
@@ -74,10 +73,28 @@ ELSE
 		
 	(*Case*)
 	CASE eStep OF
+		(*Stop Step*)
+		E_Step.Stop :
+			(*Body*)
+			bMotor := FALSE;
+		
+			(*Transition - to Measuring*)
+			IF bRun AND bEnable THEN
+				eNewStep := E_Step.Start;
+			END_IF
+			
+			(*Exit Act*)
+			IF eNewStep <> E_Step.NoStep THEN
+				IF eNewStep = E_Step.NeOrError THEN
+					eErrStep := eStep;
+					//nErrId	:= 16#9999_9999;
+				END_IF
+			END_IF		
+	
 		(*Start Step*)
 		E_Step.Start :
 			(*Body*)
-			stOut.bMotor := FALSE;
+			bMotor := FALSE;
 		
 			(*Transition - to Measuring*)
 			IF fbTonStart.Q AND bEnable THEN
@@ -95,7 +112,7 @@ ELSE
 		(*Measuring Step*)
 		E_Step.Measuring :
 			(*Body*)
-			stOut.bMotor := TRUE;
+			bMotor := TRUE;
 		
 			fbMeasure(Vin := stIn.nColorSensor, Vout := rPieceValue);
 			
@@ -103,6 +120,7 @@ ELSE
 			IF NOT stIn.bPieceSensorOutput AND bEnable THEN
 				fbSlot(SensorInput := rPieceValue, stParams := stParams);
 				nSlot := fbSlot.slot;
+				eNewStep:=E_Step.Stop;
 				bInitialized := FALSE;
 				bFbEnd := TRUE;
 			END_IF
@@ -117,7 +135,7 @@ ELSE
 		
 		E_Step.NeOrError :
 			(*Body*)
-			stOut.bMotor := FALSE;
+			bMotor := FALSE;
 		
 			bInitialized := FALSE;
 			
@@ -133,11 +151,16 @@ ELSE
 END_IF]]></ST>
     </Implementation>
     <LineIds Name="FB_MSF_Sensor">
-      <LineId Id="48" Count="29" />
+      <LineId Id="48" Count="27" />
+      <LineId Id="230" Count="15" />
+      <LineId Id="228" Count="1" />
+      <LineId Id="76" Count="1" />
       <LineId Id="83" Count="0" />
       <LineId Id="184" Count="0" />
       <LineId Id="84" Count="16" />
-      <LineId Id="105" Count="21" />
+      <LineId Id="105" Count="7" />
+      <LineId Id="248" Count="0" />
+      <LineId Id="113" Count="13" />
       <LineId Id="131" Count="2" />
       <LineId Id="135" Count="9" />
       <LineId Id="9" Count="0" />

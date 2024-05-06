@@ -23,7 +23,8 @@ VAR
 	nerrid	: DINT; 
 	bfbend : BOOL;
 	
-	eSubStep: E_Step;
+	eSubStepSensor: E_Step;
+	eSubStepPistons: E_Step;
 	eErrSubStep: E_Step;
 	nErrSubId: DINT;
 END_VAR
@@ -39,7 +40,8 @@ fbCSL(
 	stParams:= stParams, 
 	stOut:= stOut, 
 	eStep=> eStep, 
-	eSubStep=> eSubStep, 
+	eSubStepSensor=> eSubStepSensor,
+	eSubStepPistons=> eSubStepPistons, 
 	eErrStep=> eErrStep, 
 	eErrSubStep=> eErrSubStep, 
 	nErrid=> nErrId, 
@@ -53,7 +55,9 @@ fbUpdateOutputs(stOut:= stOut, stRawOut:= stRawOut);
 	]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
-      <LineId Id="128" Count="20" />
+      <LineId Id="128" Count="10" />
+      <LineId Id="175" Count="0" />
+      <LineId Id="139" Count="9" />
       <LineId Id="2" Count="0" />
     </LineIds>
   </POU>

@@ -12,10 +12,12 @@ VAR_IN_OUT
 END_VAR
 VAR_OUTPUT
 	eStep	: E_Step;	//current step of the state machine
-	eSubStep: E_Step;
+	eSubStepSensor: E_Step;
+	eSubStepPistons: E_Step;
 	eErrStep : E_Step;  //step where an error was raised
 	eErrSubStep: E_Step;
 	nErrid	: DINT;		//error identification code
+	tStepTime : TIME;
 	nErrSubid	: DINT;
 	
 	bFbEnd	: BOOL;
@@ -24,6 +26,7 @@ VAR
 	bInitialized	: BOOL;		//FB initialization
 	eNewStep : E_Step;			//request for a new step
 	bEntryact	: 	BOOL;		//step entry action performed
+	fbTonStep :  TON;			// elapsed time on each state machine step
 	
 	fbSensor	: 	FB_MSF_Sensor;
 	fbPiston	:	FB_MSF_Pistons;
@@ -47,6 +50,9 @@ VAR
 	
 	bFbSensorReset: BOOL;
 	bFbPistonsReset: BOOL;
+	
+	
+	
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -88,7 +94,7 @@ ELSE
 	Timer_bPause(IN := NOT stIn.bStop, PT := stParams.stopLongPressTime);
 	
 	IF Timer_bPause.Q AND (eStep = E_Step.MainPiston OR eStep = E_Step.MainSensor) THEN
-		IF eStep = E_Step.MainSensor AND eSubStep = E_Step.Measuring THEN
+		IF eStep = E_Step.MainSensor AND eSubStepSensor = E_Step.Measuring THEN
 			bPause := TRUE;
 		ELSE
 			eNewStep := E_Step.MainPause;
@@ -96,6 +102,36 @@ ELSE
 	END_IF
 	
 	fbOscillator(enable := TRUE, t_high := T#500MS, t_low := T#500MS);
+	
+	(* msf subordinate *)
+	fbSensor(
+		bInitializedExt := TRUE,
+		stIn:= stIn, 
+		bEnable:= bEnable,
+		bRun:= (eStep = E_Step.MainSensor), 
+		eStep=> eSubStepSensor, 
+		eErrStep=> eErrSubStep, 
+		nErrId=> nErrSubId,
+		bFbEnd=> bFbSensorEnd, 
+		stOut:= stOut, 
+		nSlot=> nSlot, 
+		stParams:= stParams
+	);
+	
+	fbPiston(
+		bInitializedExt := TRUE,
+		bEnable:= bEnable, 
+		slot:= nSlot, 
+		stIn:= stIn, 
+		bRun := (eStep = E_Step.MainPiston),
+		stParams:= stParams, 
+		stOut:= stOut, 
+		eStep=> eSubStepPistons, 
+		eErrStep=> eErrSubStep, 
+		nErrid=> nErrSubId, 
+		iMotorPrev => iMotorPrev,
+		bFbEnd=> bFbPistonEnd
+	);
 
 	(*Case*)
 	CASE eStep OF
@@ -108,6 +144,7 @@ ELSE
 			stOut.bLStart	:= fbOscillator.q;
 			stOut.bLStop := FALSE;
 			stOut.bLAck := FALSE;
+			stOut.bMotor:=FALSE;
 		
 			(*Transition - to MainSensor*)
 			IF stIn.bStart AND bEnable THEN
@@ -126,13 +163,14 @@ ELSE
 		E_Step.MainSensor :
 			(*Body*)
 			stOut.bLStart	:= TRUE;
+			stOut.bMotor := fbSensor.bMotor OR fbPiston.bMotor;
 			IF bPause THEN
 				stOut.bLStop := fbOscillator.q;
 			ELSE
 				stOut.bLStop := FALSE;
 			END_IF
 			stOut.bLAck := FALSE;
-		
+		(*
 			fbSensor(
 				bInitializedExt := NOT bFbSensorReset,
 				stIn:= stIn, 
@@ -145,7 +183,9 @@ ELSE
 				nSlot=> nSlot, 
 				stParams:= stParams
 			);
-			bFbSensorReset := FALSE;
+			*)
+			
+			//bFbSensorReset := FALSE;
 			
 			(*Transition - to Processing*)
 			IF bFbSensorEnd AND bEnable THEN
@@ -158,12 +198,15 @@ ELSE
 					eErrStep := eStep;
 					//nErrId	:= 16#9999_9999;
 				END_IF
+				
+				bFbSensorReset := FALSE;
 			END_IF
 		
 		(*MainPiston Step - S2*)
 		E_Step.MainPiston :
 			(*Body*)
 			stOut.bLStart	:= TRUE;
+			stOut.bMotor := fbSensor.bMotor OR fbPiston.bMotor;
 			IF bPause THEN
 				stOut.bLStop := fbOscillator.q;
 			ELSE
@@ -171,6 +214,8 @@ ELSE
 			END_IF
 			stOut.bLAck := FALSE;
 		
+			
+(*
 			fbPiston(
 				bInitializedExt := NOT bFbPistonsReset,
 				bEnable:= bEnable, 
@@ -184,7 +229,9 @@ ELSE
 				iMotorPrev => iMotorPrev,
 				bFbEnd=> bFbPistonEnd
 			);
-			bFbPistonsReset := FALSE;
+			*)
+			
+			//bFbPistonsReset := FALSE;
 			
 			(*Transition - to MainSensor*)
 			(*Transition - to MainPause*)
@@ -211,6 +258,7 @@ ELSE
 			stOut.bLStart	:= FALSE;
 			stOut.bLStop := TRUE;
 			stOut.bLAck := FALSE;
+			stOut.bMotor:=FALSE;
 			
 			(*Transition - to MainSensor*)
 			IF stIn.bStart AND bEnable THEN
@@ -232,7 +280,7 @@ ELSE
 			stOut.bLStart	:= FALSE;
 			stOut.bLStop := FALSE;
 			stOut.bLAck := fbOscillator.q;
-			
+			stOut.bMotor:=FALSE;
 			
 			//da vedere il pilotaggio delle uscite: motore, compressore e valvole
 			stOut.bMotor := FALSE;
@@ -263,7 +311,8 @@ ELSE
 				bEnable:= TRUE, 
 				iMotorPrev:= iMotorPrev, 
 				eStep:= eEmergStep, 
-				eSubStep:= eSubStep, 
+				eSubStepSensor:= eSubStepSensor,
+				eSubStepPistons:= eSubStepPistons,
 				stIn:= stIn, 
 				stParams:= stParams, 
 				stOut:= stOut, 
@@ -305,6 +354,10 @@ ELSE
 			END_IF
 			
 	END_CASE
+	
+		(* elapsed time into the current step *)
+	fbTonStep(IN := (eNewstep = E_Step.NoStep), PT := T#500H);
+	tStepTime := fbTonStep.ET;
 END_IF]]></ST>
     </Implementation>
     <LineIds Name="FB_CSL_MAIN">
@@ -331,12 +384,25 @@ END_IF]]></ST>
       <LineId Id="301" Count="0" />
       <LineId Id="299" Count="0" />
       <LineId Id="309" Count="0" />
+      <LineId Id="728" Count="1" />
+      <LineId Id="731" Count="3" />
+      <LineId Id="742" Count="0" />
+      <LineId Id="735" Count="6" />
+      <LineId Id="730" Count="0" />
+      <LineId Id="751" Count="0" />
+      <LineId Id="753" Count="4" />
+      <LineId Id="765" Count="0" />
+      <LineId Id="758" Count="6" />
+      <LineId Id="752" Count="0" />
       <LineId Id="49" Count="2" />
       <LineId Id="130" Count="0" />
       <LineId Id="52" Count="2" />
       <LineId Id="302" Count="1" />
       <LineId Id="55" Count="1" />
-      <LineId Id="59" Count="18" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="773" Count="0" />
+      <LineId Id="60" Count="17" />
+      <LineId Id="772" Count="0" />
       <LineId Id="310" Count="0" />
       <LineId Id="313" Count="0" />
       <LineId Id="315" Count="0" />
@@ -349,19 +415,26 @@ END_IF]]></ST>
       <LineId Id="143" Count="2" />
       <LineId Id="83" Count="0" />
       <LineId Id="146" Count="0" />
+      <LineId Id="743" Count="1" />
       <LineId Id="625" Count="0" />
       <LineId Id="84" Count="1" />
       <LineId Id="88" Count="1" />
-      <LineId Id="91" Count="9" />
+      <LineId Id="91" Count="7" />
+      <LineId Id="746" Count="0" />
+      <LineId Id="745" Count="0" />
+      <LineId Id="99" Count="1" />
       <LineId Id="156" Count="3" />
+      <LineId Id="771" Count="0" />
       <LineId Id="318" Count="3" />
       <LineId Id="160" Count="2" />
       <LineId Id="188" Count="0" />
+      <LineId Id="747" Count="1" />
       <LineId Id="619" Count="0" />
       <LineId Id="189" Count="7" />
       <LineId Id="560" Count="0" />
       <LineId Id="186" Count="0" />
       <LineId Id="173" Count="0" />
+      <LineId Id="749" Count="1" />
       <LineId Id="626" Count="0" />
       <LineId Id="493" Count="0" />
       <LineId Id="491" Count="0" />
@@ -376,6 +449,7 @@ END_IF]]></ST>
       <LineId Id="154" Count="1" />
       <LineId Id="206" Count="0" />
       <LineId Id="208" Count="4" />
+      <LineId Id="774" Count="0" />
       <LineId Id="225" Count="3" />
       <LineId Id="304" Count="0" />
       <LineId Id="229" Count="0" />
@@ -395,7 +469,9 @@ END_IF]]></ST>
       <LineId Id="292" Count="1" />
       <LineId Id="271" Count="5" />
       <LineId Id="279" Count="0" />
-      <LineId Id="552" Count="7" />
+      <LineId Id="552" Count="4" />
+      <LineId Id="767" Count="0" />
+      <LineId Id="557" Count="2" />
       <LineId Id="294" Count="0" />
       <LineId Id="562" Count="0" />
       <LineId Id="280" Count="3" />
@@ -408,6 +484,9 @@ END_IF]]></ST>
       <LineId Id="345" Count="16" />
       <LineId Id="342" Count="0" />
       <LineId Id="120" Count="0" />
+      <LineId Id="722" Count="0" />
+      <LineId Id="724" Count="1" />
+      <LineId Id="723" Count="0" />
       <LineId Id="9" Count="0" />
     </LineIds>
   </POU>

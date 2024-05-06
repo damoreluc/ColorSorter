@@ -6,7 +6,8 @@ VAR_INPUT
 	bEnable : BOOL;
 	iMotorPrev 		: 	INT;
 	eStep		:	E_Step;
-	eSubStep	:	E_Step;
+	eSubStepSensor	:	E_Step;
+	eSubStepPistons	:	E_Step;
 END_VAR
 VAR_IN_OUT
 	stIn		:	ST_CSL_In;

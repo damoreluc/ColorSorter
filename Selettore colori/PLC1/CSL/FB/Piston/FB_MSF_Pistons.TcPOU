@@ -5,6 +5,7 @@
 VAR_INPUT
 	bEnable	: BOOL;  // machine enable
 	bInitializedExt	:	BOOL;
+	bRun: BOOL;
 	slot	: INT;   // destination slot
 END_VAR
 
@@ -22,6 +23,8 @@ VAR_OUTPUT
 	iMotorPrev	: INT;         // steps done while travelling on conveyor
 	
 	bFbEnd	: BOOL;
+	
+	bMotor	: BOOL;
 END_VAR
 
 VAR
@@ -44,18 +47,19 @@ VAR
 	fbRtMotorImpulse : R_TRIG;  // edge detection on conveyor encoder
 	
 	bSlotFree: BOOL;
+
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[(* initialization *)
 IF NOT bInitialized OR NOT bInitializedExt THEN    
 	eNewstep 		:= 	E_Step.NoStep;    
-	eStep 			:= 	E_Step.Conveyor;    
+	eStep 			:= 	E_Step.Stop;    
 	bEntryact 		:= 	FALSE;    
 	bInitialized 	:= 	TRUE; 
 	bSlotFree		:=	FALSE;
 	bFbEnd			:=	FALSE;
-	iMotor := 0;
+
 ELSE   
 
 	(* forcing the error state *)	
@@ -104,13 +108,31 @@ ELSE
 
 	// storing of the pieces
 	CASE eStep OF
-
+		(*Stop Step*)
+		E_Step.Stop :
+			(*Body*)
+			bMotor := FALSE;
+			iMotor := 0;
+			
+			(*Transition - to Measuring*)
+			IF bRun AND bEnable THEN
+				eNewStep := E_Step.conveyor;
+			END_IF
+			
+			(*Exit Act*)
+			IF eNewStep <> E_Step.NoStep THEN
+				IF eNewStep = E_Step.NeOrError THEN
+					eErrStep := eStep;
+					//nErrId	:= 16#9999_9999;
+				END_IF
+			END_IF		
+	
 		// a new piece was placed on the conveyor belt
 		E_Step.conveyor :
 	
 			(* body *)	
 			
-				stOut.bMotor		:=	 bSensor;
+				bMotor		:=	 bSensor;
 				stOut.bCompressor 	:=	 bSensor;
 			
 			IF slot <> 0 THEN
@@ -130,8 +152,7 @@ ELSE
 				IF  iMotor = nStepSlot AND nStepSlot <> stParams.StepNoSlot THEN 
 					eNewstep := E_Step.piston;
 				ELSIF iMotor = nStepSlot AND nStepSlot = stParams.StepNoSlot THEN
-					bFbEnd	:= TRUE;
-					bInitialized := FALSE;
+					eNewstep := E_Step.waiting;
         		END_IF;
 			END_IF
 	
@@ -139,7 +160,7 @@ ELSE
 		E_Step.piston :
 
 			(* body *)
-			stOut.bMotor		:= 	FALSE;
+			bMotor		:= 	FALSE;
 			stOut.bCompressor 	:= 	TRUE;
 			IF slot <> 0 AND Timer_Positioned.Q THEN
 				bValve :=	TRUE;
@@ -158,7 +179,7 @@ ELSE
 		E_Step.waiting :
 	
 			(* body *)
-			stOut.bMotor		:=	FALSE;
+			bMotor		:=	FALSE;
 			stOut.bCompressor 	:= 	FALSE;
 			IF slot <> 0 THEN
 				bValve :=	FALSE;	
@@ -169,14 +190,14 @@ ELSE
 		 		eNewstep := E_Step.NeOrError;        
 			ELSE 
 				IF Timer_WaitingTransition.Q THEN 
-					bFbEnd	:= TRUE;
-					bInitialized := FALSE; 					           
+					eNewstep := E_Step.Stop;
+					bFbEnd	:= TRUE; 					           
        	 		END_IF;
 			END_IF	
 			
 		E_Step.NeOrError :
 			(*Body*)
-			stOut.bMotor := FALSE;
+			bMotor := FALSE;
 		
 			bInitialized := FALSE;
 			
@@ -219,7 +240,11 @@ END_IF]]></ST>
       <LineId Id="317" Count="0" />
       <LineId Id="222" Count="10" />
       <LineId Id="215" Count="0" />
-      <LineId Id="54" Count="7" />
+      <LineId Id="54" Count="2" />
+      <LineId Id="455" Count="4" />
+      <LineId Id="477" Count="0" />
+      <LineId Id="460" Count="11" />
+      <LineId Id="57" Count="4" />
       <LineId Id="401" Count="0" />
       <LineId Id="62" Count="0" />
       <LineId Id="404" Count="0" />
@@ -229,7 +254,8 @@ END_IF]]></ST>
       <LineId Id="273" Count="0" />
       <LineId Id="65" Count="3" />
       <LineId Id="359" Count="0" />
-      <LineId Id="69" Count="19" />
+      <LineId Id="69" Count="9" />
+      <LineId Id="80" Count="8" />
       <LineId Id="274" Count="0" />
       <LineId Id="89" Count="0" />
       <LineId Id="275" Count="0" />
@@ -237,7 +263,10 @@ END_IF]]></ST>
       <LineId Id="276" Count="0" />
       <LineId Id="106" Count="0" />
       <LineId Id="278" Count="0" />
-      <LineId Id="108" Count="9" />
+      <LineId Id="108" Count="5" />
+      <LineId Id="474" Count="0" />
+      <LineId Id="114" Count="0" />
+      <LineId Id="116" Count="1" />
       <LineId Id="279" Count="0" />
       <LineId Id="166" Count="12" />
       <LineId Id="165" Count="0" />

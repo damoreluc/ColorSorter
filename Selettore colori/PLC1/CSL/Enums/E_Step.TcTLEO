@@ -22,6 +22,7 @@ TYPE E_Step :
 	MainEmergency	:=	50,		// emergency
 	MainAcknowledge	:=	60,		// acknowledge
 	//sub-steps
+	Stop			:=  90,
 	Start			:= 	100,
 	Measuring		:= 	110,
 	Processing		:= 	120,
@@ -79,6 +80,11 @@ END_TYPE
             <o>
               <v n="TextID">"MainAcknowledge"</v>
               <v n="TextDefault">"60"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Stop"</v>
+              <v n="TextDefault">"90"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
