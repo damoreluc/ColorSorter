@@ -9,6 +9,8 @@ VAR
 	stRawOut	:	ST_CSL_RawOut;
 	stIn		:	ST_CSL_In;
 	stOut		: 	ST_CSL_Out;
+	stHMIIn		:	ST_HMI_In;
+	stHMIOut	:	ST_HMI_Out;
 	stParams	:	ST_CSL_Params; 
 	
 	fbUpdateInputs : FB_UpdateInputs;
@@ -17,6 +19,7 @@ VAR
 	fbCSL		:	FB_CSL_MAIN;
 	
 	estep 	: E_Step;
+	strEStep	:	STRING;
 	eErrstep : E_Step;
 	
 	slot	: INT;
@@ -24,7 +27,9 @@ VAR
 	bfbend : BOOL;
 	
 	eSubStepSensor: E_Step;
+	strEsubStepSensor	:	STRING;
 	eSubStepPistons: E_Step;
+	strEsubStepPiston	:	STRING;
 	eErrSubStep: E_Step;
 	nErrSubId: DINT;
 END_VAR
@@ -32,7 +37,7 @@ END_VAR
     <Implementation>
       <ST><![CDATA[stParams := FC_thresholdsCalculation();
 
-fbUpdateInputs(stRawIn:= stRawIn, stIn:= stIn);
+fbUpdateInputs(stRawIn:= stRawIn, stHMIIn:= stHMIIn, stIn:= stIn);
 
 fbCSL(
 	bEnable:= TRUE, 
@@ -49,7 +54,11 @@ fbCSL(
 	bFbEnd=> bFbEnd 
 );
 
-fbUpdateOutputs(stOut:= stOut, stRawOut:= stRawOut);
+strEStep := TO_STRING(eStep);
+strEsubStepSensor	:= TO_STRING(eSubStepSensor);
+strEsubStepPiston	:= TO_STRING(eSubStepPistons);
+
+fbUpdateOutputs(stOut:= stOut, stRawOut:= stRawOut, stHMIOut => stHMIOut);
 
 
 	]]></ST>
@@ -57,7 +66,12 @@ fbUpdateOutputs(stOut:= stOut, stRawOut:= stRawOut);
     <LineIds Name="MAIN">
       <LineId Id="128" Count="10" />
       <LineId Id="175" Count="0" />
-      <LineId Id="139" Count="9" />
+      <LineId Id="139" Count="5" />
+      <LineId Id="207" Count="0" />
+      <LineId Id="206" Count="0" />
+      <LineId Id="211" Count="0" />
+      <LineId Id="210" Count="0" />
+      <LineId Id="145" Count="3" />
       <LineId Id="2" Count="0" />
     </LineIds>
   </POU>

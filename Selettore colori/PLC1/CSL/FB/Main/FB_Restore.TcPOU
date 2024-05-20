@@ -55,10 +55,8 @@ ELSE
 		END_IF
 
 	ELSE
-		//IF stIn.bPieceSensorInput AND stIn.bPieceSensorOutput AND stIn.bSlot1 AND stIn.bSlot2 AND stIn.bSlot3 THEN 
-			bInitialized := FALSE;
-			bFbEnd := TRUE;
-		//END_IF
+		bInitialized := FALSE;
+		bFbEnd := TRUE;
 	END_IF
 END_IF
 
@@ -76,7 +74,8 @@ END_IF
       <LineId Id="216" Count="0" />
       <LineId Id="218" Count="0" />
       <LineId Id="217" Count="0" />
-      <LineId Id="134" Count="19" />
+      <LineId Id="134" Count="16" />
+      <LineId Id="152" Count="0" />
       <LineId Id="108" Count="0" />
       <LineId Id="99" Count="0" />
       <LineId Id="93" Count="0" />

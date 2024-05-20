@@ -4,7 +4,7 @@
     <Declaration><![CDATA[FUNCTION_BLOCK FB_UpdateInputs
 VAR_INPUT
 	stRawIn		:	ST_CSL_RawIn;	
-
+	stHMIIn		:	ST_HMI_In;
 END_VAR
 VAR_IN_OUT
 	stIn		:	ST_CSL_In;
@@ -23,9 +23,9 @@ stIn.bPieceSensorOutput 	:= stRawIn.bPieceSensorOutput 	;
 stIn.bSlot1 				:= stRawIn.bSlot1 				;	
 stIn.bSlot2 				:= stRawIn.bSlot2 				;	
 stIn.bSlot3	            	:= stRawIn.bSlot3				; 
-stIn.bStart 				:= stRawIn.bStart               ;    	
-stIn.bStop					:= stRawIn.bStop	 			;	
-stIn.bAck 					:= stRawIn.bAck 				;
+stIn.bStart 				:= stRawIn.bStart OR stHMIIn.bStart;    	
+stIn.bStop					:= stRawIn.bStop AND NOT stHMIIn.bStop;	
+stIn.bAck 					:= stRawIn.bAck OR stHMIIn.bAck;
 stIn.bEmerg 				:= stRawIn.bEmerg				;
 
 Filter(VIn := FC_Conversion(stRawIn.nColorSensor, -10.0, 10.0), VOut := stIn.nColorSensor);

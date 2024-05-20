@@ -91,14 +91,18 @@ ELSE
 	END_IF
 	
 	//bPause management
+	(*
 	Timer_bPause(IN := NOT stIn.bStop, PT := stParams.stopLongPressTime);
-	
 	IF Timer_bPause.Q AND (eStep = E_Step.MainPiston OR eStep = E_Step.MainSensor) THEN
 		IF eStep = E_Step.MainSensor AND eSubStepSensor = E_Step.Measuring THEN
 			bPause := TRUE;
 		ELSE
 			eNewStep := E_Step.MainPause;
 		END_IF
+	END_IF
+	*)
+	IF NOT stIn.bStop THEN
+		bPause := TRUE;
 	END_IF
 	
 	fbOscillator(enable := TRUE, t_high := T#500MS, t_low := T#500MS);
@@ -142,7 +146,7 @@ ELSE
 			bPause := FALSE;
 			
 			stOut.bLStart	:= fbOscillator.q;
-			stOut.bLStop := FALSE;
+			stOut.bLStop := TRUE;
 			stOut.bLAck := FALSE;
 			stOut.bMotor:=FALSE;
 		
@@ -237,7 +241,7 @@ ELSE
 			(*Transition - to MainPause*)
 			IF bFbPistonEnd AND bEnable THEN
 				IF bPause THEN
-					eNewStep := E_Step.MainPause; //to MainPause
+					eNewStep := E_Step.MainStop; //to MainStop
 				ELSE
 					eNewStep := E_Step.MainSensor; //to MainSensor
 				END_IF	
@@ -375,7 +379,8 @@ END_IF]]></ST>
       <LineId Id="545" Count="0" />
       <LineId Id="40" Count="6" />
       <LineId Id="447" Count="0" />
-      <LineId Id="445" Count="1" />
+      <LineId Id="828" Count="0" />
+      <LineId Id="445" Count="0" />
       <LineId Id="298" Count="0" />
       <LineId Id="300" Count="0" />
       <LineId Id="614" Count="1" />
@@ -383,6 +388,9 @@ END_IF]]></ST>
       <LineId Id="616" Count="0" />
       <LineId Id="301" Count="0" />
       <LineId Id="299" Count="0" />
+      <LineId Id="829" Count="0" />
+      <LineId Id="837" Count="1" />
+      <LineId Id="830" Count="0" />
       <LineId Id="309" Count="0" />
       <LineId Id="728" Count="1" />
       <LineId Id="731" Count="3" />

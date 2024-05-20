@@ -114,6 +114,8 @@ ELSE
 			bMotor := FALSE;
 			iMotor := 0;
 			
+			bFbEnd := FALSE;
+			
 			(*Transition - to Measuring*)
 			IF bRun AND bEnable THEN
 				eNewStep := E_Step.conveyor;
@@ -243,6 +245,7 @@ END_IF]]></ST>
       <LineId Id="54" Count="2" />
       <LineId Id="455" Count="4" />
       <LineId Id="477" Count="0" />
+      <LineId Id="526" Count="1" />
       <LineId Id="460" Count="11" />
       <LineId Id="57" Count="4" />
       <LineId Id="401" Count="0" />

@@ -71,6 +71,12 @@
     <Compile Include="CSL\Structs\ST_CSL_RawIn.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CSL\Structs\ST_HMI_In.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CSL\Structs\ST_HMI_Out.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>

@@ -4,11 +4,13 @@
     <Declaration><![CDATA[FUNCTION_BLOCK FB_UpdateOutputs
 VAR_INPUT
 	stOut		: 	ST_CSL_Out;
+	
 END_VAR
 VAR_IN_OUT
 	stRawOut	:	ST_CSL_RawOut;
 END_VAR
 VAR_OUTPUT
+	stHMIOut	:	ST_HMI_Out;
 END_VAR
 VAR
 END_VAR
@@ -22,11 +24,18 @@ stRawOut.bMotor := stOut.bMotor;
 stRawOut.bValveSlot1 := stOut.bValveSlot1;
 stRawOut.bValveSlot2 := stOut.bValveSlot2;
 stRawOut.bValveSlot3 := stOut.bValveSlot3;
-]]></ST>
+
+(*Comando uscite HMI*)
+stHMIOut.bGreen	:= stRawOut.bLStart;
+stHMIOut.bRed	:= stRawOut.bLStop;
+stHMIOut.bOrange	:= stRawOut.bLAck;]]></ST>
     </Implementation>
     <LineIds Name="FB_UpdateOutputs">
       <LineId Id="3" Count="7" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="24" Count="0" />
       <LineId Id="2" Count="0" />
+      <LineId Id="25" Count="1" />
     </LineIds>
   </POU>
 </TcPlcObject>

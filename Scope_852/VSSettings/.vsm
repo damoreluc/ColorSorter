@@ -1,16 +1,16 @@
 <Node>
-  <Title>Scope</Title>
+  <Title>Scope_852</Title>
   <Expanded>False</Expanded>
   <FileName></FileName>
   <Children>
     <Node>
       <Title>YT Scope Project</Title>
       <Expanded>True</Expanded>
-      <FileName>C:\Users\34346\Source\Repos\ColorSorter\Scope\YT Scope Project.tcscopex</FileName>
+      <FileName>D:\CartellaUtenti\34346\Source\Repos\ColorSorter\Scope_852\YT Scope Project.tcscopex</FileName>
       <Children>
         <Node>
           <Title>DataPool</Title>
-          <Expanded>True</Expanded>
+          <Expanded>False</Expanded>
           <FileName></FileName>
           <Children>
             <Node>
@@ -20,7 +20,7 @@
               <Children />
             </Node>
             <Node>
-              <Title>nColorSensor</Title>
+              <Title>nColorSensor (2)</Title>
               <Expanded>False</Expanded>
               <FileName></FileName>
               <Children />
@@ -38,7 +38,7 @@
               <FileName></FileName>
               <Children>
                 <Node>
-                  <Title>bMotorImpulse</Title>
+                  <Title>nColorSensor (2)</Title>
                   <Expanded>False</Expanded>
                   <FileName></FileName>
                   <Children />
@@ -51,13 +51,7 @@
               <FileName></FileName>
               <Children>
                 <Node>
-                  <Title>nColorSensor</Title>
-                  <Expanded>False</Expanded>
-                  <FileName></FileName>
-                  <Children />
-                </Node>
-                <Node>
-                  <Title>nColorSensor (1)</Title>
+                  <Title>bMotorImpulse</Title>
                   <Expanded>False</Expanded>
                   <FileName></FileName>
                   <Children />
