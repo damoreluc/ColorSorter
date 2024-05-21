@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Task Name="IoTTask" Id="{b8554600-72fa-4ece-9a2a-4a4a7e8bf647}">
+    <!--CycleTime in micro seconds.-->
+    <CycleTime>10000</CycleTime>
+    <Priority>21</Priority>
+    <PouCall>
+      <Name>IOT_MAIN</Name>
+    </PouCall>
+    <TaskFBGuid>{52072648-2ff7-4a9c-8b2c-0531b9bb902a}</TaskFBGuid>
+    <Fb_init>{58a090db-66cc-4d31-bc36-0eec9dac1bab}</Fb_init>
+    <Fb_exit>{48ceebdc-984d-4ef9-843f-90c05b045e22}</Fb_exit>
+    <CycleUpdate>{2bab5e3d-5383-4b9e-9e1c-2d99dcc4b431}</CycleUpdate>
+    <PostCycleUpdate>{26815979-3c7a-4dc1-a5e1-ee6420da5d68}</PostCycleUpdate>
+  </Task>
+</TcPlcObject>

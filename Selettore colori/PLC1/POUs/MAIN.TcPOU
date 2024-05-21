@@ -58,21 +58,15 @@ strEStep := TO_STRING(eStep);
 strEsubStepSensor	:= TO_STRING(eSubStepSensor);
 strEsubStepPiston	:= TO_STRING(eSubStepPistons);
 
+GVL_PLC.estep := eStep;
+GVL_PLC.eSubStepSensor := eSubStepSensor;
+GVL_PLC.eSubStepPistons := eSubStepPistons;
+GVL_PLC.nColorSensor := stIn.nColorSensor;
+
 fbUpdateOutputs(stOut:= stOut, stRawOut:= stRawOut, stHMIOut => stHMIOut);
 
 
 	]]></ST>
     </Implementation>
-    <LineIds Name="MAIN">
-      <LineId Id="128" Count="10" />
-      <LineId Id="175" Count="0" />
-      <LineId Id="139" Count="5" />
-      <LineId Id="207" Count="0" />
-      <LineId Id="206" Count="0" />
-      <LineId Id="211" Count="0" />
-      <LineId Id="210" Count="0" />
-      <LineId Id="145" Count="3" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

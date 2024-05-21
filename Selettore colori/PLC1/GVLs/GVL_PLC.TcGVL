@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="GVL_PLC" Id="{75c9af24-51bf-452f-ac61-9cb224bf1f57}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	strEStep	:	STRING;
+	strEsubStepSensor	:	STRING;
+	strEsubStepPiston	:	STRING;
+	
+	estep 	: E_Step;
+	eSubStepSensor: E_Step;
+	eSubStepPistons: E_Step;
+	
+	nColorSensor	:	REAL;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>
