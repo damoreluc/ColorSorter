@@ -1,4 +1,4 @@
-﻿<div id="Content1" data-tchmi-type="TcHmi.Controls.System.TcHmiContent" data-tchmi-top="60" data-tchmi-left="0" data-tchmi-width="100" data-tchmi-height="80" data-tchmi-width-unit="%" data-tchmi-height-unit="%" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center">
+<div id="Content1" data-tchmi-type="TcHmi.Controls.System.TcHmiContent" data-tchmi-top="60" data-tchmi-left="0" data-tchmi-width="100" data-tchmi-height="80" data-tchmi-width-unit="%" data-tchmi-height-unit="%" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center">
 
 
 <script data-tchmi-target-attribute="data-tchmi-background-color" type="application/json">
