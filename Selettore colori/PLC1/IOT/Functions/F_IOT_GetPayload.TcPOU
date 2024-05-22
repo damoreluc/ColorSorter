@@ -33,6 +33,8 @@ IF stDataValue.eType = E_IOT_DataType.Boolean THEN
 	sAppo1 := TO_STRING(stDataValue.uValue.b);
 ELSIF stDataValue.eType = E_IOT_DataType.F64 THEN
 	sAppo1 := TO_STRING(stDataValue.uValue.f);
+ELSIF stDataValue.eType = E_IOT_DataType.S50 THEN
+	sAppo1 := stDataValue.uValue.sv;
 ELSE
 	sAppo1 := TO_STRING(stDataValue.uValue.n);
 END_IF

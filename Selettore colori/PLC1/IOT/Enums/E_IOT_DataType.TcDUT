@@ -16,7 +16,8 @@ TYPE E_IOT_DataType :
 (
 	Boolean := 0,
 	I32 := 1,
-	F64 := 2
+	F64 := 2,
+	S50 := 51
 );
 END_TYPE
 ]]></Declaration>

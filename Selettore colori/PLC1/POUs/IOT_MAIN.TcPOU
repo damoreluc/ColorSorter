@@ -45,14 +45,11 @@ ELSE
 //	aOnChangePublish[2].stData.uValue.b := GVL_PLC.stFlmStatus.bWarning;
 
     aOnChangePublish[0].stData.uValue.f := TO_REAL(GVL_PLC.nColorSensor);
-    aOnChangePublish[1].stData.uValue.n := TO_DINT(GVL_PLC.estep);	
-    aOnChangePublish[2].stData.uValue.n := TO_DINT(GVL_PLC.eSubStepSensor);	
-    aOnChangePublish[3].stData.uValue.n := TO_DINT(GVL_PLC.eSubStepPistons);	
+    aOnChangePublish[1].stData.uValue.sv := GVL_PLC.strEStep;
+    aOnChangePublish[2].stData.uValue.sv := GVL_PLC.strEsubStepSensor;	
+    aOnChangePublish[3].stData.uValue.sv := GVL_PLC.strEsubStepPiston;	
 	
 //	aPeriodicPublish[0].stData.uValue.b := GVL_PLC.stFlmOut.bCorkingVertical;
-//	aPeriodicPublish[1].stData.uValue.b := GVL_PLC.stFlmOut.bCorkingRotation;
-//	aPeriodicPublish[2].stData.uValue.f := TO_LREAL(GVL_PLC.stFlmIn.fWaterLevel);
-//	aPeriodicPublish[3].stData.uValue.f := TO_LREAL(GVL_PLC.stFlmIn.fMintLevel);
 
 	
 	fbIot(
@@ -88,13 +85,13 @@ aOnChangePublish[0].stData.sSubtopic := '/ncolorsensor';
 aOnChangePublish[0].stData.eType := E_IOT_DataType.F64;
 
 aOnChangePublish[1].stData.sSubtopic := '/estep';
-aOnChangePublish[1].stData.eType := E_IOT_DataType.I32;
+aOnChangePublish[1].stData.eType := E_IOT_DataType.S50;
 
 aOnChangePublish[2].stData.sSubtopic := '/esubstepsensor';
-aOnChangePublish[2].stData.eType := E_IOT_DataType.I32;
+aOnChangePublish[2].stData.eType := E_IOT_DataType.S50;
 
 aOnChangePublish[3].stData.sSubtopic := '/esubsteppistons';
-aOnChangePublish[3].stData.eType := E_IOT_DataType.I32;
+aOnChangePublish[3].stData.eType := E_IOT_DataType.S50;
 
 //aOnChangePublish[2].stData.sSubtopic := '/Warning';
 //aOnChangePublish[2].stData.eType := E_IOT_DataType.Boolean;

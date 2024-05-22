@@ -19,7 +19,6 @@ VAR
 	fbCSL		:	FB_CSL_MAIN;
 	
 	estep 	: E_Step;
-	strEStep	:	STRING;
 	eErrstep : E_Step;
 	
 	slot	: INT;
@@ -27,9 +26,7 @@ VAR
 	bfbend : BOOL;
 	
 	eSubStepSensor: E_Step;
-	strEsubStepSensor	:	STRING;
 	eSubStepPistons: E_Step;
-	strEsubStepPiston	:	STRING;
 	eErrSubStep: E_Step;
 	nErrSubId: DINT;
 END_VAR
@@ -54,9 +51,9 @@ fbCSL(
 	bFbEnd=> bFbEnd 
 );
 
-strEStep := TO_STRING(eStep);
-strEsubStepSensor	:= TO_STRING(eSubStepSensor);
-strEsubStepPiston	:= TO_STRING(eSubStepPistons);
+GVL_PLC.strEStep := TO_STRING(eStep);
+GVL_PLC.strEsubStepSensor	:= TO_STRING(eSubStepSensor);
+GVL_PLC.strEsubStepPiston	:= TO_STRING(eSubStepPistons);
 
 GVL_PLC.estep := eStep;
 GVL_PLC.eSubStepSensor := eSubStepSensor;

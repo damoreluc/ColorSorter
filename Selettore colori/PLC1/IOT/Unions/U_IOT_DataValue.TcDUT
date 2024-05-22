@@ -22,6 +22,7 @@ UNION
 	b : BOOL;
 	n : DINT;
 	f : LREAL;
+	sv : STRING(50);
 END_UNION
 END_TYPE
 ]]></Declaration>

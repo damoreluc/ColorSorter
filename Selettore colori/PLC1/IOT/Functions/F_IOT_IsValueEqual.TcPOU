@@ -27,7 +27,9 @@ IF eType = E_IOT_DataType.Boolean THEN
 ELSIF eType = E_IOT_DataType.F64 THEN
 	F_IOT_IsValueEqual := uVal1.f = uVal2.f;
 ELSIF eType = E_IOT_DataType.I32 THEN
-F_IOT_IsValueEqual := uVal1.n = uVal2.n;
+	F_IOT_IsValueEqual := uVal1.n = uVal2.n;
+ELSIF eType = E_IOT_DataType.S50 THEN
+	F_IOT_IsValueEqual := uVal1.sv = uVal2.sv;	
 ELSE
 	F_IOT_IsValueEqual := FALSE;	
 END_IF
