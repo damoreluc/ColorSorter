@@ -12,6 +12,10 @@ VAR_GLOBAL
 	eSubStepPistons: E_Step;
 	
 	nColorSensor	:	REAL;
+	
+	nTotalRevs		:	REAL;
+	
+	nCycles			:	INT;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

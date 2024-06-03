@@ -11,10 +11,12 @@ VAR
 	stOut		: 	ST_CSL_Out;
 	stHMIIn		:	ST_HMI_In;
 	stHMIOut	:	ST_HMI_Out;
-	stParams	:	ST_CSL_Params; 
+	stParams	:	ST_CSL_Params;
+	stHMIParams	:	ST_HMI_Params; 
 	
-	fbUpdateInputs : FB_UpdateInputs;
+	fbUpdateInputs	: FB_UpdateInputs;
 	fbUpdateOutputs : FB_UpdateOutputs;
+	fbUpdateParams	: FB_UpdatesParams;
 	
 	fbCSL		:	FB_CSL_MAIN;
 	
@@ -29,10 +31,12 @@ VAR
 	eSubStepPistons: E_Step;
 	eErrSubStep: E_Step;
 	nErrSubId: DINT;
+	nTotalRevs: REAL;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[stParams := FC_thresholdsCalculation();
+      <ST><![CDATA[
+fbUpdateParams(stHMIparams := stHMIParams, stParams => stParams);
 
 fbUpdateInputs(stRawIn:= stRawIn, stHMIIn:= stHMIIn, stIn:= stIn);
 
@@ -48,7 +52,8 @@ fbCSL(
 	eErrSubStep=> eErrSubStep, 
 	nErrid=> nErrId, 
 	nErrSubid=> nErrSubId, 
-	bFbEnd=> bFbEnd 
+	bFbEnd=> bFbEnd,
+	nTotalRevs => nTotalRevs
 );
 
 GVL_PLC.strEStep := TO_STRING(eStep);
@@ -59,11 +64,25 @@ GVL_PLC.estep := eStep;
 GVL_PLC.eSubStepSensor := eSubStepSensor;
 GVL_PLC.eSubStepPistons := eSubStepPistons;
 GVL_PLC.nColorSensor := stIn.nColorSensor;
+GVL_PLC.nTotalRevs	:= fbCSL.nTotalRevs;
+GVL_PLC.nCycles	:= fbCSL.nCycles;
 
 fbUpdateOutputs(stOut:= stOut, stRawOut:= stRawOut, stHMIOut => stHMIOut);
 
 
 	]]></ST>
     </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="3" Count="0" />
+      <LineId Id="98" Count="0" />
+      <LineId Id="4" Count="15" />
+      <LineId Id="64" Count="0" />
+      <LineId Id="20" Count="9" />
+      <LineId Id="63" Count="0" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="66" Count="0" />
+      <LineId Id="31" Count="2" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>

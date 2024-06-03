@@ -26,6 +26,9 @@
     <Compile Include="CSL\FB\IO\FB_UpdateOutputs.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CSL\FB\IO\FB_UpdatesParams.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="CSL\FB\Main\FB_CSL_MAIN.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -75,6 +78,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CSL\Structs\ST_HMI_Out.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CSL\Structs\ST_HMI_Params.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GVLs\GVL_IOT.TcGVL">

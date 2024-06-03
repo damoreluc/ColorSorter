@@ -48,6 +48,8 @@ ELSE
     aOnChangePublish[1].stData.uValue.sv := GVL_PLC.strEStep;
     aOnChangePublish[2].stData.uValue.sv := GVL_PLC.strEsubStepSensor;	
     aOnChangePublish[3].stData.uValue.sv := GVL_PLC.strEsubStepPiston;	
+	aOnChangePublish[4].stData.uValue.f := GVL_PLC.nTotalRevs;	
+	aOnChangePublish[5].stData.uValue.n := GVL_PLC.nCycles;
 	
 //	aPeriodicPublish[0].stData.uValue.b := GVL_PLC.stFlmOut.bCorkingVertical;
 
@@ -93,11 +95,17 @@ aOnChangePublish[2].stData.eType := E_IOT_DataType.S50;
 aOnChangePublish[3].stData.sSubtopic := '/esubsteppistons';
 aOnChangePublish[3].stData.eType := E_IOT_DataType.S50;
 
+aOnChangePublish[4].stData.sSubtopic := '/nTotalRevs';
+aOnChangePublish[4].stData.eType := E_IOT_DataType.F64;
+
+aOnChangePublish[5].stData.sSubtopic := '/nCycles';
+aOnChangePublish[5].stData.eType := E_IOT_DataType.I32;
+
 //aOnChangePublish[2].stData.sSubtopic := '/Warning';
 //aOnChangePublish[2].stData.eType := E_IOT_DataType.Boolean;
 
 // dimensione effettiva dell'array
-nOnChangePublishSize := 4;]]></ST>
+nOnChangePublishSize := 6;]]></ST>
       </Implementation>
     </Action>
     <Action Name="ACT_InitPeriodic" Id="{34aadb32-f70a-4eb7-a69c-27a152d30f33}">
@@ -133,5 +141,25 @@ nPeriodicPublishSize := 1;
 ]]></ST>
       </Implementation>
     </Action>
+    <LineIds Name="IOT_MAIN">
+      <LineId Id="3" Count="26" />
+      <LineId Id="69" Count="1" />
+      <LineId Id="30" Count="19" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="IOT_MAIN.ACT_InitOnChange">
+      <LineId Id="2" Count="18" />
+      <LineId Id="26" Count="1" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="30" Count="1" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="22" Count="3" />
+      <LineId Id="1" Count="0" />
+    </LineIds>
+    <LineIds Name="IOT_MAIN.ACT_InitPeriodic">
+      <LineId Id="2" Count="27" />
+      <LineId Id="1" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>

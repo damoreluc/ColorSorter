@@ -13,12 +13,12 @@ STRUCT
 	slotRemoveTime		:	TIME	:= T#500MS; // time required after piece removal from its slot
 	
 	(*Colors Voltage*)
-	RedVoltage			:	REAL	:=	5.5;
-	BlueVoltage			:	REAL	:=	7.1;
-	WhiteVoltage		:	REAL	:=	2.9;
+	RedVoltage			:	REAL;	//	:=	5.5;
+	BlueVoltage			:	REAL;	//	:=	7.1;
+	WhiteVoltage		:	REAL;	//	:=	2.9;
 	
 	//threshold
-	Threshold			:	REAL	:=	0.5;
+	Threshold			:	REAL;	//	:=	0.5;
 	
 	//min values
 	RedVoltageMin		:	REAL;
@@ -31,9 +31,9 @@ STRUCT
 	WhiteVoltageMax		:	REAL;
 	
 	(*Colors Slot*)
-	WhiteSlot			:	INT		:=	1;
-	BlueSlot			:	INT		:=	2;
-	RedSlot				:	INT		:=	3;
+	WhiteSlot			:	INT;	//	:=	1;
+	BlueSlot			:	INT;	//	:=	2;
+	RedSlot				:	INT;	//	:=	3;
 
 END_STRUCT
 END_TYPE

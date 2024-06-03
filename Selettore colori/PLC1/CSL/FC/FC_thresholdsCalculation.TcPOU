@@ -3,19 +3,20 @@
   <POU Name="FC_thresholdsCalculation" Id="{442698b9-30f7-4cf2-948f-13b4f51315ff}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION FC_thresholdsCalculation : ST_CSL_Params
 VAR_INPUT
+	stHMIParams : ST_HMI_Params;
 END_VAR
 VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[FC_thresholdsCalculation.WhiteVoltageMax	:=	FC_thresholdsCalculation.WhiteVoltage + FC_thresholdsCalculation.Threshold;
-FC_thresholdsCalculation.WhiteVoltageMin	:=	FC_thresholdsCalculation.WhiteVoltage - FC_thresholdsCalculation.Threshold;
+      <ST><![CDATA[FC_thresholdsCalculation.WhiteVoltageMax	:=	stHMIParams.WhiteVoltage + stHMIParams.Threshold;
+FC_thresholdsCalculation.WhiteVoltageMin	:=	stHMIParams.WhiteVoltage - stHMIParams.Threshold;
 
-FC_thresholdsCalculation.RedVoltageMax		:=	FC_thresholdsCalculation.RedVoltage + FC_thresholdsCalculation.Threshold;
-FC_thresholdsCalculation.RedVoltageMin		:=	FC_thresholdsCalculation.RedVoltage - FC_thresholdsCalculation.Threshold;
+FC_thresholdsCalculation.RedVoltageMax		:=	stHMIParams.RedVoltage + stHMIParams.Threshold;
+FC_thresholdsCalculation.RedVoltageMin		:=	stHMIParams.RedVoltage - stHMIParams.Threshold;
 
-FC_thresholdsCalculation.BlueVoltageMax		:=	FC_thresholdsCalculation.BlueVoltage + FC_thresholdsCalculation.Threshold;
-FC_thresholdsCalculation.BlueVoltageMin		:=	FC_thresholdsCalculation.BlueVoltage - FC_thresholdsCalculation.Threshold;]]></ST>
+FC_thresholdsCalculation.BlueVoltageMax		:=	stHMIParams.BlueVoltage + stHMIParams.Threshold;
+FC_thresholdsCalculation.BlueVoltageMin		:=	stHMIParams.BlueVoltage - stHMIParams.Threshold;]]></ST>
     </Implementation>
     <LineIds Name="FC_thresholdsCalculation">
       <LineId Id="25" Count="6" />

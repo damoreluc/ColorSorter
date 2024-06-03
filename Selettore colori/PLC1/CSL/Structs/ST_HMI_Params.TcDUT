@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="ST_HMI_Params" Id="{82fb972b-fadd-4c9c-ae76-30ebec1579ec}">
+    <Declaration><![CDATA[TYPE ST_HMI_Params :
+STRUCT
+	(*Params*)
+	//slot
+	WhiteSlot		:	INT	:= 1;
+	BlueSlot		:	INT	:= 2;
+	RedSlot			:	INT := 3;
+	
+	//voltage levels
+	RedVoltage		:	REAL	:= 5.5;
+	BlueVoltage		:	REAL	:= 7.1;
+	WhiteVoltage	:	REAL	:= 2.9;
+	
+	//threshold
+	Threshold		:	REAL	:=	0.5;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

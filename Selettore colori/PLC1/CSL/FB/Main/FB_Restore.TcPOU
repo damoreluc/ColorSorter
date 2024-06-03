@@ -28,12 +28,17 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[IF NOT bInitialized THEN
+      <ST><![CDATA[
+IF NOT bInitialized THEN
 	bFbEnd := FALSE;
 	bInitialized := TRUE;
 	bPieceOut := FALSE;
 	iMotor := 0;
 ELSE
+	IF eSubStepSensor = e_Step.Start THEN
+		bInitialized := FALSE;
+		bFbEnd := TRUE;
+	END_IF
 	IF eStep = E_Step.MainSensor AND NOT bPieceOut THEN
 		stOut.bMotor := TRUE;
 		IF NOT stIn.bPieceSensorOutput AND bEnable THEN
@@ -63,19 +68,23 @@ END_IF
 ]]></ST>
     </Implementation>
     <LineIds Name="FB_Restore">
+      <LineId Id="246" Count="0" />
       <LineId Id="92" Count="0" />
       <LineId Id="102" Count="0" />
       <LineId Id="98" Count="0" />
       <LineId Id="179" Count="0" />
       <LineId Id="178" Count="0" />
       <LineId Id="107" Count="0" />
+      <LineId Id="345" Count="1" />
+      <LineId Id="349" Count="0" />
+      <LineId Id="347" Count="0" />
       <LineId Id="109" Count="0" />
       <LineId Id="212" Count="0" />
       <LineId Id="216" Count="0" />
       <LineId Id="218" Count="0" />
       <LineId Id="217" Count="0" />
       <LineId Id="134" Count="16" />
-      <LineId Id="152" Count="0" />
+      <LineId Id="348" Count="0" />
       <LineId Id="108" Count="0" />
       <LineId Id="99" Count="0" />
       <LineId Id="93" Count="0" />

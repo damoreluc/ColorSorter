@@ -2523,6 +2523,36 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.GVL_PLC.strEStep": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_PLC::strEStep",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/STRING%2880%29"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.GVL_PLC.strEsubStepPiston": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_PLC::strEsubStepPiston",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/STRING%2880%29"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.GVL_PLC.strEsubStepSensor": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_PLC::strEsubStepSensor",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/STRING%2880%29"
+            },
+            "USEMAPPING": true
+        },
         "PLC1.MAIN.stHMIIn.bAck": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -2620,6 +2650,128 @@
                     },
                     {
                         "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.stHMIParams.BlueSlot": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::stHMIParams::BlueSlot",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/INT"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.stHMIParams.BlueVoltage": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::stHMIParams::BlueVoltage",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 5
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.stHMIParams.RedSlot": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::stHMIParams::RedSlot",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/INT"
+                    },
+                    {
+                        "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.stHMIParams.RedVoltage": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::stHMIParams::RedVoltage",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "comment": "voltage levels",
+                        "propertyOrder": 4
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.stHMIParams.Threshold": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::stHMIParams::Threshold",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "comment": "threshold",
+                        "propertyOrder": 7
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.stHMIParams.WhiteSlot": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::stHMIParams::WhiteSlot",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/INT"
+                    },
+                    {
+                        "comment": "Params",
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.stHMIParams.WhiteVoltage": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::stHMIParams::WhiteVoltage",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 6
                     }
                 ]
             },
@@ -7406,12 +7558,22 @@
                 "LocalizeText": 3,
                 "Login": 3,
                 "Logout": 3,
+                "PLC1.GVL_PLC.strEStep": 3,
+                "PLC1.GVL_PLC.strEsubStepPiston": 3,
+                "PLC1.GVL_PLC.strEsubStepSensor": 3,
                 "PLC1.MAIN.stHMIIn.bAck": 3,
                 "PLC1.MAIN.stHMIIn.bStart": 3,
                 "PLC1.MAIN.stHMIIn.bStop": 3,
                 "PLC1.MAIN.stHMIOut.bGreen": 3,
                 "PLC1.MAIN.stHMIOut.bOrange": 3,
                 "PLC1.MAIN.stHMIOut.bRed": 3,
+                "PLC1.MAIN.stHMIParams.BlueSlot": 3,
+                "PLC1.MAIN.stHMIParams.BlueVoltage": 3,
+                "PLC1.MAIN.stHMIParams.RedSlot": 3,
+                "PLC1.MAIN.stHMIParams.RedVoltage": 3,
+                "PLC1.MAIN.stHMIParams.Threshold": 3,
+                "PLC1.MAIN.stHMIParams.WhiteSlot": 3,
+                "PLC1.MAIN.stHMIParams.WhiteVoltage": 3,
                 "PLC1.MAIN.stIn.bMotorImpulse": 3,
                 "PLC1.MAIN.strEStep": 3,
                 "PLC1.MAIN.strEsubStepPiston": 3,

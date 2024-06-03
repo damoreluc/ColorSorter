@@ -21,6 +21,10 @@ VAR_OUTPUT
 	nErrSubid	: DINT;
 	
 	bFbEnd	: BOOL;
+	
+	nTotalRevs : REAL;
+	
+	nCycles : INT;
 END_VAR
 VAR
 	bInitialized	: BOOL;		//FB initialization
@@ -51,7 +55,8 @@ VAR
 	bFbSensorReset: BOOL;
 	bFbPistonsReset: BOOL;
 	
-	
+	fbRtMotorImpulse: R_TRIG;
+	iMotorTotal : INT;
 	
 END_VAR
 ]]></Declaration>
@@ -103,9 +108,19 @@ ELSE
 	*)
 	IF NOT stIn.bStop THEN
 		bPause := TRUE;
+		IF eSubStepSensor = E_Step.Start THEN
+			eNewStep := E_Step.MainStop;
+		END_IF
 	END_IF
 	
 	fbOscillator(enable := TRUE, t_high := T#500MS, t_low := T#500MS);
+	
+	//calcolo giri del motori complessivo
+	fbRtMotorImpulse(CLK:=	stIn.bMotorImpulse );
+	IF fbRtMotorImpulse.Q THEN
+		iMotorTotal := iMotorTotal + 1;
+		nTotalRevs := TO_REAL(iMotorTotal) / 4;
+	END_IF
 	
 	(* msf subordinate *)
 	fbSensor(
@@ -134,7 +149,8 @@ ELSE
 		eErrStep=> eErrSubStep, 
 		nErrid=> nErrSubId, 
 		iMotorPrev => iMotorPrev,
-		bFbEnd=> bFbPistonEnd
+		bFbEnd=> bFbPistonEnd,
+		nCycles=>nCycles
 	);
 
 	(*Case*)
@@ -389,10 +405,20 @@ END_IF]]></ST>
       <LineId Id="301" Count="0" />
       <LineId Id="299" Count="0" />
       <LineId Id="829" Count="0" />
-      <LineId Id="837" Count="1" />
+      <LineId Id="837" Count="0" />
+      <LineId Id="902" Count="2" />
+      <LineId Id="838" Count="0" />
       <LineId Id="830" Count="0" />
       <LineId Id="309" Count="0" />
-      <LineId Id="728" Count="1" />
+      <LineId Id="728" Count="0" />
+      <LineId Id="896" Count="0" />
+      <LineId Id="895" Count="0" />
+      <LineId Id="893" Count="0" />
+      <LineId Id="897" Count="0" />
+      <LineId Id="900" Count="0" />
+      <LineId Id="898" Count="0" />
+      <LineId Id="892" Count="0" />
+      <LineId Id="729" Count="0" />
       <LineId Id="731" Count="3" />
       <LineId Id="742" Count="0" />
       <LineId Id="735" Count="6" />
@@ -401,6 +427,7 @@ END_IF]]></ST>
       <LineId Id="753" Count="4" />
       <LineId Id="765" Count="0" />
       <LineId Id="758" Count="6" />
+      <LineId Id="961" Count="0" />
       <LineId Id="752" Count="0" />
       <LineId Id="49" Count="2" />
       <LineId Id="130" Count="0" />

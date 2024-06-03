@@ -3,9 +3,9 @@
   <DUT Name="ST_HMI_In" Id="{23c941fc-32bb-4f01-b2d8-b5087f931305}">
     <Declaration><![CDATA[TYPE ST_HMI_In :
 STRUCT
-	bStart 	:BOOL;
-	bStop 	:BOOL;
-	bAck	:BOOL;
+	bStart 		:	BOOL;
+	bStop 		:	BOOL;
+	bAck		:	BOOL;
 END_STRUCT
 END_TYPE
 ]]></Declaration>
