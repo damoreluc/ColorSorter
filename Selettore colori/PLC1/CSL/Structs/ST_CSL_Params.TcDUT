@@ -3,11 +3,13 @@
   <DUT Name="ST_CSL_Params" Id="{a68baf98-494b-42fa-ab52-3ff8b223671a}">
     <Declaration><![CDATA[TYPE ST_CSL_Params :
 STRUCT
-	StepSlot1			:	INT		:= 	3;  // conveyor steps to reach Slot 1
-	StepSlot2			:	INT		:= 	8;  // conveyor steps to reach Slot 2
-	StepSlot3			:	INT		:= 	13; // conveyor steps to reach Slot 3
-	StepNoSlot			:	INT		:=	20; // unknown colour -> discard piece
-		
+	StepSlot1			:	INT;	//	:= 	3;  // conveyor steps to reach Slot 1
+	StepSlot2			:	INT;	//	:= 	8;  // conveyor steps to reach Slot 2
+	StepSlot3			:	INT;	//	:= 	13; // conveyor steps to reach Slot 3
+	StepNoSlot			:	INT;	//	:=	17; // unknown colour -> discard piece
+	
+	StepPerRev			:	INT;
+	
 	pistonReentryDelay	:	TIME	:= T#500MS; // piston re-entry time
 	stopLongPressTime	:	TIME	:= T#500MS;	// time required for the pause transition to be activated
 	slotRemoveTime		:	TIME	:= T#500MS; // time required after piece removal from its slot

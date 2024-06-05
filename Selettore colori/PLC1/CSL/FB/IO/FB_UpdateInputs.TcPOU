@@ -26,7 +26,7 @@ stIn.bSlot3	            	:= stRawIn.bSlot3				;
 stIn.bStart 				:= stRawIn.bStart OR stHMIIn.bStart;    	
 stIn.bStop					:= stRawIn.bStop AND NOT stHMIIn.bStop;	
 stIn.bAck 					:= stRawIn.bAck OR stHMIIn.bAck;
-stIn.bEmerg 				:= stRawIn.bEmerg				;
+stIn.bEmerg 				:= stRawIn.bEmerg AND stRawIn.bMainEmerg;
 
 Filter(VIn := FC_Conversion(stRawIn.nColorSensor, -10.0, 10.0), VOut := stIn.nColorSensor);
 ]]></ST>

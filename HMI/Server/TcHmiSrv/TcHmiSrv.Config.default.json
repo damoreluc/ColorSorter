@@ -2724,6 +2724,95 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.MAIN.stHMIParams.StepNoSlot": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::stHMIParams::StepNoSlot",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/INT"
+                    },
+                    {
+                        "comment": "unknown colour -> discard piece",
+                        "propertyOrder": 11
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.stHMIParams.StepPerRev": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::stHMIParams::StepPerRev",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/INT"
+                    },
+                    {
+                        "propertyOrder": 12
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.stHMIParams.StepSlot1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::stHMIParams::StepSlot1",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/INT"
+                    },
+                    {
+                        "comment": "conveyor steps to reach Slot 1",
+                        "propertyOrder": 8
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.stHMIParams.StepSlot2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::stHMIParams::StepSlot2",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/INT"
+                    },
+                    {
+                        "comment": "conveyor steps to reach Slot 2",
+                        "propertyOrder": 9
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.stHMIParams.StepSlot3": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::stHMIParams::StepSlot3",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/INT"
+                    },
+                    {
+                        "comment": "conveyor steps to reach Slot 3",
+                        "propertyOrder": 10
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
         "PLC1.MAIN.stHMIParams.Threshold": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -7571,6 +7660,11 @@
                 "PLC1.MAIN.stHMIParams.BlueVoltage": 3,
                 "PLC1.MAIN.stHMIParams.RedSlot": 3,
                 "PLC1.MAIN.stHMIParams.RedVoltage": 3,
+                "PLC1.MAIN.stHMIParams.StepNoSlot": 3,
+                "PLC1.MAIN.stHMIParams.StepPerRev": 3,
+                "PLC1.MAIN.stHMIParams.StepSlot1": 3,
+                "PLC1.MAIN.stHMIParams.StepSlot2": 3,
+                "PLC1.MAIN.stHMIParams.StepSlot3": 3,
                 "PLC1.MAIN.stHMIParams.Threshold": 3,
                 "PLC1.MAIN.stHMIParams.WhiteSlot": 3,
                 "PLC1.MAIN.stHMIParams.WhiteVoltage": 3,

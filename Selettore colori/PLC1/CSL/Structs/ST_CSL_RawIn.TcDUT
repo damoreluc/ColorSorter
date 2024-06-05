@@ -14,7 +14,8 @@ STRUCT
 	bStart 				AT %I*	:	BOOL;	//I9  (NO)
 	bStop				AT %I*	:	BOOL;	//I10 (NC)
 	bAck 				AT %I*	:	BOOL;	//I11 (NO)
-	bEmerg 				AT %I*	:	BOOL;	//12  (NC)
+	bEmerg 				AT %I*	:	BOOL;	//I12 (NC)
+	bMainEmerg			AT %I*	:	BOOL;	//I13 (NC)
 	
 	(*Analog Input*)
 	nColorSensor		AT %I*	:	INT;	//I4

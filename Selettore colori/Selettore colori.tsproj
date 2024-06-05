@@ -2035,7 +2035,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{3EDF9352-52F3-4952-9761-FBBC22E56AED}" Name="PLC1" PrjFilePath="PLC1\PLC1.plcproj" TmcFilePath="PLC1\PLC1.tmc" ReloadTmc="true" AmsPort="852" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC1\PLC1.tmc" TmcHash="{32A2EF2F-D5C7-985D-F6F1-B6DFD628DFEF}">
+				<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC1\PLC1.tmc" TmcHash="{A496E934-359C-9A9D-DBCB-87BEA1AC7C39}">
 					<Name>PLC1 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
@@ -2087,7 +2087,12 @@ External Setpoint Generation:
 						</Var>
 						<Var>
 							<Name>MAIN.stRawIn.bEmerg</Name>
-							<Comment><![CDATA[12  (NC)]]></Comment>
+							<Comment><![CDATA[I12 (NC)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.stRawIn.bMainEmerg</Name>
+							<Comment><![CDATA[I13 (NC)]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
@@ -2142,7 +2147,12 @@ External Setpoint Generation:
 						</Var>
 						<Var>
 							<Name>MAIN.fbUpdateInputs.stRawIn.bEmerg</Name>
-							<Comment><![CDATA[12  (NC)]]></Comment>
+							<Comment><![CDATA[I12 (NC)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbUpdateInputs.stRawIn.bMainEmerg</Name>
+							<Comment><![CDATA[I13 (NC)]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
@@ -4606,6 +4616,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 2 (EL1809)">
 				<Link VarA="PlcTask Inputs^MAIN.stRawIn.bAck" VarB="Channel 10^Input"/>
 				<Link VarA="PlcTask Inputs^MAIN.stRawIn.bEmerg" VarB="Channel 11^Input"/>
+				<Link VarA="PlcTask Inputs^MAIN.stRawIn.bMainEmerg" VarB="Channel 4^Input"/>
 				<Link VarA="PlcTask Inputs^MAIN.stRawIn.bMotorImpulse" VarB="Channel 1^Input"/>
 				<Link VarA="PlcTask Inputs^MAIN.stRawIn.bPieceSensorInput" VarB="Channel 2^Input"/>
 				<Link VarA="PlcTask Inputs^MAIN.stRawIn.bPieceSensorOutput" VarB="Channel 3^Input"/>

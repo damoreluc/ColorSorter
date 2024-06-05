@@ -50,6 +50,7 @@ VAR
 	
 	bConveyorFree : BOOL;
 	iMotorPrev: INT;
+	iMotorRestore : INT;
 	eEmergStep: E_Step;
 	
 	bFbSensorReset: BOOL;
@@ -68,8 +69,8 @@ IF NOT bInitialized THEN
 	bEntryAct := FALSE;
 	bFbEnd := FALSE;
 	bInitialized := TRUE;
-	bFbSensorReset := TRUE;
-	bFbPistonsReset := TRUE;
+	bFbSensorReset := FALSE;
+	bFbPistonsReset := FALSE;
 ELSE
 	
 	(*Preamble*)
@@ -118,13 +119,12 @@ ELSE
 	//calcolo giri del motori complessivo
 	fbRtMotorImpulse(CLK:=	stIn.bMotorImpulse );
 	IF fbRtMotorImpulse.Q THEN
-		iMotorTotal := iMotorTotal + 1;
-		nTotalRevs := TO_REAL(iMotorTotal) / 4;
+		nTotalRevs := nTotalRevs + (1.0 / To_REAL(stParams.StepPerRev));
 	END_IF
 	
 	(* msf subordinate *)
 	fbSensor(
-		bInitializedExt := TRUE,
+		bInitializedExt := bFbSensorReset,
 		stIn:= stIn, 
 		bEnable:= bEnable,
 		bRun:= (eStep = E_Step.MainSensor), 
@@ -137,8 +137,9 @@ ELSE
 		stParams:= stParams
 	);
 	
+	
 	fbPiston(
-		bInitializedExt := TRUE,
+		bInitializedExt := bFbPistonsReset,
 		bEnable:= bEnable, 
 		slot:= nSlot, 
 		stIn:= stIn, 
@@ -152,7 +153,10 @@ ELSE
 		bFbEnd=> bFbPistonEnd,
 		nCycles=>nCycles
 	);
-
+	
+	bFbSensorReset := TRUE;
+	bFbPistonsReset := TRUE;
+	
 	(*Case*)
 	CASE eStep OF
 		
@@ -313,6 +317,7 @@ ELSE
 			
 			(*Exit Act*)
 			IF eNewStep <> E_Step.NoStep THEN
+				iMotorRestore := iMotorPrev;
 				IF eNewStep = E_Step.NeOrError THEN
 					eErrStep := eStep;
 					//nErrId	:= 16#9999_9999;
@@ -414,7 +419,6 @@ END_IF]]></ST>
       <LineId Id="896" Count="0" />
       <LineId Id="895" Count="0" />
       <LineId Id="893" Count="0" />
-      <LineId Id="897" Count="0" />
       <LineId Id="900" Count="0" />
       <LineId Id="898" Count="0" />
       <LineId Id="892" Count="0" />
@@ -424,12 +428,17 @@ END_IF]]></ST>
       <LineId Id="735" Count="6" />
       <LineId Id="730" Count="0" />
       <LineId Id="751" Count="0" />
+      <LineId Id="1024" Count="0" />
       <LineId Id="753" Count="4" />
       <LineId Id="765" Count="0" />
       <LineId Id="758" Count="6" />
       <LineId Id="961" Count="0" />
       <LineId Id="752" Count="0" />
-      <LineId Id="49" Count="2" />
+      <LineId Id="1026" Count="0" />
+      <LineId Id="1025" Count="0" />
+      <LineId Id="49" Count="0" />
+      <LineId Id="1027" Count="0" />
+      <LineId Id="50" Count="1" />
       <LineId Id="130" Count="0" />
       <LineId Id="52" Count="2" />
       <LineId Id="302" Count="1" />
@@ -499,7 +508,9 @@ END_IF]]></ST>
       <LineId Id="502" Count="0" />
       <LineId Id="256" Count="2" />
       <LineId Id="269" Count="1" />
-      <LineId Id="259" Count="6" />
+      <LineId Id="259" Count="2" />
+      <LineId Id="1022" Count="0" />
+      <LineId Id="262" Count="3" />
       <LineId Id="247" Count="0" />
       <LineId Id="292" Count="1" />
       <LineId Id="271" Count="5" />

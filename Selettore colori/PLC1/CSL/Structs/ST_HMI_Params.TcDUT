@@ -16,6 +16,13 @@ STRUCT
 	
 	//threshold
 	Threshold		:	REAL	:=	0.5;
+	
+	StepSlot1			:	INT		:= 	3;  // conveyor steps to reach Slot 1
+	StepSlot2			:	INT		:= 	8;  // conveyor steps to reach Slot 2
+	StepSlot3			:	INT		:= 	13; // conveyor steps to reach Slot 3
+	StepNoSlot			:	INT		:=	17; // unknown colour -> discard piece
+	
+	StepPerRev			:	INT		:=	4;
 END_STRUCT
 END_TYPE
 ]]></Declaration>

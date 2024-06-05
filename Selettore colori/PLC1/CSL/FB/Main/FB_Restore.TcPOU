@@ -43,6 +43,7 @@ ELSE
 		stOut.bMotor := TRUE;
 		IF NOT stIn.bPieceSensorOutput AND bEnable THEN
 			bPieceOut := TRUE;
+			iMotor := 0;
 		END_IF	
 	ELSIF eStep = E_Step.MainPiston  OR bPieceOut THEN
 		stOut.bMotor := TRUE;
@@ -53,10 +54,10 @@ ELSE
 			iMotor := iMotor + 1;
 		END_IF
 			
-		IF iMotor = (stParams.StepNoSlot - iMotorPrev ) THEN
+		IF (iMotor >= (stParams.StepNoSlot - iMotorPrev)  AND eStep = E_Step.MainPiston) OR (iMotor = stParams.StepNoSlot AND eStep = E_Step.MainSensor) THEN
 			stOut.bMotor := FALSE;
 			bInitialized := FALSE;
-			bFbEnd := TRUE;
+			bFbEnd := TRUE;		
 		END_IF
 
 	ELSE
@@ -82,6 +83,7 @@ END_IF
       <LineId Id="212" Count="0" />
       <LineId Id="216" Count="0" />
       <LineId Id="218" Count="0" />
+      <LineId Id="375" Count="0" />
       <LineId Id="217" Count="0" />
       <LineId Id="134" Count="16" />
       <LineId Id="348" Count="0" />

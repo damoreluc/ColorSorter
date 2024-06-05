@@ -12,17 +12,24 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[stParams := FC_thresholdsCalculation(stHMIParams := stHMIParams);
+      <ST><![CDATA[stParams 				:=	FC_thresholdsCalculation(stHMIParams := stHMIParams);
 
-stParams.Threshold := stHMIParams.Threshold;
+stParams.Threshold 		:=	stHMIParams.Threshold;
 
 stParams.BlueVoltage	:=	stHMIparams.BlueVoltage;
 stParams.RedVoltage		:=	stHMIparams.RedVoltage;
 stParams.WhiteVoltage	:=	stHMIparams.WhiteVoltage;
 
-stParams.BlueSlot 	:= stHMIparams.BlueSlot;
-stParams.RedSlot  	:= stHMIparams.RedSlot;
-stParams.WhiteSlot	:= stHMIparams.WhiteSlot;]]></ST>
+stParams.BlueSlot 		:=	stHMIparams.BlueSlot;
+stParams.RedSlot  		:=	stHMIparams.RedSlot;
+stParams.WhiteSlot		:=	stHMIparams.WhiteSlot;
+
+stParams.StepSlot1		:=	stHMIparams.StepSlot1;
+stParams.StepSlot2		:=	stHMIparams.StepSlot2;
+stParams.StepSlot3		:=	stHMIparams.StepSlot3;
+stParams.StepNoSlot		:=	stHMIparams.StepNoSlot;
+
+stParams.StepPerRev		:=	stHMIparams.StepPerRev;]]></ST>
     </Implementation>
     <LineIds Name="FB_UpdatesParams">
       <LineId Id="23" Count="0" />
@@ -33,6 +40,12 @@ stParams.WhiteSlot	:= stHMIparams.WhiteSlot;]]></ST>
       <LineId Id="17" Count="0" />
       <LineId Id="9" Count="0" />
       <LineId Id="12" Count="1" />
+      <LineId Id="39" Count="0" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="40" Count="1" />
+      <LineId Id="43" Count="0" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="44" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>
