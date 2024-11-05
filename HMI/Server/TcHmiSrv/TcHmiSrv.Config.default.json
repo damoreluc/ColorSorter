@@ -58,7 +58,7 @@
         "TcHmiScope": {
             "ENABLED": true,
             "NAME": "TcHmiScope",
-            "PATH": "..\\..\\Packages\\Beckhoff.TwinCAT.HMI.Scope.14.1.120\\runtimes\\win\\net472\\",
+            "PATH": "..\\..\\..\\Packages\\Beckhoff.TwinCAT.HMI.Scope.14.1.202\\runtimes\\win\\net472\\",
             "REQUIRED": false,
             "STARTUPTYPE": 1
         },
@@ -7505,13 +7505,13 @@
     "USERSELECTTYPE": 0,
     "VIDEOSEGMENTSIZE": 1048576,
     "VIRTUALDIRECTORIES": {
-        "/": "..\\..\\HMI\\",
-        "/Beckhoff.TwinCAT.HMI.BaseTemplate": "..\\..\\Packages\\Beckhoff.TwinCAT.HMI.BaseTemplate.12.760.59\\runtimes\\native1.12-tchmi",
-        "/Beckhoff.TwinCAT.HMI.Controls": "..\\..\\Packages\\Beckhoff.TwinCAT.HMI.Controls.12.760.59\\runtimes\\native1.12-tchmi",
-        "/Beckhoff.TwinCAT.HMI.Functions": "..\\..\\Packages\\Beckhoff.TwinCAT.HMI.Functions.12.760.59\\runtimes\\native1.12-tchmi",
-        "/Beckhoff.TwinCAT.HMI.ScopeControl": "..\\..\\Packages\\Beckhoff.TwinCAT.HMI.ScopeControl.12.760.59\\runtimes\\native1.12-tchmi",
-        "/bin": "..\\..\\HMI\\bin\\",
-        "/bin/framework": "..\\..\\HMI\\bin\\framework",
-        "/framework": "..\\..\\Packages\\Beckhoff.TwinCAT.HMI.Framework.12.760.59\\runtimes\\native1.12-tchmi"
+        "/": "..\\..\\..\\HMI\\",
+        "/Beckhoff.TwinCAT.HMI.BaseTemplate": "..\\..\\..\\Packages\\Beckhoff.TwinCAT.HMI.BaseTemplate.12.762.42\\runtimes\\native1.12-tchmi",
+        "/Beckhoff.TwinCAT.HMI.Controls": "..\\..\\..\\Packages\\Beckhoff.TwinCAT.HMI.Controls.12.762.42\\runtimes\\native1.12-tchmi",
+        "/Beckhoff.TwinCAT.HMI.Functions": "..\\..\\..\\Packages\\Beckhoff.TwinCAT.HMI.Functions.12.762.42\\runtimes\\native1.12-tchmi",
+        "/Beckhoff.TwinCAT.HMI.ScopeControl": "..\\..\\..\\Packages\\Beckhoff.TwinCAT.HMI.ScopeControl.12.762.42\\runtimes\\native1.12-tchmi",
+        "/bin": "..\\..\\..\\HMI\\bin\\",
+        "/bin/framework": "..\\..\\..\\HMI\\bin\\framework",
+        "/framework": "..\\..\\..\\Packages\\Beckhoff.TwinCAT.HMI.Framework.12.762.42\\runtimes\\native1.12-tchmi"
     }
 }
